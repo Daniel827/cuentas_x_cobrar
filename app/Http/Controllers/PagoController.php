@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+use App\Http\Requests;
+use App\Http\Requests\PagoRequest;
+use App\Pago;
 
 class PagoController extends Controller
 {
