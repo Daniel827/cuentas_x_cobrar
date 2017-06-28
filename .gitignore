@@ -7,3 +7,4 @@
 Homestead.json
 Homestead.yaml
 npm-debug.log
+app/Http/Controllers/PagoController.php

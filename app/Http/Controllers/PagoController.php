@@ -14,8 +14,8 @@ class PagoController extends Controller
     public function _construct(){
       $this -> middleware('auth');
     }
-
-    public function index(){
+   
+   public function index(){
       $pagos=Pago::paginate(10);
       return view('pagos.index', compact('pagos'));
     }
