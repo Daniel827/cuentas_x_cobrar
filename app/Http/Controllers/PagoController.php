@@ -17,11 +17,11 @@ class PagoController extends Controller
    
    public function index(){
       $pagos=Pago::paginate(10);
-      return view('pagos.index', compact('pagos'));
+      return view('panel.pagos.index', compact('pagos'));
     }
 
     public function create(){
-      return view('pagos.create');
+      return view('panel.pagos.create');
     }
 
     public function store(PagoRequest $request){
