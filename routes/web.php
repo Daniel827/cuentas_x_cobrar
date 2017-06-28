@@ -16,7 +16,7 @@ Route::group(['middleware' => 'guest'], function () {
   Route::get('perfil','AdminPanelController@profile');
   Route::resource('usuarios','UserController');
   Route::resource('cajeros','CajeroController');
-  Route::resource('tipospago','TipoPagoController');
+  Route::resource('tipopagos','TipoPagoController');
   Route::resource('pagos','PagoController');
 });
 

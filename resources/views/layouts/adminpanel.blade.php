@@ -61,8 +61,8 @@
                                     </li>
                                     <li><a><i class="fa fa-credit-card"></i> Tipos de pago <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="{{url('tipospago')}}">Todos los tipos de pago</a></li>
-                                            <li><a href="{{url('tipospago/create')}}">Añadir nuevo</a></li>
+                                            <li><a href="{{url('tipopagos')}}">Todos los tipos de pago</a></li>
+                                            <li><a href="{{url('tipopagos/create')}}">Añadir nuevo</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-calculator"></i>Pagos <span class="fa fa-chevron-down"></span></a>

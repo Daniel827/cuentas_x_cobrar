@@ -16,27 +16,26 @@ class TipoPagoController extends Controller
 
     public function index(){
       $tipopagos=TipoPago::paginate(10);
-      return view('tipopagos.index', compact('tipopagos'));
+      return view('panel.tipopagos.index', compact('tipopagos'));
     }
 
     public function create(){
-      return view('tipopagos.create');
+      return view('panel.tipopagos.create');
     }
 
     public function store(TipopagoRequest $request){
       TipoPago::create($request->all());
-      //return view('productos.index');
-      return Redirect::to('tipopago');
+         return Redirect::to('tipopagos');
     }
 
     public function edit($id){
       $tipopago=TipoPago::find($id);
-      return view('tipopagos.edit', compact('tipopago'));
+      return view('panel.tipopagos.edit', compact('tipopago'));
     }
 
     public function update(TipopagoRequest $request, $id){
       TipoPago::updateOrCreate(['idTipoPago'=>$id], $request->all());
-      return Redirect::to('tipopago');
+      return Redirect::to('tipopagos');
     }
 
     public function destroy($id){
