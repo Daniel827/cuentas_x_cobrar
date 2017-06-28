@@ -48,7 +48,7 @@
                                       <td>{{ $p->idPago}}</td>    <!--nombre de la variable de la base de datos-->
                                       <td>{{ $p->idCajero}}</td>
                                       <td>{{ $p->idCliente}}</td>
-                                      <td>{{ $p->descripion}}</td>
+                                      <td>{{ $p->descripcion}}</td>
                                       <td>{{ $p->fecha}}</td>
                                       <td>{{ $p->numeroPago}}</td>
                                       <td>{{ $p->totalPago}}</td>
