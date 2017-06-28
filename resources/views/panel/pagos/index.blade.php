@@ -39,6 +39,7 @@
                            <th>Fecha</th>
                            <th>Num Pago</th>
                            <th>Total Pago</th>
+                           <th>Opciones</th>
                          </tr>
                        </thead>
 
@@ -53,7 +54,7 @@
                                       <td>{{ $p->numeroPago}}</td>
                                       <td>{{ $p->totalPago}}</td>
                                       <td>
-                                        <!--  <a class="btn btn-info" href="{{URL::action('DetalleController@edit',$p->idDetalle)}}">Detalle</a>-->
+                                       <a class="btn btn-info" href="{{URL::action('DetalleController@edit',$p->idDetalle)}}">Detalle</a>
                                       </td>
                                   </tr>
                                   @endforeach
