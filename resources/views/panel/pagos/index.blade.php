@@ -43,21 +43,23 @@
                        </thead>
 
 
-                       @foreach ($productos as $p)
+                       @foreach ($pagos as $p)
                                   <tr>
-                                      <td>{{ $p->nombre}}</td>    <!--nombre de la variable de la base de datos-->
-                                      <td>{{ $p->precio}}</td>
-                                      <td>{{ $p->codigo}}</td>
-                                      <td>{{ $p->cantidad}}</td>
-                                      <td>{{ $p->minStock}}</td>
+                                      <td>{{ $p->idPago}}</td>    <!--nombre de la variable de la base de datos-->
+                                      <td>{{ $p->idCajero}}</td>
+                                      <td>{{ $p->idCliente}}</td>
+                                      <td>{{ $p->descripion}}</td>
+                                      <td>{{ $p->fecha}}</td>
+                                      <td>{{ $p->numeroPago}}</td>
+                                      <td>{{ $p->totalPago}}</td>
                                       <td>
-                                          <a class="btn btn-info" href="{{URL::action('ProductoController@edit',$p->idProducto)}}">Editar</a>
+                                        <!--  <a class="btn btn-info" href="{{URL::action('DetalleController@edit',$p->idDetalle)}}">Detalle</a>-->
                                       </td>
                                   </tr>
                                   @endforeach
                      </table>
                    </div>
-                    {{$productos->render()}}   <!--Ayuda para mandar paginado-->
+                    {{$pagos->render()}}   <!--Ayuda para mandar paginado-->
                  </div>
                </div>
             </div>
