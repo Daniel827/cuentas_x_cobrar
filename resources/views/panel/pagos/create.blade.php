@@ -35,8 +35,8 @@
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente<span class="required">*</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control col-md-7 col-xs-12">
                             <option>Choose option</option>
                             <option>Daniel</option>
@@ -65,7 +65,8 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipo de Pago <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select class="form-control col-md-7 col-xs-12">
+                            <select name="idTipoPago" class="form-control col-md-7 col-xs-12">
+
                               <option>01</option>
                               <option>02</option>
                               <option>03</option>

@@ -16,7 +16,5 @@ class DetallePago extends Model {
         'pago'
     ];
 
-    public function pago() {
-        return $this->belongsTo('App\Pago', 'idPago');
-    }
+  
 }

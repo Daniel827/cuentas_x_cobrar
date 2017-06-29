@@ -37,7 +37,8 @@ class PagoRequest extends FormRequest
            "descripcion"=>"required|min:10|max:300",
             "fecha"=>"required|date(dd-mm-aaaa)",
             "numeroPago"=>"required|numeric",
-            "totalPago"=>"required|numeric"
+            "idFactura"=>"required|array",
+            "idTipoPago"=>"required|array"
         ];
      }
     }
