@@ -27,7 +27,7 @@ class PagoController extends Controller
     public function store(PagoRequest $request){
       Pago::create($request->all());
       //return view('productos.index');
-      return Redirect::to('pago');
+      return Redirect::to('pagos');
     }
 
     public function edit($id){

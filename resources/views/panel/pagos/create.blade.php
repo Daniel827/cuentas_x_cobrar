@@ -1,3 +1,4 @@
+@extends('layouts.app')
 @extends('layouts.adminpanel')
 @section('titulo','Registrar pago')
 @section('contenido')
@@ -32,7 +33,8 @@
 
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="demo-form2" action="{{url('pagos')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+
 
                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente</label>
@@ -134,6 +136,11 @@
                     </table>
 
                     <label for="ex3">Total</label><input type="text" id="ex3" class="form-control" placeholder=" ">
+
+
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <input class="btn btn-primary" type="submit" value="Añadir" />
+        </div>
 
                     </form>
                   </div>
