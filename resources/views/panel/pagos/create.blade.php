@@ -23,21 +23,21 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                       
-<div class="clearfix"></div>
+
+
+
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                  
+
                   <div class="x_content">
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cliente</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control">
+                          <select class="form-control col-md-7 col-xs-12">
                             <option>Choose option</option>
                             <option>Daniel</option>
                             <option>Jose</option>
@@ -48,40 +48,64 @@
                       </div>
 
                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de Factura <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control col-md-7 col-xs-12">
+                              <option>01</option>
+                              <option>02</option>
+                              <option>03</option>
+                              <option>04</option>
+                              <option>05</option>
+                            </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipo de Pago <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control col-md-7 col-xs-12">
+                              <option>01</option>
+                              <option>02</option>
+                              <option>03</option>
+                              <option>04</option>
+                              <option>05</option>
+                            </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripcion <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="descripcion" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-                      
+
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de Pago <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cantidad a Pagar <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="pago" required="required" class="form-control col-md-7 col-xs-12">
+
+
                         </div>
                       </div>
 
-                       <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button">Cancel</button>
-              <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>
 
-<br><br>
-
+                      <br><center><button class="btn btn-primary" type="button">Adicionar</button>
+                      <button class="btn btn-primary" type="reset">Limpiar</button></center>
+<div class="ln_solid"></div>
+                      <br><br>
                       <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th>Id Detalle</th>
-                          <th>Id Pago</th>
+                          <th>Cliente</th>
+                          <th>Num Factura</th>
                           <th>Tipo Pago</th>
-                          <th>Id Factura</th>
                           <th>Pago</th>
+                          <th>Opciones</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -109,14 +133,7 @@
                       </tbody>
                     </table>
 
-
-                    <div class="form-group">
-                    <label for="ex3">Total</label>
-                    <input type="text" id="ex3" class="form-control" placeholder=" ">
-                  </div>
-                      
-
-                     
+                    <label for="ex3">Total</label><input type="text" id="ex3" class="form-control" placeholder=" ">
 
                     </form>
                   </div>
@@ -124,8 +141,13 @@
               </div>
             </div>
 
-                      
-                  </div>
+           <center><div class="form-group " >
+             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="submit" class="btn btn-success" style="WIDTH: 200px; HEIGHT: 60px">Guardar factura</button>
+               <button class="btn btn-primary" type="button" style="WIDTH: 200px; HEIGHT: 60px">Cancelar</button>
+             </div>
+           </div></center>
+
                 </div>
               </div>
             </div>
