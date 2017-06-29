@@ -47,6 +47,7 @@
                                 @endforeach
                             </table>
                   </div>
+                  {{$tipopagos->render()}}
                 </div>
               </div>
             </div>

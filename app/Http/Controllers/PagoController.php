@@ -30,6 +30,7 @@ class PagoController extends Controller
     public function store(PagoRequest $request){
       Pago::create($request->all());
       //return view('productos.index');
+<<<<<<< HEAD
       $idPago Pago::max("idPago");
       for($i=0;$i<len($request->idFactura;$i++ )
       $request->idFactura[$i]
@@ -38,6 +39,9 @@ class PagoController extends Controller
 
       Pago::createOrUpdate("idPago")
       return Redirect::to('pago');
+=======
+      return Redirect::to('pagos');
+>>>>>>> cbe00afb2f8582270a872ee6b3a46d681f5ecb09
     }
 
     public function edit($id){
