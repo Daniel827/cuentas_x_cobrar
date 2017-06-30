@@ -45,26 +45,26 @@
     <div class="form-group">
       <label for="nombre" class="col-lg-2 control-label">Nombre <font color="red">*</font></label>
       <div class="col-lg-10">   
-        <input name="nombre" id="nombre" class="form-control" type="text" value="{{old('nombre')}}" required>
+        <input name="nombre" id="nombre" class="form-control" type="text" value="{{old('nombre')}}"  onkeypress="return esLetra();" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú]*\s[a-zA-ZÁÉÍÓÚ][a-zñáéíóú]*" minlength="7" maxlength="27" required>
       </div>
     </div>
     <div class="form-group">
       <label for="referencia" class="col-lg-2 control-label">Referencia<font color="red">*</font></label>
       <div class="col-lg-10">
-        <input name="referencia" id="referencia" class="form-control" type="text" value="{{old('referencia')}}" required>
+        <input name="referencia" id="referencia" class="form-control" type="text" value="{{old('referencia')}}" onkeypress="return esLetra();" pattern="[a-zA-ZÁÉÍÓÚ][a-zñáéíóú]*\s[a-zA-ZÁÉÍÓÚ][a-zñáéíóú]*" minlength="7" maxlength="27" required>
       </div>
     </div>
     <div class="form-group">
       <label for="descripcion" class="col-lg-2 control-label">Descripcion <font color="red">*</font></label>
       <div class="col-lg-10">
-        <input name="descripcion" id="descripcion" class="form-control" type="text" value="{{old('descripcion')}}" required>
+        <input name="descripcion" id="descripcion" class="form-control validated" type="text" text" value="{{old('descripcion')}}" onkeypress="return esLetra();" pattern="[a-zA-ZÁÉÍÓÚ][a-zñáéíóú]*\s[A-ZÁÉÍÓÚ][a-zñáéíóú]*" minlength="7" maxlength="27" required>
       </div>  
     </div>
     <div class="form-group">
       <label for="estado" class="col-lg-2 control-label">Estado <font color="red">*</font></label>
       <div class="col-lg-10">
       
-    <select name="estado" id="estado" class="form-control" type="select" value="{{old('estado')}}" required>
+    <select name="estado" id="estado" class="form-control " type="select" value="{{old('estado')}}"  required >
         <option>-- Estado de Pago-- </option>
         <option value="A">Activo</option>
         <option value="I">Inactivo</option>
@@ -73,10 +73,10 @@
     </div>
     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <input class="btn btn-primary" type="submit" value="Añadir" />
-        </div>
+    </div>
           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <a href="{{url()->previous()}}" class="btn btn-default" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12" >Cancelar</a>
-      </div>
+     <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
+      </div> 
         </form>
                   </div>
                 </div>
@@ -84,3 +84,6 @@
             </div>
           </div>
 @endsection
+@push('scripts')
+     <script src="{{asset('public\js\validaciones.js')}}"></script>
+@endpush
