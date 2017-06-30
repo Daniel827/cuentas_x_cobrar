@@ -14,6 +14,7 @@
 Route::group(['middleware' => 'guest'], function () {
   Route::get('/','AdminPanelController@index');
   Route::get('perfil','AdminPanelController@profile');
+  Route::get('reporte','AdminPanelController@getPDF');
   Route::resource('usuarios','UserController');
   Route::resource('cajeros','CajeroController');
   Route::resource('tipopagos','TipoPagoController');

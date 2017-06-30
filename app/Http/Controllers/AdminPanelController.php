@@ -15,4 +15,9 @@ class AdminPanelController extends Controller{
   public function profile(){
       return view('panel.profile');
   }
+
+  public function getPDF(){
+    return \PDF::loadFile('http://www.github.com')->inline('github.pdf');
+    //return \PDF::loadView('panel.index')->download('inicio.pdf');
+  }
 }
