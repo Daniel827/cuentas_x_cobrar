@@ -21,14 +21,28 @@ class PagoController extends Controller
       return view('panel.pagos.index', compact('pagos'));
     }
 
-    public function create(){
-      // llamar al listado de clientes del ws
-      $pagos=Pago::get();
-      return view('panel.pagos.create',compact("pagos"));
+      public function create(){
+      return view('panel.pagos.create');
     }
 
     public function store(PagoRequest $request){
       Pago::create($request->all());
-      //return view('productos.index');
-}
+         return Redirect::to('pagos');
+    }
+
+   
+     public function edit(){
+      $pagos=Pago::paginate(10);
+      return view('panel.pagos.show', compact('pagos'));
+    }
+
+    public function update(PagoRequest $request, $id){
+      Pago::updateOrCreate(['idPago'=>$id], $request->all());
+      return Redirect::to('pagos');
+    }
+
+    public function destroy($id){
+      Pago::destroy($id);
+      return Redirect::to('pago');
+    }
 }
