@@ -72,7 +72,7 @@
                                <th>Num Factura</th>
                                <th>Tipo Pago</th>
                                <th>Descripcion</th>
-                               <th>Pago</th>  
+                               <th>Pago</th>
                              </thead>
                              <tfoot>
                                 <th>TOTAL</th>
@@ -80,20 +80,20 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th><h4 id="total">$ 0.00</h4></th>                              
+                                <th><h4 id="total">$ 0.00</h4></th>
                              </tfoot>
                              <tbody>
-                               
+
                              </tbody>
                            </table>
-                      </div>  
+                      </div>
   <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="guardar">
        <div class="form-group">
           <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
           <button class="btn btn-primary" type="submit">Guardar Factura</button>
           <button class="btn btn-danger" type="reset">Cancelar</button>
        </div>
-   </div>    
+   </div>
 </div>
 
 
@@ -107,19 +107,19 @@
 
 
  var cont=0;
- total=0;  
+ total=0;
  subtotal=[];
  $("#guardar").hide();
 
  function agregar()
  {
-   cliente=$("#cliente").val();  
+   cliente=$("#cliente").val();
    nfact=$("#nfact").val();
    idTipoPago=$("#idTipoPago").val();
    descripcion=$("#descripcion").val();
    pago=$("#pago").val();
 
-if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago!="") {   
+if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago!="") {
    subtotal[cont]=(pago);
    total=total+subtotal[cont];
 
@@ -133,14 +133,14 @@ if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago!="") {
  else{
   alert("Error al ingresar");
  }
- }  
+ }
    function limpiar(){
     $("cliente").val("");
     $("nfact").val("");
     $("idTipoPago").val("");
     $("descripcion").val("");
     $("pago").val("");
-   }  
+   }
 
    function evaluar()
    {
@@ -150,7 +150,7 @@ if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago!="") {
      }
      else
      {
-      $("#guardar").hide(); 
+      $("#guardar").hide();
      }
    }
 

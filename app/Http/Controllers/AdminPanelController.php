@@ -17,7 +17,7 @@ class AdminPanelController extends Controller{
   }
 
   public function getPDF(){
-    return \PDF::loadFile('http://www.github.com')->inline('github.pdf');
-    //return \PDF::loadView('panel.index')->download('inicio.pdf');
+    $pdf = \PDF::loadView('panel.cajeros.reporte');
+    return $pdf->stream('inicio.pdf');
   }
 }

@@ -74,8 +74,8 @@
                                     </li>
                                     <li><a><i class="fa fa-file-pdf-o"></i>Otros Reportes <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="{{url('reporte')}}">Clientes con sus movimientos</a></li>
-                                            <li><a href="chartjs2.html">Listado de clientes con su saldo</a></li>
+                                            <li><a href="{{url('reporte')}}" target="_blank">Clientes con sus movimientos</a></li>
+                                            <li><a href="chartjs2.html" target="_blank">Listado de clientes con su saldo</a></li>
                                         </ul>
                                     </li>
                                 </ul>
