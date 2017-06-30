@@ -13,7 +13,6 @@ class Pago extends Model {
         'idCajero',
         'idCliente',
         'descripcion',
-        'fecha',
         'numeroPago',
         'totalPago'
     ];

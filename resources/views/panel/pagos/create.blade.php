@@ -4,32 +4,48 @@
 @section('contenido')
 
 
-
-
-
-
 <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
 
+                <div class="x_panel">
+                @if(count($errors)>0)
+                <div class="row">
+                <div class="alert alert-danger">
+                <ul>
+                  @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                  @endforeach
+                </ul>
+                </div>
+                </div>
+                @endif
                   <div class="x_content">
+
                     <br />
                     <form id="demo-form2" action="{{url('pagos')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
-
+                        <input type="hidden" name="idCajero" value="112">
+                        <input type="hidden" name="numeroPago" value="PAGO-0001">
+                        <input type="text" name="fecha" value="<? echo date('d m Y');  ?>">
 
                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente<span class="required">*</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="cliente" required="required" class="form-control col-md-7 col-xs-12">
+                          <select class="form-control col-md-7 col-xs-12" name="idCliente" id="cliente" required >
+                          <option value="0">Seleccionar</option>
+                            <option value="1">Daniel</option>
+                            <option value="2">Jose</option>
+                            <option value="3">Cristopher</option>
+                            <option value="4">Emiro</option>
+                          </select>
                         </div>
                       </div>
+
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de factura<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="nfact" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="nfact" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el numero de factura">
                         </div>
                       </div>
 
@@ -37,7 +53,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipo de pago <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="idTipoPago" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="idTipoPago" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el tipo de pago">
                         </div>
                       </div>
 
@@ -45,15 +61,15 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripcion <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="descripcion" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="descripcion" required="required" name="descripcion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese una descripcion">
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cantidad a Pagar <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-6" for="first-name">Cantidad a Pagar <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="pago" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="pago" required="required" min=0.01 step="0.01" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cantidad a pagar">
                         </div>
                       </div>
 
@@ -107,23 +123,23 @@
 
 
  var cont=0;
- total=0;  
- subtotal=[];
+ var total=0;  
+ var subtotal=[];
  $("#guardar").hide();
 
  function agregar()
  {
-   cliente=$("#cliente").val();  
+   cliente=$("#cliente option:selected").val();  
    nfact=$("#nfact").val();
    idTipoPago=$("#idTipoPago").val();
    descripcion=$("#descripcion").val();
    pago=$("#pago").val();
 
-if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago!="") {   
-   subtotal[cont]=(pago);
+if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago>0) {   
+   subtotal[cont]=pago*1;
    total=total+subtotal[cont];
 
-   var fila= '<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" >X</button></td><td><input type="hidden name="cliente[]" value="'+cliente+'">'+cliente+'</td><td><input type="hidden name="nfact[]" value="'+nfact+'">'+nfact+'</td><td><input type="hidden name="idTipoPago[]" value="'+idTipoPago+'">'+idTipoPago+'</td><td><input type="hidden name="descripcion[]" value="'+descripcion+'">'+descripcion+'</td><td><input type="hidden name="pago[]" value="'+pago+'">'+pago+'</td></tr>';
+   var fila= '<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');" >Eliminar</button></td><td><input type="hidden" name="cliente[]" value="'+cliente+'">'+cliente+'</td><td><input type="hidden" name="nfact[]" value="'+nfact+'">'+nfact+'</td><td><input type="hidden" name="idTipoPago[]" value="'+idTipoPago+'">'+idTipoPago+'</td><td><input type="hidden" name="descripcion[]" value="'+descripcion+'">'+descripcion+'</td><td><input type="hidden" name="pago[]" value="'+pago+'">'+pago+'</td></tr>';
    cont++;
    limpiar();
    $('#total').html("$ " + total);
@@ -134,6 +150,7 @@ if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago!="") {
   alert("Error al ingresar");
  }
  }  
+
    function limpiar(){
     $("cliente").val("");
     $("nfact").val("");
@@ -152,6 +169,13 @@ if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago!="") {
      {
       $("#guardar").hide(); 
      }
+   }
+
+   function eliminar(index){
+    total=total-subtotal[index];
+    $("#total").html("$ " + total);
+    $("#fila" + index).remove();
+    evaluar();
    }
 
 </script>

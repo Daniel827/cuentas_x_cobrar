@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\support\Facades\Input;
 class PagoRequest extends FormRequest
 {
     /**
@@ -26,19 +26,20 @@ class PagoRequest extends FormRequest
         if(Input::has('idPago')){
             $id=Input::Get('idPago');
         return [
-            "descripcion"=>"required|min:10|max:300",
-            "fecha"=>"required|date(dd-mm-aaaa)",
+            "idCajero"=>"",
+            "idCliente"=>"",
+            "descripcion"=>"required",
             "numeroPago"=>"required|unique:pagos,numeropago,".$id."idPago",
             "totalPago"=>"required|numeric"
             //
         ];
      }else{
         return[
-           "descripcion"=>"required|min:10|max:300",
-            "fecha"=>"required|date(dd-mm-aaaa)",
-            "numeroPago"=>"required|numeric",
-            "idFactura"=>"required|array",
-            "idTipoPago"=>"required|array"
+            "idCajero"=>"required",
+            "idCliente"=>"required",
+           "descripcion"=>"required",
+            "numeroPago"=>"required|unique:pagos",
+            
         ];
      }
     }
