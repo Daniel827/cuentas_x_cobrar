@@ -25,6 +25,7 @@
                     <form id="demo-form2" action="{{url('pagos')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
                         <input type="hidden" name="idCajero" value="112">
                         <input type="hidden" name="numeroPago" value="PAGO-0001">
+                        <input type="text" name="fecha" value="<? echo date('d m Y');  ?>">
 
                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente<span class="required">*</label>

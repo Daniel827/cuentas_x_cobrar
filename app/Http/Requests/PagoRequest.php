@@ -28,7 +28,7 @@ class PagoRequest extends FormRequest
         return [
             "idCajero"=>"",
             "idCliente"=>"",
-            "descripcion"=>"required|min:10|max:300",
+            "descripcion"=>"required",
             "numeroPago"=>"required|unique:pagos,numeropago,".$id."idPago",
             "totalPago"=>"required|numeric"
             //
@@ -37,7 +37,7 @@ class PagoRequest extends FormRequest
         return[
             "idCajero"=>"required",
             "idCliente"=>"required",
-           "descripcion"=>"required|min:10|max:300",
+           "descripcion"=>"required",
             "numeroPago"=>"required|unique:pagos",
             
         ];
