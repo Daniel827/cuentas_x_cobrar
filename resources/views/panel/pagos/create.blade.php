@@ -2,8 +2,6 @@
 @extends('layouts.adminpanel')
 @section('titulo','Registrar pago')
 @section('contenido')
-
-
 <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
 
@@ -23,9 +21,8 @@
 
                     <br />
                     <form id="demo-form2" action="{{url('pagos')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
-                        <input type="hidden" name="idCajero" value="112">
+                        <input type="hidden" name="idCajero" value="1">
                         <input type="hidden" name="numeroPago" value="PAGO-0001">
-                        <input type="text" name="fecha" value="<? echo date('d m Y');  ?>">
 
                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente<span class="required">*</label>
@@ -121,38 +118,26 @@
     });
   });
 
-
  var cont=0;
-<<<<<<< HEAD
  total=0;
  subtotal=[];
-=======
- var total=0;  
+ var total=0;
  var subtotal=[];
->>>>>>> 162264304956612867ce24cd1fb8727f7db4e87b
  $("#guardar").hide();
 
- function agregar()
- {
-<<<<<<< HEAD
+ function agregar(){
    cliente=$("#cliente").val();
-=======
-   cliente=$("#cliente option:selected").val();  
->>>>>>> 162264304956612867ce24cd1fb8727f7db4e87b
+   cliente=$("#cliente option:selected").val();
    nfact=$("#nfact").val();
    idTipoPago=$("#idTipoPago").val();
    descripcion=$("#descripcion").val();
    pago=$("#pago").val();
 
-<<<<<<< HEAD
 if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago!="") {
    subtotal[cont]=(pago);
-=======
-if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago>0) {   
+if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago>0) {
    subtotal[cont]=pago*1;
->>>>>>> 162264304956612867ce24cd1fb8727f7db4e87b
    total=total+subtotal[cont];
-
    var fila= '<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');" >Eliminar</button></td><td><input type="hidden" name="cliente[]" value="'+cliente+'">'+cliente+'</td><td><input type="hidden" name="nfact[]" value="'+nfact+'">'+nfact+'</td><td><input type="hidden" name="idTipoPago[]" value="'+idTipoPago+'">'+idTipoPago+'</td><td><input type="hidden" name="descripcion[]" value="'+descripcion+'">'+descripcion+'</td><td><input type="hidden" name="pago[]" value="'+pago+'">'+pago+'</td></tr>';
    cont++;
    limpiar();
@@ -163,12 +148,8 @@ if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago>0) {
  else{
   alert("Error al ingresar");
  }
-<<<<<<< HEAD
  }
-=======
- }  
-
->>>>>>> 162264304956612867ce24cd1fb8727f7db4e87b
+ }
    function limpiar(){
     $("cliente").val("");
     $("nfact").val("");

@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\support\Facades\Input;
 class PagoRequest extends FormRequest
 {
     /**
@@ -21,26 +20,13 @@ class PagoRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-        if(Input::has('idPago')){
-            $id=Input::Get('idPago');
-        return [
-            "idCajero"=>"",
-            "idCliente"=>"",
-            "descripcion"=>"required",
-            "numeroPago"=>"required|unique:pagos,numeropago,".$id."idPago",
-            "totalPago"=>"required|numeric"
-            //
-        ];
-     }else{
+    public function rules(){
         return[
             "idCajero"=>"required",
             "idCliente"=>"required",
            "descripcion"=>"required",
             "numeroPago"=>"required|unique:pagos",
-            
+
         ];
      }
-    }
 }

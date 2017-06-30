@@ -13,8 +13,7 @@ class Pago extends Model {
         'idCajero',
         'idCliente',
         'descripcion',
-        'numeroPago',
-        'totalPago'
+        'numeroPago'
     ];
 
     public function detallesPago() {

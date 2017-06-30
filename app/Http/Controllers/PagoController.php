@@ -26,32 +26,34 @@ class PagoController extends Controller
        $pagos=Pago::get();
        return view('panel.pagos.create',compact("pagos"));
      }
-       
-    
-  
+
       public function store(PagoRequest $request){
         Pago::create($request->all());
-       //return view('productos.index');
+        $idPago=Pago::max("idPago");
+      $total=0;
+      for($i=0;$i<sizeof($request->idFactura);$i++ ){
+        $idFactura=$request->idFactura[$i];
+        $idTipoPago=$request->idTipoPago[$i];
+        $pago=$request->pago[$i];
+        DetallePago::create(["idFactura"=>$idFactura,"idTipoPago"=>$idTipoPago,"pago"=>$pago]);
+        $total+=$pago;
+      }
+      Pago::createOrUpdate(["idPago"=>$idPago],["pago"=>$total]);
         return Redirect::to('pagos');
       }
-          
-    
- 
-    
-      public function edit(){
-       $pagos=Pago::paginate(10);
-       return view('panel.pagos.show', compact('pagos'));
+
+      public function show($id){
+        $pago=Pago::find($id);
+       return view('panel.pagos.show', compact('pago'));
      }
- 
+
      public function update(PagoRequest $request, $id){
        Pago::updateOrCreate(['idPago'=>$id], $request->all());
        return Redirect::to('pagos');
      }
- 
+
      public function destroy($id){
        Pago::destroy($id);
        return Redirect::to('pago');
      }
-
-   
 }

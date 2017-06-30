@@ -54,7 +54,7 @@
                                       <td>{{ $p->numeroPago}}</td>
                                       <td>{{ $p->totalPago}}</td>
                                       <td>
-                                        <a class="btn btn-info" href="{{URL::action('PagoController@edit',$p->idPago)}}">Ver Detalle</a>
+                                        <a class="btn btn-info" href="{{URL::action('PagoController@show',$p->idPago)}}">Ver Detalle</a>
                                     </td>
                                   </tr>
                                   @endforeach
