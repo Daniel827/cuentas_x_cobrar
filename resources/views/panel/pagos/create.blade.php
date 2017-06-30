@@ -2,32 +2,13 @@
 @extends('layouts.adminpanel')
 @section('titulo','Registrar pago')
 @section('contenido')
-<div>
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Registrar pago</h3>
-              </div>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Datos del pago</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
 
 
 
-            <div class="row">
+
+
+
+<div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
 
@@ -37,44 +18,26 @@
 
 
                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente<span class="required">*</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <span class="required">*</span>
+                        </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control col-md-7 col-xs-12">
-                            <option>Choose option</option>
-                            <option>Daniel</option>
-                            <option>Jose</option>
-                            <option>Cristopher</option>
-                            <option>Emiro</option>
-                          </select>
+                          <input type="text" id="cliente" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de Factura <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de factura<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select class="form-control col-md-7 col-xs-12">
-                              <option>01</option>
-                              <option>02</option>
-                              <option>03</option>
-                              <option>04</option>
-                              <option>05</option>
-                            </select>
+                          <input type="text" id="nfact" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipo de Pago <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipo de pago <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="idTipoPago" class="form-control col-md-7 col-xs-12">
-
-                              <option>01</option>
-                              <option>02</option>
-                              <option>03</option>
-                              <option>04</option>
-                              <option>05</option>
-                            </select>
+                          <input type="text" id="idTipoPago" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -91,73 +54,106 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="pago" required="required" class="form-control col-md-7 col-xs-12">
-
-
                         </div>
                       </div>
 
-
-                      <br><center><button class="btn btn-primary" type="button">Adicionar</button>
-                      <button class="btn btn-primary" type="reset">Limpiar</button></center>
-<div class="ln_solid"></div>
+                      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <div class="form group">
+                          <button type="button" id="bt_add" class="btn btn-primary">Agregar</button>
+                        </div>
+                      </div>
                       <br><br>
-                      <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Cliente</th>
-                          <th>Num Factura</th>
-                          <th>Tipo Pago</th>
-                          <th>Pago</th>
-                          <th>Opciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                          <td>@mdo</td>
-                        </tr>
-                      </tbody>
-                    </table>
 
-                    <label for="ex3">Total</label><input type="text" id="ex3" class="form-control" placeholder=" ">
+                      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                           <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                             <thead style="background-color: #A9D0F5">
+                               <th>Opciones</th>
+                               <th>Cliente</th>
+                               <th>Num Factura</th>
+                               <th>Tipo Pago</th>
+                               <th>Descripcion</th>
+                               <th>Pago</th>  
+                             </thead>
+                             <tfoot>
+                                <th>TOTAL</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th><h4 id="total">$ 0.00</h4></th>                              
+                             </tfoot>
+                             <tbody>
+                               
+                             </tbody>
+                           </table>
+                      </div>  
+  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="guardar">
+       <div class="form-group">
+          <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
+          <button class="btn btn-primary" type="submit">Guardar Factura</button>
+          <button class="btn btn-danger" type="reset">Cancelar</button>
+       </div>
+   </div>    
+</div>
 
 
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <input class="btn btn-primary" type="submit" value="Añadir" />
-        </div>
+@push ('scripts')
+<script>
+  $(document).ready(function(){
+    $('#bt_add').click(function(){
+      agregar();
+    });
+  });
 
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-           <center><div class="form-group " >
-             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                <button type="submit" class="btn btn-success" style="WIDTH: 200px; HEIGHT: 60px">Guardar factura</button>
-               <button class="btn btn-primary" type="button" style="WIDTH: 200px; HEIGHT: 60px">Cancelar</button>
-             </div>
-           </div></center>
+ var cont=0;
+ total=0;  
+ subtotal=[];
+ $("#guardar").hide();
 
-                </div>
-              </div>
-            </div>
-          </div>
+ function agregar()
+ {
+   cliente=$("#cliente").val();  
+   nfact=$("#nfact").val();
+   idTipoPago=$("#idTipoPago").val();
+   descripcion=$("#descripcion").val();
+   pago=$("#pago").val();
+
+if (cliente!="" && nfact!="" && idTipoPago!="" && descripcion!="" && pago!="") {   
+   subtotal[cont]=(pago);
+   total=total+subtotal[cont];
+
+   var fila= '<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" >X</button></td><td><input type="hidden name="cliente[]" value="'+cliente+'">'+cliente+'</td><td><input type="hidden name="nfact[]" value="'+nfact+'">'+nfact+'</td><td><input type="hidden name="idTipoPago[]" value="'+idTipoPago+'">'+idTipoPago+'</td><td><input type="hidden name="descripcion[]" value="'+descripcion+'">'+descripcion+'</td><td><input type="hidden name="pago[]" value="'+pago+'">'+pago+'</td></tr>';
+   cont++;
+   limpiar();
+   $('#total').html("$ " + total);
+   evaluar();
+   $('#detalles').append(fila);
+ }
+ else{
+  alert("Error al ingresar");
+ }
+ }  
+   function limpiar(){
+    $("cliente").val("");
+    $("nfact").val("");
+    $("idTipoPago").val("");
+    $("descripcion").val("");
+    $("pago").val("");
+   }  
+
+   function evaluar()
+   {
+     if(total>0)
+     {
+       $("#guardar").show();
+     }
+     else
+     {
+      $("#guardar").hide(); 
+     }
+   }
+
+</script>
+@endpush
 @endsection

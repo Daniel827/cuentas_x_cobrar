@@ -10,6 +10,7 @@
 
         <!-- Bootstrap -->
         <link href="{{asset('vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
         <!-- Font Awesome -->
         <link href="{{asset('vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
         <!-- NProgress -->
@@ -146,8 +147,10 @@
         </div>
         <!-- jQuery -->
         <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+        @stack('scripts')
         <!-- Bootstrap -->
         <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
         <!-- FastClick -->
         <script src="{{asset('vendors/fastclick/lib/fastclick.js')}}"></script>
         <!-- NProgress -->
