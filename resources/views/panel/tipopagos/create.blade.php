@@ -16,15 +16,24 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Datos del tipo de pago</h2>
-                    <ul class="nav navbar-right panel_toolbox">
+                       @if (count($errors)>0)
+                        <div class="alert alert-danger">
+                          <ul>
+                          @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                          @endforeach
+                          </ul>
+                        </div>
+                        @endif
+                      <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
+                    </li>
+                 </ul>
+               <div class="clearfix"></div>
+            </div>
+        <div class="x_content">
       <form action="{{url('tipopagos')}}" method="POST">
     {{ csrf_field() }}
     <div class="form-group">
@@ -65,7 +74,10 @@
     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <input class="btn btn-primary" type="submit" value="Añadir" />
         </div>
-  </form>
+          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a href="{{url()->previous()}}" class="btn btn-default" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12" >Cancelar</a>
+      </div>
+        </form>
                   </div>
                 </div>
               </div>

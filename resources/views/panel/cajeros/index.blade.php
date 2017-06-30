@@ -1,5 +1,4 @@
 @extends('layouts.adminpanel')
-@section('titulo','Cajeros')
 @section('contenido')
 <div>
             <div class="page-title">
@@ -24,7 +23,51 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                      Add content to the page ...
+                     
+
+
+
+
+                             <table class="table table-striped table-bordered table-condensed table-hover">
+                                <thead>
+                                    <th>IdUser</th>
+                                    <th>Cedula_Ruc</th>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                     <th>Fecha_Nac</th>
+                                     <th>Ciudad_Nac</th>
+                                     <th>Dirección</th>
+                                     <th>Teléfono</th>
+                                     <th>Email</th>
+                                     <th>Estado</th>
+                                    <th>Opciones</th>
+                                   
+                                </thead>
+                               @foreach ($cajeros as $p)
+                                <tr>
+                                    <td>{{ $p->idUser}}</td>    <!--nombre de la variable de la base de datos-->
+                                    <td>{{ $p->cedula_ruc}}</td>
+                                    <td>{{ $p->nombres}}</td>
+                                    <td>{{ $p->apellidos}}</td>
+                                    <td>{{ $p->fechaNac}}</td>
+                                    <td>{{ $p->ciudadNac}}</td>
+                                    <td>{{ $p->direccion}}</td>
+                                    <td>{{ $p->telefono}}</td>
+                                    <td>{{ $p->email}}</td>
+                                    <td>{{ $p->estado}}</td>
+                                    <td>
+                                        <a class="btn btn-info" href="{{URL::action('CajeroController@edit',$p->idCajero)}}">Editar</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
+                       
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
                   </div>
                 </div>
               </div>

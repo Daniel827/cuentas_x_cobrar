@@ -1,5 +1,4 @@
 @extends('layouts.adminpanel')
-@section('titulo','Usuarios')
 @section('contenido')
 <div>
             <div class="page-title">
@@ -24,7 +23,65 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                      Add content to the page ...
+                     
+
+
+
+
+   <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+            
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <p class="text-muted font-13 m-b-30">
+                     
+                           </p>
+          
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                          <thead>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                               
+                                    <th>Opciones</th>
+                                   
+                                </thead>
+                                @foreach ($usuarios as $p)
+                                <tr>
+                                    <td>{{ $p->name}}</td>    <!--nombre de la variable de la base de datos-->
+                                    <td>{{ $p->email}}</td>
+                                    <td>{{ $p->password}}</td>
+                                    
+                                    <td>
+                                        <a class="btn btn-info" href="{{URL::action('UserController@edit',$p->id)}}">Editar</a> 
+                                        </td>
+                                </tr>
+                                @endforeach
+                            
+                    </table>
+          
+          
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                   </div>
                 </div>
               </div>
