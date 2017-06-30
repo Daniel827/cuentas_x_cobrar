@@ -22,11 +22,10 @@ class PagoRequest extends FormRequest
      */
     public function rules(){
         return[
-            "idCajero"=>"required",
-            "idCliente"=>"required",
-           "descripcion"=>"required",
+            "idCajero"=>"required|exists:cajeros,idCajero",
+            "idCliente"=>"required"
+           "descripcion"=>"required|string",
             "numeroPago"=>"required|unique:pagos",
-
         ];
      }
 }

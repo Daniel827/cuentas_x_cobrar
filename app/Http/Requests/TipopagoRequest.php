@@ -22,24 +22,24 @@ class TipopagoRequest extends FormRequest
      * @return array
      */
     public function rules()
-    { 
+    {
         if(Input::has('idTipoPago')){
             $id=Input::Get('idTipoPago');
             return[
                 "codigo"=>"required|unique:tipopagos,codigo,".$id.",idTipoPago|alpha_num|size:8",
-                "nombre"=>"required|min:3|max:20",
+                "nombre"=>"required|string|min:3|max:20",
                 "referencia"=>"required|min:10|max:200",
-                "descripcion"=>"required|min:10|max:200",
-                "estado"=>"required|max:5"
- 
+                "descripcion"=>"required|string|min:10|max:200",
+                "estado"=>"required|in:A,I"
+
             ];
         }else{
             return [
                 "codigo"=>"required|unique:tipopagos|alpha_num|size:8",
-                "nombre"=>"required|min:3|max:20",
+                "nombre"=>"required|string|min:3|max:20",
                 "referencia"=>"required|min:10|max:200",
-                "descripcion"=>"required|min:10|max:200",
-                "estado"=>"required|min:1|max:5"
+                "descripcion"=>"required|string|min:10|max:200",
+                "estado"=>"required|in:A,I""
             ];
         }
     }

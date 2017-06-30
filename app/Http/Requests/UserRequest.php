@@ -27,18 +27,16 @@ class UserRequest extends FormRequest
                  'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
 
-
-
             ];
         }else{
                    return [
-          'name'=>'required|min:3|max:20',
-          'email' => 'required|string|email|max:255',
+          'name'=>'required|unique:users|min:3|max:20',
+          'email' => 'required|string|email|min:12|max:50|unique:users',
             'password' =>'required|string|min:6',
 
         ];
         }
     }
 
-    
+
 }
