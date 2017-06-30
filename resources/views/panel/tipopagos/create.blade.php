@@ -74,7 +74,10 @@
     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <input class="btn btn-primary" type="submit" value="Añadir" />
         </div>
-  </form>
+          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a href="{{url()->previous()}}" class="btn btn-default" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12" >Cancelar</a>
+      </div>
+        </form>
                   </div>
                 </div>
               </div>
