@@ -38,25 +38,25 @@
     <div class="form-group">
       <label for="cedula_ruc" class="col-lg-2 control-label">Cédula_Ruc <font color="red">*</font></label>
       <div class="col-lg-10">
-        <input name="cedula_ruc" id="cedula_ruc" class="form-control" type="number" value="{{old('cedula_ruc')}}" required>
+        <input name="cedula_ruc" id="cedula_ruc" class="form-control" type="text" pattern="[0-2][0-9]{9}" value="{{old('cedula_ruc')}}" required maxlength="13" minlength="10">
       </div>
     </div>
     <div class="form-group">
       <label for="nombres" class="col-lg-2 control-label">Nombres <font color="red">*</font></label>
       <div class="col-lg-10">
-        <input name="nombres" id="nombres" class="form-control" type="text" value="{{old('nombres')}}" required>
+        <input name="nombres" id="nombres" class="form-control" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú]{2,11}\s[A-ZÁÉÍÓÚ][a-zñáéíóú]{2,11}" type="text" value="{{old('nombres')}}" required maxlength="25">
       </div>
     </div>
     <div class="form-group">
       <label for="apellidos" class="col-lg-2 control-label">Apellidos <font color="red">*</font></label>
       <div class="col-lg-10">
-        <input name="apellidos" id="apellidos" class="form-control" type="text" value="{{old('apellidos')}}" required>
+        <input name="apellidos" id="apellidos" class="form-control" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú]{2,11}\s[A-ZÁÉÍÓÚ][a-zñáéíóú]{2,11}" type="text" value="{{old('apellidos')}}" required maxlength="25">
       </div>
     </div>
   <div class="form-group">
       <label for="fechaNac" class="col-lg-2 control-label">Fecha_Nacimiento <font color="red">*</font></label>
       <div class="col-lg-10">
-        <input name="fechaNac" id="fechaNac" class="form-control" type="date" value="{{old('fechaNac')}}" required>
+        <input name="fechaNac" id="fechaNac" class="form-control" type="date" step="1" value="{{old('fechaNac')}}" required min="1991-01-01" max="2017-12-31" value="1991-01-01">
       </div>
     </div>
     <div class="form-group">
@@ -74,7 +74,7 @@
     <div class="form-group">
       <label for="telefono" class="col-lg-2 control-label">Teléfono <font color="red">*</font></label>
       <div class="col-lg-10">
-        <input name="telefono" id="telefono" class="form-control" type="text" value="{{old('telefono')}}" required>
+        <input name="telefono" id="telefono" class="form-control" pattern="09[0-9]{8}" type="tel" value="{{old('telefono')}}" required maxlength="10" minlength="10">
       </div>
     </div>
     <div class="form-group">

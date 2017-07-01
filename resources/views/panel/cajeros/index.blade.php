@@ -58,19 +58,40 @@
                                     <td>
                                         <a class="btn btn-info" href="{{URL::action('CajeroController@edit',$p->idCajero)}}">Editar</a>
                                     </td>
+                                    <td>
+                                      <a class="btn btn-danger" data-toggle="modal" data-idUser="{{ $p->idUser}}" data-action="{{URL::action('CajeroController@destroy',$p->idCajero)}}" href="#modalEliminarCajero">Eliminar</a>
+                                      </td>
+
                                 </tr>
                                 @endforeach
-                            </table>
-                       
+                            
+                    </table>
+          
+          
                   </div>
+                  {{$cajeros->render()}}
                 </div>
+                 @include('panel.cajeros.delete')
               </div>
             </div>
           </div>
         </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
+     </div>
+   </div>
+          
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#modalEliminarCajero').on('show.bs.modal', function (event)  {
+            var button = $(event.relatedTarget);
+            var action = button.data('action');
+            var idUser = button.data('idUser');
+            var modal = $(this);
+            modal.find(".modal-body #txtEliminar").text("¿Estás seguro de eliminar al Caj con IdUsuario "+idUser+"?");
+            modal.find(".modal-body form").attr('action',action);
+        });
+    });
+</script>
+@endpush
