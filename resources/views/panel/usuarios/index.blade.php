@@ -57,11 +57,8 @@
                                     
                                     <td>
 
-                                      <!--<a class="btn btn-danger" data-toggle="modal" data-name="{{$p->name}}" data-action="{{URL::action('UserController@destroy',$p->id)}}" href="#modalEliminarUsuario">Eliminar</a>-->
-                                      <a class="btn btn-danger" href="{{URL::action('UserController@destroy',$p->id)}}">Eliminar</a>
-                                        
-
-                                        </td>
+                                    <a class="btn btn-danger" data-toggle="modal" data-name="{{ $p->name}}" data-action="{{URL::action('UserController@destroy',$p->id)}}" href="#modalEliminarUsuario">Eliminar</a>
+                                      </td>
                                 </tr>
                                 @endforeach
                             
@@ -69,7 +66,9 @@
           
           
                   </div>
+                  {{$usuarios->render()}}
                 </div>
+                 @include('panel.usuarios.delete')
               </div>
             </div>
           </div>
@@ -79,20 +78,17 @@
    </div>
           
 @endsection
-
 @push('scripts')
-  <script type="text/javascript">
-    $(document).ready(function()){
-      $('#modalEliminarUsuario').on('show.bs.modal', function (event){
-        var button= $(event.relatedTarget);
-        var button= button.data('action');
-        var button= button.data('name');
-        var button= $(this);
-        modal.find(".modal-body #txtEliminar").text("¿Estás seguro de Eliminar al usuario con nombre"+name+"?");
-        modal.find(".modal-body form").attr('action',action);
-
-      });
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#modalEliminarUsuario').on('show.bs.modal', function (event)  {
+            var button = $(event.relatedTarget);
+            var action = button.data('action');
+            var name = button.data('name');
+            var modal = $(this);
+            modal.find(".modal-body #txtEliminar").text("¿Estás seguro de eliminar al usurio con nombre "+name+"?");
+            modal.find(".modal-body form").attr('action',action);
+        });
     });
-
-  </script>
-  @endpush
+</script>
+@endpush

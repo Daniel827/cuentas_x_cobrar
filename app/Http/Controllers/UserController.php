@@ -43,6 +43,11 @@ class UserController extends Controller
        return view ('panel.usuarios.edit',compact('usuarios'));
 
     }
+        public function show($id){
+    
+       return view ('panel.usuarios.show',['usuarios'=>User::findOrFail($id)]);
+}
+
     public function update(UserRequest $request,$id){
       User::updateOrCreate(['id'=>$id],$request->all());
       return Redirect::to('usuarios');
