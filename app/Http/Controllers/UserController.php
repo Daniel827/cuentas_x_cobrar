@@ -21,16 +21,14 @@ class UserController extends Controller
   }
 
    public function create(){
-
       return view('panel.usuarios.create');
     }
    public function store(UserRequest $request){
       User::create($request->all());
     //  $productos=Producto::paginate(10); // se mostrtarar de 10 en 10   en ves del paginate puede ser el get para muetre todo sin rangos
     //   return view ('productos.index',compact('productos'));// me redirecciona a este index
- 
-      return Redirect::to('usuarios');   //otro metodo para la redireccion
 
+      return Redirect::to('usuarios');   //otro metodo para la redireccion
     }
     public function edit($id){
       $usuarios=User::find($id);
@@ -40,15 +38,11 @@ class UserController extends Controller
     public function update(UserRequest $request,$id){
       User::updateOrCreate(['id'=>$id],$request->all());
       return Redirect::to('usuarios');
-
-
     }
 
-
-       public function destroy($id){
-      Producto::destroy($id);
-      return Redirect::to('producto');
+    public function destroy($id){
+      User::destroy($id);
+      return Redirect::to('usuarios');
     }
-
 
 }
