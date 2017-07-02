@@ -23,20 +23,22 @@ class UserRequest extends FormRequest
         if(Input::has('id')){
             $id=Input::get('id');
             return [
-                 'name'=>'required|min:3|max:20',
-                 'email' => 'required|string|email|max:255',
+                 'name'=>'required|min:3|unique:users|max:20',
+                 'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required|string|min:6',
+
+
 
             ];
         }else{
                    return [
-          'name'=>'required|unique:users|min:3|max:20',
-          'email' => 'required|string|email|min:12|max:50|unique:users',
-            'password' =>'required|string|min:6',
+          'name'=>'required|min:3|unique:users|max:20',
+                 'email' => 'required|string|email|unique:users|max:255',
+            'password' => 'required|string|min:6',
 
         ];
         }
     }
 
-
+    
 }

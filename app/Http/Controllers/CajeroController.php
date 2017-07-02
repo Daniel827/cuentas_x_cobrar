@@ -38,8 +38,8 @@ class CajeroController extends Controller
       return Redirect::to('cajeros');
     }
 
-    public function destroy($id){
+   public function destroy($id){
       Cajero::destroy($id);
-      return Redirect::to('cajero');
+      return Redirect::to('cajeros');
     }
 }

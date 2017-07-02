@@ -27,7 +27,6 @@
 
 
 
-
    <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -43,7 +42,8 @@
                           <thead>
                                     <th>Nombre</th>
                                     <th>Email</th>
-                                    <th>Password</th>
+                                    <th>Fecha Creacion</th>
+                                     <th>Ultima Actualizacion</th>
                                
                                     <th>Opciones</th>
                                    
@@ -52,11 +52,13 @@
                                 <tr>
                                     <td>{{ $p->name}}</td>    <!--nombre de la variable de la base de datos-->
                                     <td>{{ $p->email}}</td>
-                                    <td>{{ $p->password}}</td>
+                                    <td>{{ $p->created_at}}</td>
+                                      <td>{{ $p->updated_at}}</td>
                                     
                                     <td>
-                                        <a class="btn btn-info" href="{{URL::action('UserController@edit',$p->id)}}">Editar</a> 
-                                        </td>
+
+                                    <a class="btn btn-danger" data-toggle="modal" data-name="{{ $p->name}}" data-action="{{URL::action('UserController@destroy',$p->id)}}" href="#modalEliminarUsuario">Eliminar</a>
+                                      </td>
                                 </tr>
                                 @endforeach
                             
@@ -64,27 +66,29 @@
           
           
                   </div>
+                  {{$usuarios->render()}}
                 </div>
+                 @include('panel.usuarios.delete')
               </div>
             </div>
           </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+     </div>
+   </div>
+          
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#modalEliminarUsuario').on('show.bs.modal', function (event)  {
+            var button = $(event.relatedTarget);
+            var action = button.data('action');
+            var name = button.data('name');
+            var modal = $(this);
+            modal.find(".modal-body #txtEliminar").text("¿Estás seguro de eliminar al usurio con nombre "+name+"?");
+            modal.find(".modal-body form").attr('action',action);
+        });
+    });
+</script>
+@endpush
