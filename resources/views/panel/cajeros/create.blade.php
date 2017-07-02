@@ -1,4 +1,5 @@
 @extends('layouts.adminpanel')
+@section('titulo','Crear Cajero')
 @section('contenido')
 <div>
     <div class="page-title">

@@ -46,7 +46,7 @@ class UserController extends Controller{
       return Redirect::to('usuarios');
     }
 
-   public function destroy($id){
+     public function destroy($id){
       User::destroy($id);
       return Redirect::to('usuarios');
     }
