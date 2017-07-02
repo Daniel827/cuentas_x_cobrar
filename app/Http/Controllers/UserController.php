@@ -51,21 +51,18 @@ class UserController extends Controller
       return Redirect::to('usuarios');
     }
 
-<<<<<<< HEAD
-    public function destroy($id){
-=======
+
+   
+
 
        public function destroy($id){
->>>>>>> 5f56c9d2cc5ce4c51ee50bb5f8a49628ffe0c21c
+
       User::destroy($id);
       return Redirect::to('usuarios');
     }
 
-<<<<<<< HEAD
-=======
+
 
     
 
-
->>>>>>> 5f56c9d2cc5ce4c51ee50bb5f8a49628ffe0c21c
 }

@@ -1,6 +1,6 @@
 @extends('layouts.adminpanel')
 @section('contenido')
-<div>
+<<div>
             <div class="page-title">
               <div class="title_left">
                 <h3>Crear usuario</h3>
@@ -84,6 +84,11 @@
               <input class="btn btn-primary" type="submit" value="Añadir" />
         </div>
   </form>
+
+
+
+
+
 
 
 
