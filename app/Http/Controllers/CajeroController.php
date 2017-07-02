@@ -8,8 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\CajeroRequest;
 use App\Cajero;
 
-class CajeroController extends Controller
-{
+class CajeroController extends Controller{
      public function _construct(){
 
     }

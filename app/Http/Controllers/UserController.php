@@ -7,11 +7,9 @@ use Illuminate\Support\Facades\Redirect ;
 
  use App\Http\Requests ;
  use App\Http\Requests\UserRequest ;
- use App\User ;
+ use App\User;
 
-
-class UserController extends Controller
-{
+class UserController extends Controller{
   public function __construct() {
 
   }
@@ -24,48 +22,32 @@ class UserController extends Controller
    public function create(){
       return view('panel.usuarios.create');
     }
-   public function store(UserRequest $request){
-      //User::create($request->exce());
-    $user=new User;
-    $user->name=$request->name;
-    $user->email=$request->email;
-    $user->password=bcrypt($request->password);
-    $user->save();
-    //  $productos=Producto::paginate(10); // se mostrtarar de 10 en 10   en ves del paginate puede ser el get para muetre todo sin rangos
-    //   return view ('productos.index',compact('productos'));// me redirecciona a este index
 
-      return Redirect::to('usuarios');   //otro metodo para la redireccion
+   public function store(UserRequest $request){
+      $user=new User;
+      $user->name=$request->name;
+      $user->email=$request->email;
+      $user->password=bcrypt($request->password);
+      $user->save();
+      return Redirect::to('usuarios');
     }
+
     public function edit($id){
       $usuarios=User::find($id);
        return view ('panel.usuarios.edit',compact('usuarios'));
-
     }
-        public function show($id){
-    
+
+    public function show($id){
        return view ('panel.usuarios.show',['usuarios'=>User::findOrFail($id)]);
-}
+     }
 
     public function update(UserRequest $request,$id){
       User::updateOrCreate(['id'=>$id],$request->all());
       return Redirect::to('usuarios');
     }
 
-<<<<<<< HEAD
-    public function destroy($id){
-=======
-
-       public function destroy($id){
->>>>>>> 5f56c9d2cc5ce4c51ee50bb5f8a49628ffe0c21c
+   public function destroy($id){
       User::destroy($id);
       return Redirect::to('usuarios');
     }
-
-<<<<<<< HEAD
-=======
-
-    
-
-
->>>>>>> 5f56c9d2cc5ce4c51ee50bb5f8a49628ffe0c21c
 }

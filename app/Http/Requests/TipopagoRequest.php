@@ -26,7 +26,7 @@ class TipopagoRequest extends FormRequest
         if(Input::has('idTipoPago')){
             $id=Input::Get('idTipoPago');
             return[
-                "codigo"=>"required|unique:tipopagos,codigo,".$id.",idTipoPago|alpha_num|size:8",
+                "codigo"=>"required|unique:tipopagos,codigo,".$id.",idTipoPago|alpha_dash|size:8",
                 "nombre"=>"required|string|min:3|max:20",
                 "referencia"=>"required|min:10|max:200",
                 "descripcion"=>"required|string|min:10|max:200",
@@ -35,11 +35,11 @@ class TipopagoRequest extends FormRequest
             ];
         }else{
             return [
-                "codigo"=>"required|unique:tipopagos|alpha_num|size:8",
+                "codigo"=>"required|unique:tipopagos|alpha_dash|size:8",
                 "nombre"=>"required|string|min:3|max:20",
                 "referencia"=>"required|min:10|max:200",
                 "descripcion"=>"required|string|min:10|max:200",
-                "estado"=>"required|in:A,I""
+                "estado"=>"required|in:A,I"
             ];
         }
     }

@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests;
-use App\Http\Requests\TipopagoRequest;
+use App\Http\Requests\TipoPagoRequest;
 use App\TipoPago;
 
 class TipoPagoController extends Controller
@@ -23,7 +23,7 @@ class TipoPagoController extends Controller
       return view('panel.tipopagos.create');
     }
 
-    public function store(TipopagoRequest $request){
+    public function store(TipoPagoRequest $request){
       TipoPago::create($request->all());
          return Redirect::to('tipopagos');
     }
@@ -33,7 +33,7 @@ class TipoPagoController extends Controller
       return view('panel.tipopagos.edit', compact('tipopago'));
     }
 
-    public function update(TipopagoRequest $request, $id){
+    public function update(TipoPagoRequest $request, $id){
       TipoPago::updateOrCreate(['idTipoPago'=>$id], $request->all());
       return Redirect::to('tipopagos');
     }

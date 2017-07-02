@@ -23,7 +23,7 @@ class Cajero extends Model {
     ];
 
     public function user() {
-        return $this->belongsTo('App\User', 'idCajero');
+        return $this->belongsTo('App\User','idUser');
     }
 
     public function pagos() {
