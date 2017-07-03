@@ -37,8 +37,10 @@ class CajeroController extends Controller{
       return Redirect::to('cajeros');
     }
 
-   public function destroy($id){
-      Cajero::destroy($id);
-      return Redirect::to('cajeros');
+   public function cambiarEstado($id){
+      $cajeros=Cajero::find($id);
+        $cajeros->estado=$cajeros->estado='A' ? 'I' : 'A';
+        $cajeros->update();
+        return Redirect::to('cajeros');
     }
 }
