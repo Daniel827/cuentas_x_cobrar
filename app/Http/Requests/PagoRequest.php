@@ -24,8 +24,7 @@ class PagoRequest extends FormRequest
         return[
             "idCajero"=>"required|exists:cajeros,idCajero",
             "idCliente"=>"required"
-           "descripcion"=>"required|string",
-            "numeroPago"=>"required|unique:pagos",
+           "descripcion"=>"required|string|max:200",
         ];
      }
 }
