@@ -26,7 +26,9 @@
                         <div class="col-sm-12">
                             <div class="card-box table-responsive">
                                 <p class="text-muted font-13 m-b-30">Cajeros abilitados para realizar las transacciones.</p>
-                                <table id="datatable-keytable" class="table table-striped table-bordered">
+                                @include('panel.mensajes.error')
+                                @include('panel.mensajes.exito')
+                                <table id="datatable-fixed-header" class="table table-striped table-bordered">
                                     <thead>
                                     <th>Usuario</th>
                                     <th>Cédula/Ruc</th>
@@ -51,7 +53,7 @@
                                                 <a class="btn btn-info" title="Editar"  href="{{URL::action('CajeroController@edit',$p->idCajero)}}"><i class="fa fa-edit"></i></a>
                                             </td>
                                             <td>
-                                        <a class="btn btn-danger" href="{{URL::action('CajeroController@cambiarEstado',$p->idCajero)}}">Estado</a>
+                                        <a class="btn btn-danger" title="Cambiar estado" href="{{URL::action('CajeroController@cambiarEstado',$p->idCajero)}}"><i class="fa fa-exchange"></i></a>
                                     </td>
                                         </tr>
                                         @endforeach
@@ -69,30 +71,10 @@
 </div>
 @endsection
 @push('styles')
-<!-- Datatables -->
-<link href="{{asset('vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+  @include('layouts.styles.datatables')
 @endpush
 @push('scripts')
-<!-- Datatables -->
-<script src="{{asset('vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
-<script src="{{asset('vendors/jszip/dist/jszip.min.js')}}"></script>
-<script src="{{asset('vendors/pdfmake/build/pdfmake.min.js')}}"></script>
-<script src="{{asset('vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+@include('layouts.scripts.datatables')
 <script type="text/javascript">
 $(document).ready(function () {
     $('#modalEliminarCajero').on('show.bs.modal', function (event) {

@@ -27,19 +27,19 @@
                     <form action="{{url('cajeros')}}" method="POST">
                         {{ csrf_field() }}
                             <div class="form-group">
-                            <label for="estado" class="col-lg-2 control-label">IdUser <font color="red">*</font></label>
+                            <label for="estado" class="col-lg-2 control-label">Usuario <font color="red">*</font></label>
                             <div class="col-lg-10" class="col-xs-5 selectContainer">
-                                <select name="idUser" id="idUser" class="form-control" type="text" value="{{old('idUser')}}" required onchange="crear(this.value)">
-                                        <option value="">Elija un Usuario</option> 
+                                <select name="idUser" id="idUser" class="form-control" type="text" required onchange="crear(this.value)">
+                                        <option value="">Elija un Usuario</option>
                                     @foreach ($usuarios as $p)
-                                        <option value="{{$p->id}}">{{$p->id}}, {{$p->name}}</option> 
+                                        <option value="{{$p->id}}">{{$p->name}}</option>
                                     @endforeach
                                 </select>
-        
+
                         </div>
                         </div>
                         <div class="form-group">
-                            <label for="cedula_ruc" class="col-lg-2 control-label">Cédula_Ruc <font color="red">*</font></label>
+                            <label for="cedula_ruc" class="col-lg-2 control-label">Cédula/RUC <font color="red">*</font></label>
                             <div class="col-lg-10">
                                 <input name="cedula_ruc" id="cedula_ruc" class="form-control" type="text" pattern="[0-2][0-9]{9}" value="{{old('cedula_ruc')}}" required maxlength="13" minlength="10">
                             </div>
@@ -57,13 +57,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="fechaNac" class="col-lg-2 control-label">Fecha_Nacimiento <font color="red">*</font></label>
+                            <label for="fechaNac" class="col-lg-2 control-label">Fecha Nacimiento <font color="red">*</font></label>
                             <div class="col-lg-10">
                                 <input name="fechaNac" id="fechaNac" class="form-control" type="date" step="1" value="{{old('fechaNac')}}" required min="1991-01-01" max="2017-12-31" value="1991-01-01">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="ciudadNac" class="col-lg-2 control-label">Ciudad_Nacimiento <font color="red">*</font></label>
+                            <label for="ciudadNac" class="col-lg-2 control-label">Ciudad Nacimiento <font color="red">*</font></label>
                             <div class="col-lg-10">
                                 <input name="ciudadNac" id="ciudadNac" class="form-control" type="text" value="{{old('ciudadNac')}}" required>
                             </div>
@@ -89,7 +89,7 @@
                         <div class="form-group">
                             <label for="estado" class="col-lg-2 control-label">Estado <font color="red">*</font></label>
                             <div class="col-lg-10" class="col-xs-5 selectContainer">
-                                <select name="estado" id="estado" class="form-control" type="text" value="{{old('estado')}}" required onchange="crear(this.value)">
+                                <select name="estado" id="estado" class="form-control" type="text" required onchange="crear(this.value)">
                                     <option value="">Elija un Estado</option>
                                     <option value="A">Activo (A)</option>
                                     <option value="I">Inactivo (I)</option>
