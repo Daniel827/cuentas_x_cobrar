@@ -26,11 +26,17 @@
 
                     <form action="{{url('cajeros')}}" method="POST">
                         {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="idUser" class="col-lg-2 control-label">IdUser <font color="red">*</font></label>
-                            <div class="col-lg-10">
-                                <input name="idUser" id="idUser" class="form-control" type="number" value="{{old('idUser')}}" required>
-                            </div>
+                            <div class="form-group">
+                            <label for="estado" class="col-lg-2 control-label">IdUser <font color="red">*</font></label>
+                            <div class="col-lg-10" class="col-xs-5 selectContainer">
+                                <select name="idUser" id="idUser" class="form-control" type="text" value="{{old('idUser')}}" required onchange="crear(this.value)">
+                                        <option value="">Elija un Usuario</option> 
+                                    @foreach ($usuarios as $p)
+                                        <option value="{{$p->id}}">{{$p->id}}, {{$p->name}}</option> 
+                                    @endforeach
+                                </select>
+        
+                        </div>
                         </div>
                         <div class="form-group">
                             <label for="cedula_ruc" class="col-lg-2 control-label">Cédula_Ruc <font color="red">*</font></label>
