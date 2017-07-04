@@ -24,7 +24,8 @@ class PagoController extends Controller
    public function create(){
        // llamar al listado de clientes del ws
        $pagos=Pago::get();
-       return view('panel.pagos.create',compact("pagos"));
+       $tiposPago=TipoPago::orderBy('nombre')->get();
+       return view('panel.pagos.create',compact("pagos",'tiposPago'));
      }
 
       public function store(PagoRequest $request){
@@ -35,16 +36,17 @@ class PagoController extends Controller
         $idFactura=$request->idFactura[$i];
         $idTipoPago=$request->idTipoPago[$i];
         $pago=$request->pago[$i];
-        DetallePago::create(["idFactura"=>$idFactura,"idTipoPago"=>$idTipoPago,"pago"=>$pago]);
+        DetallePago::create(["idPago"=>$idPago,"idFactura"=>$idFactura,"idTipoPago"=>$idTipoPago,"pago"=>$pago]);
         $total+=$pago;
       }
-      Pago::createOrUpdate(["idPago"=>$idPago],["pago"=>$total]);
+      Pago::updateOrCreate(["idPago"=>$idPago],["pago"=>$total]);
         return Redirect::to('pagos');
       }
 
       public function show($id){
-        $pago=Pago::find($id);
-       return view('panel.pagos.show', compact('pago'));
+        $pago=Pago::findOrFail($id);
+        $detalles=$pago->detallesPago()->paginate(10);
+       return view('panel.pagos.show', compact('pago','detalles'));
      }
 
      public function update(PagoRequest $request, $id){

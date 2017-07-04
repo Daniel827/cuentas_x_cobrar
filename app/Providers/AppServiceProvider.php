@@ -12,8 +12,8 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot(){
-      $this->validateCedula();
-      $this->validateCurrent_Password();
+      //$this->validateCedula();
+      //$this->validateCurrent_Password();
     }
 
     /**
@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    private function validateCurrent_Password(){
+    /*private function validateCurrent_Password(){
         Validator::extend('current_password',function($attribute,$value,$parametes){
           return Hash::check($value, Auth::user()->password);
         });
@@ -64,5 +64,5 @@ class AppServiceProvider extends ServiceProvider
             return false;
           }
       });
-    }
+    }*/
 }

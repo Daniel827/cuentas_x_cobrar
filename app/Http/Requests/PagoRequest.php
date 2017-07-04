@@ -23,9 +23,12 @@ class PagoRequest extends FormRequest
     public function rules(){
         return[
             "idCajero"=>"required|exists:cajeros,idCajero",
-            "idCliente"=>"required"
-           "descripcion"=>"required|string",
-            "numeroPago"=>"required|unique:pagos",
+            "idCliente"=>"required|numeric",
+           "descripcion"=>"required|string|max:100",
+           "idFactura"=>"required|array",
+           "idTipoPago"=>"required|array",
+           "pago"=>"required|array",
+
         ];
      }
 }
