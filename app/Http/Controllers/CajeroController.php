@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Http\Requests\CajeroRequest;
 use App\Cajero;
+use App\User;
 
 class CajeroController extends Controller{
      public function _construct(){
@@ -19,7 +20,8 @@ class CajeroController extends Controller{
     }
 
     public function create(){
-      return view('panel.cajeros.create');
+      $usuarios=User::all();
+      return view('panel.cajeros.create', compact('usuarios'));
     }
 
     public function store(CajeroRequest $request){
@@ -37,8 +39,10 @@ class CajeroController extends Controller{
       return Redirect::to('cajeros');
     }
 
-   public function destroy($id){
-      Cajero::destroy($id);
-      return Redirect::to('cajeros');
+   public function cambiarEstado($id){
+      $cajeros=Cajero::find($id);
+        $cajeros->estado=$cajeros->estado='A' ? 'I' : 'A';
+        $cajeros->update();
+        return Redirect::to('cajeros');
     }
 }

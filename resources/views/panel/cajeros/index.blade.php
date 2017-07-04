@@ -50,9 +50,9 @@
                                             <td class="text-center">
                                                 <a class="btn btn-info" title="Editar"  href="{{URL::action('CajeroController@edit',$p->idCajero)}}"><i class="fa fa-edit"></i></a>
                                             </td>
-                                            <td class="text-center">
-                                                <a class="btn btn-danger" title="Eliminar" data-toggle="modal" data-idUser="{{ $p->idUser}}" data-action="{{URL::action('CajeroController@destroy',$p->idCajero)}}" href="#modalEliminarCajero"><i class="fa fa-trash"></i></a>
-                                            </td>
+                                            <td>
+                                        <a class="btn btn-danger" href="{{URL::action('CajeroController@cambiarEstado',$p->idCajero)}}">Estado</a>
+                                    </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
