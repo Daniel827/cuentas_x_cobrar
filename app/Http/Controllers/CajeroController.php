@@ -40,9 +40,9 @@ class CajeroController extends Controller{
     }
 
    public function cambiarEstado($id){
-      $cajeros=Cajero::find($id);
-        $cajeros->estado=$cajeros->estado='A' ? 'I' : 'A';
-        $cajeros->update();
-        return Redirect::to('cajeros');
+      $cajero=Cajero::find($id);
+        $cajero->estado=$cajero->estado=='A' ? 'I' : 'A';
+        $cajero->update();
+        return Redirect::to('cajeros')->with('success','Estado del cajero "'.($cajero->estado=='A'?'Activado':'Desactivado').'"');
     }
 }

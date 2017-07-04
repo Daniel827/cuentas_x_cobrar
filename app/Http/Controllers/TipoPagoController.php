@@ -25,7 +25,7 @@ class TipoPagoController extends Controller
 
     public function store(TipoPagoRequest $request){
       TipoPago::create($request->all());
-         return Redirect::to('tipopagos');
+         return Redirect::to('tipopagos.create')->with('success', 'Tipo de pago creado');
     }
 
     public function edit($id){
@@ -35,7 +35,7 @@ class TipoPagoController extends Controller
 
     public function update(TipoPagoRequest $request, $id){
       TipoPago::updateOrCreate(['idTipoPago'=>$id], $request->all());
-      return Redirect::to('tipopagos');
+      return back()->with('success', 'Tipo de pago actualizado');
     }
 
     public function destroy($id){
