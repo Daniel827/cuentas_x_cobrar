@@ -12,15 +12,14 @@ class Pago extends Model {
     protected $fillable = [
         'idCajero',
         'idCliente',
-        'descripcion',
-        'numeroPago'
+        'descripcion'
     ];
 
     public function detallesPago() {
         return $this->hasMany('App\DetallePago', 'idPago');
     }
 
-    public function user() {
+    public function cajero() {
         return $this->belongsTo('App\Cajero', 'idCajero');
     }
 }

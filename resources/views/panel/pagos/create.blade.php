@@ -20,7 +20,6 @@
                 <br />
                 <form id="demo-form2" action="{{url('pagos')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
                     <input type="hidden" name="idCajero" value="1">
-                    <input type="hidden" name="numeroPago" value="PAGO-0001">
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente<span class="required">*</label>
@@ -35,6 +34,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripcion <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <!--<input type="text" id="descripcion" required="required" name="descripcion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese una descripcion">-->
+                            <textarea id="descripcion" name="descripcion" class="form-control col-md-6 col-xs-12" placeholder="Ingrese una descripcion">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de factura<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -45,16 +53,15 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipo de pago <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="idTipoPago" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el tipo de pago">
+                             <select class="form-control col-md-7 col-xs-12" name="idTipoPago" id="idTipoPago" required >
+                                <option value="">Seleccionar</option>
+                                @foreach($tiposPago as $tp)
+                                    <option value="{{$tp->idTipoPago}}">{{$tp->nombre}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripcion <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="descripcion" required="required" name="descripcion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese una descripcion">
-                        </div>
-                    </div>
+                    
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-6" for="first-name">Cantidad a Pagar <span class="required">*</span>
                         </label>
@@ -72,16 +79,12 @@
                         <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                             <thead style="background-color: #A9D0F5">
                             <th>Opciones</th>
-                            <th>Cliente</th>
                             <th>Num Factura</th>
                             <th>Tipo Pago</th>
-                            <th>Descripcion</th>
                             <th>Pago</th>
                             </thead>
                             <tfoot>
                             <th>TOTAL</th>
-                            <th></th>
-                            <th></th>
                             <th></th>
                             <th></th>
                             <th><h4 id="total">$ 0.00</h4></th>
@@ -117,10 +120,9 @@
     $("#guardar").hide();
 
     function agregar() {
-        cliente = $("#cliente").val();
         cliente = $("#cliente option:selected").val();
         nfact = $("#nfact").val();
-        idTipoPago = $("#idTipoPago").val();
+        idTipoPago = $("#idTipoPago option:selected").val();
         descripcion = $("#descripcion").val();
         pago = $("#pago").val();
 
@@ -129,7 +131,7 @@
             if (cliente != "" && nfact != "" && idTipoPago != "" && descripcion != "" && pago > 0) {
                 subtotal[cont] = pago * 1;
                 total = total + subtotal[cont];
-                var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont + ');" >Eliminar</button></td><td><input type="hidden" name="cliente[]" value="' + cliente + '">' + cliente + '</td><td><input type="hidden" name="nfact[]" value="' + nfact + '">' + nfact + '</td><td><input type="hidden" name="idTipoPago[]" value="' + idTipoPago + '">' + idTipoPago + '</td><td><input type="hidden" name="descripcion[]" value="' + descripcion + '">' + descripcion + '</td><td><input type="hidden" name="pago[]" value="' + pago + '">' + pago + '</td></tr>';
+                var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont + ');" >Eliminar</button></td><td><input type="hidden" name="idFactura[]" value="' + nfact + '">' + nfact + '</td><td><input type="hidden" name="idTipoPago[]" value="' + idTipoPago + '">' + idTipoPago + '</td><td><input type="hidden" name="pago[]" value="' + pago + '">' + pago + '</td></tr>';
                 cont++;
                 limpiar();
                 $('#total').html("$ " + total);

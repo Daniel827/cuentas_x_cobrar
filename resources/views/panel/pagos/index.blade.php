@@ -28,20 +28,20 @@
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Cod Pago</th>
+
                                 <th>Cajero</th>
                                 <th>Cliente</th>
-                                <th>Descripcion</th>
+                                <th>Descripción</th>
                                 <th>Fecha</th>
-                                <th>Num Pago</th>
+                                <th># Pago</th>
                                 <th>Total Pago</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
                         @foreach ($pagos as $p)
                         <tr>
-                            <td>{{ $p->idPago}}</td>
-                            <td>{{ $p->idCajero}}</td>
+                               <!--nombre de la variable de la base de datos-->
+                            <td>{{ $p->cajero->apellidos}} {{ $p->cajero->nombres}}</td>
                             <td>{{ $p->idCliente}}</td>
                             <td>{{ $p->descripcion}}</td>
                             <td>{{ $p->fecha}}</td>
