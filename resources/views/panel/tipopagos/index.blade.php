@@ -31,7 +31,7 @@
                                       <th>Código</th>
                                       <th>Nombre</th>
                                       <th>Referencia</th>
-                                      <th>Descripcion</th>
+                                      <th>Descripción</th>
                                       <th>Estado</th>
                                       <th colspan="2" class="text-center">Opciones</th>
                                       </thead>
@@ -47,7 +47,7 @@
                                               <a class="btn btn-info" title="Editar" href="{{URL::action('TipoPagoController@edit',$p->idTipoPago)}}"><i class="fa fa-edit"></i></a>
                                           </td>
                                           <td class="text-center">
-                                              <a class="btn btn-danger" title="Cambiar estado"><i class="fa fa-exchange"></i></a>
+                                              <a class="btn btn-danger" title="Cambiar estado" href="{{URL::action('TipoPagoController@cambiarEstado',$p->idTipoPago)}}"><i class="fa fa-exchange"></i></a>
                                           </td>
                                       </tr>
                                       @endforeach

@@ -21,12 +21,6 @@
         {{ csrf_field() }}
         <input type="hidden" name="idTipoPago" value="{{$tipopago->idTipoPago}}">
         <div class="form-group">
-            <label for="codigo" class="col-lg-2 control-label">Código <font color="red">*</font></label>
-            <div class="col-lg-10">
-                <input name="codigo" id="codigo" class="form-control" type="text" value="{{$tipopago->codigo}}" required>
-            </div>
-        </div>
-        <div class="form-group">
             <label for="nombre" class="col-lg-2 control-label">Nombre <font color="red">*</font></label>
             <div class="col-lg-10">
                 <input name="nombre" id="nombre" class="form-control" type="text" value="{{$tipopago->nombre}}" required>
@@ -40,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            <label for="descripcion" class="col-lg-2 control-label">Descripcion <font color="red">*</font></label>
+            <label for="descripcion" class="col-lg-2 control-label">Descripción <font color="red">*</font></label>
             <div class="col-lg-10">
                 <input name="descripcion" id="descripcion" class="form-control" type="text" value="{{$tipopago->descripcion}}" required>
             </div>
@@ -49,8 +43,8 @@
             <label for="estado" class="col-lg-2 control-label">Estado<font color="red">*</font></label>
             <div class="col-lg-10">
                 <select name="estado" id="estado" class="form-control" type="select" value="{{old('estado')}}" required>
-                    <option value="A">Activo</option>
-                    <option value="I">Inactivo</option>
+                    <option {{$tipopago->estado=='A'?'selected':''}} value="A">Activo</option>
+                    <option {{$tipopago->estado=='I'?'selected':''}} value="I">Inactivo</option>
                 </select>
             </div>
         </div>

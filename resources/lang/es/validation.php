@@ -25,7 +25,7 @@ return [
         'array'   => 'El campo :attribute debe contener entre :min y :max elementos.',
     ],
     'boolean'              => 'El campo :attribute debe ser verdadero o falso.',
-    'cedula'               => 'El campo :attribute no es una cédula válida.',
+    'cedulaRuc'               => 'El campo :attribute no es una cédula o RUC válido.',
     'confirmed'            => 'El campo confirmación de :attribute no coincide.',
     'current_password'     => 'La contraseña ingresada no coincide con la actual.',
     'date'                 => 'El campo :attribute no corresponde con una fecha válida.',

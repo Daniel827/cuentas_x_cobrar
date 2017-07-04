@@ -23,16 +23,9 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  @include('mensajes.error')
-                  @include('mensajes.exito')
-                    <form action="{{url('tipopagos')}}" method="POST">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="codigo" class="col-lg-2 control-label">Código <font color="red">*</font></label>
-                            <div class="col-lg-10">
-                                <input name="codigo" id="codigo" class="form-control" type="text" value="{{old('codigo')}}" required>
-                            </div>
-                        </div>
+                  @include('panel.mensajes.error')
+                  @include('panel.mensajes.exito')
+                    {!!Form::open(['url'=>'tipopagos'])!!}
                         <div class="form-group">
                             <label for="nombre" class="col-lg-2 control-label">Nombre <font color="red">*</font></label>
                             <div class="col-lg-10">
@@ -46,7 +39,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="descripcion" class="col-lg-2 control-label">Descripcion <font color="red">*</font></label>
+                            <label for="descripcion" class="col-lg-2 control-label">Descripción <font color="red">*</font></label>
                             <div class="col-lg-10">
                                 <textarea name="descripcion" id="descripcion" class="form-control validated" required>{{old('descripcion')}}
                                   </textarea
@@ -57,7 +50,7 @@
                             <div class="col-lg-10">
 
                                 <select name="estado" id="estado" class="form-control " type="select" value="{{old('estado')}}"  required >
-                                    <option>-- Estado de Pago-- </option>
+                                    <option value="">-- Estado de Pago-- </option>
                                     <option value="A">Activo</option>
                                     <option value="I">Inactivo</option>
                                 </select>

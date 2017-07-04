@@ -7,9 +7,7 @@
                 <h3>Crear usuario</h3>
               </div>
             </div>
-
             <div class="clearfix"></div>
-
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -24,12 +22,13 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                  @include('panel.mensajes.error')
+                  @include('panel.mensajes.exito')
                     {!!Form::open(['url'=>'usuarios'])!!}
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         <label for="name" class="col-md-4 control-label">Nombre</label>
                         <div class="col-md-6">
                             <input id="name" type="name" class="form-control" name="name"  value="{{ old('name') }}" required>
-
                             @if ($errors->has('name'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -48,18 +47,24 @@
                             @endif
                         </div>
                     </div>
-
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <label for="password" class="col-md-4 control-label">Password</label>
-
                         <div class="col-md-6">
                             <input id="password" type="password" class="form-control" name="password" required>
-
                             @if ($errors->has('password'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('password') }}</strong>
                             </span>
                             @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rol" class="col-md-4 control-label">Rol</label>
+                        <div class="col-md-6">
+                            <select class="form-control" required name="rol" id="rol">
+                              <option value="">Seleccionar</option>
+                              <option value="admin">Administrador</option>
+                              <option value="cajero">Cajero</option>
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -123,14 +128,14 @@ $(document).ready(function() {
                     }
                 },
                 password: {
-                   
+
                     validators: {
                         notEmpty: {
                             message: 'Ingrese contraseña es un campo obligatorio'
                         }
                     }
                 }
-          
+
             }
         })
         // Enable the password/confirm password validators if the password is not empty

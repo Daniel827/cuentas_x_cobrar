@@ -26,7 +26,7 @@ class CajeroController extends Controller{
 
     public function store(CajeroRequest $request){
       Cajero::create($request->all());
-         return Redirect::to('cajeros');
+         return Redirect::to('cajeros')->with('success', 'Cajero creado');
     }
 
    public function edit($id){
@@ -36,7 +36,7 @@ class CajeroController extends Controller{
     }
     public function update(CajeroRequest $request,$id){
       Cajero::updateOrCreate(['idCajero'=>$id],$request->all());
-      return Redirect::to('cajeros');
+      return Redirect::to('cajeros')->with('success', 'Cajero actualizado');
     }
 
    public function cambiarEstado($id){

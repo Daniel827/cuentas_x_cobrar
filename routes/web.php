@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::resource('cajeros','CajeroController');
   Route::get('cajeros/cambiarEstado/{id}', 'CajeroController@cambiarEstado');
   Route::resource('tipopagos','TipoPagoController');
+  Route::get('tipopagos/cambiarEstado/{id}', 'TipoPagoController@cambiarEstado');
   Route::resource('pagos','PagoController');
 });
 

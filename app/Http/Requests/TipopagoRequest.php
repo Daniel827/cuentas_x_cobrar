@@ -27,15 +27,15 @@ class TipopagoRequest extends FormRequest
             $id=Input::get('idTipoPago');
             return[
                 "nombre"=>"required|string|min:3|max:20",
-                "referencia"=>"required|min:10|max:200",
-                "descripcion"=>"nullable|string|max:200"
+                "referencia"=>"required|string|min:5|max:20",
+                "descripcion"=>"nullable|string|max:200",
                 "estado"=>"required|in:A,I"
 
             ];
         }else{
             return [
                 "nombre"=>"required|string|min:3|max:20",
-                "referencia"=>"required|min:10|max:200",
+                "referencia"=>"required|string|min:5|max:20",
                 "descripcion"=>"nullable|string|max:200",
                 "estado"=>"required|in:A,I"
             ];

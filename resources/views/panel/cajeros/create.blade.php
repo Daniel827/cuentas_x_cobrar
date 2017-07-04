@@ -23,7 +23,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-
+                  @include('panel.mensajes.error')
+                  @include('panel.mensajes.exito')
                     <form action="{{url('cajeros')}}" method="POST">
                         {{ csrf_field() }}
                             <div class="form-group">
@@ -83,7 +84,7 @@
                         <div class="form-group">
                             <label for="email" class="col-lg-2 control-label">Email <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="email" id="email" class="form-control" type="text" data-validation="email" value="{{old('email')}}" required>
+                                <input name="email" id="email" class="form-control" type="email" data-validation="email" value="{{old('email')}}" required>
                             </div>
                         </div>
                         <div class="form-group">

@@ -9,7 +9,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 class User extends Authenticatable {
 
     use Notifiable;
-   
+
 
     /**
      * The attributes that are mass assignable.
@@ -33,7 +33,7 @@ class User extends Authenticatable {
         return $this->hasOne('App\Cajero', 'idCajero');
     }
 
-    public function roles() {
+    public function rol() {
         return $this->belongsToMany('App\Role', 'role_user');
     }
 

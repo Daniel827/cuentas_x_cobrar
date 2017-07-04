@@ -40,7 +40,6 @@
                         </thead>
                         @foreach ($pagos as $p)
                         <tr>
-                               <!--nombre de la variable de la base de datos-->
                             <td>{{ $p->cajero->apellidos}} {{ $p->cajero->nombres}}</td>
                             <td>{{ $p->idCliente}}</td>
                             <td>{{ $p->descripcion}}</td>
