@@ -20,7 +20,7 @@ class CajeroController extends Controller{
     }
 
     public function create(){
-      $usuarios=User::all();
+      $usuarios=User::orderBy('name')->get();
       return view('panel.cajeros.create', compact('usuarios'));
     }
 
@@ -30,8 +30,9 @@ class CajeroController extends Controller{
     }
 
    public function edit($id){
-      $cajeros=Cajero::find($id);
-       return view ('panel.cajeros.edit',compact('cajeros'));
+      $cajero=Cajero::find($id);
+      $usuarios=User::orderBy('name')->get();
+       return view ('panel.cajeros.edit',compact('cajero','usuarios'));
 
     }
     public function update(CajeroRequest $request,$id){

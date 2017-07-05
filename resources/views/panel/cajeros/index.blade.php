@@ -4,7 +4,7 @@
 <div>
     <div class="page-title">
         <div class="title_left">
-            <h3>Cajeros</h3>
+            <h3>Cajeros <a href="{{url('cajeros/create')}}" title="Nuevo cajero" class="btn btn-link col-lg-6 col-md-6 col-sm-6 col-xs-12"><i class="fa fa-plus-circle"></i></a></h3>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -30,31 +30,33 @@
                                 @include('panel.mensajes.exito')
                                 <table id="datatable-fixed-header" class="table table-striped table-bordered">
                                     <thead>
+                                    <th></th>
                                     <th>Usuario</th>
                                     <th>Cédula/Ruc</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
                                     <th>Teléfono</th>
                                     <th>Email</th>
-                                    <th>Estado</th>
-                                    <th class="text-center" colspan="2">Opciones</th>
+                                    <th class="text-center">Estado</th>
                                     </thead>
                                     <tbody>
                                         @foreach ($cajeros as $p)
                                         <tr>
+                                            <td class="text-center">
+                                                <a class="btn btn-info" title="Editar"  href="{{URL::action('CajeroController@edit',$p->idCajero)}}"><i class="fa fa-edit"></i></a>
+                                            </td>
                                             <td>{{ $p->idUser!=null?$p->user->name:''}}</td>
                                             <td>{{ $p->cedula_ruc}}</td>
                                             <td>{{ $p->nombres}}</td>
                                             <td>{{ $p->apellidos}}</td>
                                             <td>{{ $p->telefono}}</td>
                                             <td>{{ $p->email}}</td>
-                                            <td>{{ $p->estado=='A'?'Activo':'Inactivo'}}</td>
+                                            @php
+                                            $is_active=$p->estado=='A';
+                                            @endphp
                                             <td class="text-center">
-                                                <a class="btn btn-info" title="Editar"  href="{{URL::action('CajeroController@edit',$p->idCajero)}}"><i class="fa fa-edit"></i></a>
+                                                <span class="label label-{{$is_active?'success':'danger'}} pull-right">{{ $is_active?'Activo':'Inactivo'}}</span>
                                             </td>
-                                            <td>
-                                        <a class="btn btn-danger" title="Cambiar estado" href="{{URL::action('CajeroController@cambiarEstado',$p->idCajero)}}"><i class="fa fa-exchange"></i></a>
-                                    </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -71,20 +73,20 @@
 </div>
 @endsection
 @push('styles')
-  @include('layouts.styles.datatables')
+@include('layouts.styles.datatables')
 @endpush
 @push('scripts')
 @include('layouts.scripts.datatables')
 <script type="text/javascript">
-$(document).ready(function () {
-    $('#modalEliminarCajero').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var action = button.data('action');
-        var idUser = button.data('idUser');
-        var modal = $(this);
-        modal.find(".modal-body #txtEliminar").text("¿Estás seguro de eliminar al Caj con IdUsuario " + idUser + "?");
-        modal.find(".modal-body form").attr('action', action);
+    $(document).ready(function () {
+        $('#modalEliminarCajero').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var action = button.data('action');
+            var idUser = button.data('idUser');
+            var modal = $(this);
+            modal.find(".modal-body #txtEliminar").text("¿Estás seguro de eliminar al Caj con IdUsuario " + idUser + "?");
+            modal.find(".modal-body form").attr('action', action);
+        });
     });
-});
 </script>
 @endpush

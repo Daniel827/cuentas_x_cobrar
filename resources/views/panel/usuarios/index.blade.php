@@ -28,16 +28,19 @@
                                 <p class="text-muted font-13 m-b-30">Usuarios abilitados para usar el sistema</p>
                                 <table id="datatable-keytable" class="table table-striped table-bordered">
                                     <thead>
+                                    <th class="text-center"></th>
                                     <th>Nombre</th>
                                     <th>Email</th>
                                     <th>Rol</th>
                                     <th>Fecha Creación</th>
                                     <th>Ultima Actualización</th>
-                                    <th></th>
                                     </thead>
                                     <tbody>
                                     @foreach ($usuarios as $u)
                                     <tr>
+                                        <td class="text-center">
+                                            <a class="btn btn-info" title="Editar"  href="{{URL::action('UserController@edit',$u->id)}}"><i class="fa fa-edit"></i></a>
+                                        </td>
                                         <td>{{ $u->name}}</td>
                                         <td>{{ $u->email}}</td>
                                         <td>
@@ -51,9 +54,6 @@
                                         </td>
                                         <td>{{ $u->created_at}}</td>
                                         <td>{{ $u->updated_at}}</td>
-                                        <td class="text-center">
-                                            <a class="btn btn-danger" title="Eliminar" data-toggle="modal" data-name="{{ $u->name}}" data-action="{{URL::action('UserController@destroy',$u->id)}}" href="#modalEliminarUsuario"><i class="fa fa-trash"></i></a>
-                                        </td>
                                     </tr>
                                     @endforeach
                                     </tbody>

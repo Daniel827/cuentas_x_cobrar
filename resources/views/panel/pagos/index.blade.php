@@ -28,27 +28,26 @@
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-
+                                <th class="text-center"></th>
                                 <th>Cajero</th>
                                 <th>Cliente</th>
                                 <th>Descripción</th>
                                 <th>Fecha</th>
                                 <th># Pago</th>
                                 <th>Total Pago</th>
-                                <th>Opciones</th>
                             </tr>
                         </thead>
                         @foreach ($pagos as $p)
                         <tr>
+                            <td class="text-center">
+                                <a class="btn btn-primary" title="Ver detalles" href="{{URL::action('PagoController@show',$p->idPago)}}"><i class="fa fa-folder"></i></a>
+                            </td>
                             <td>{{ $p->cajero->apellidos}} {{ $p->cajero->nombres}}</td>
                             <td>{{ $p->idCliente}}</td>
                             <td>{{ $p->descripcion}}</td>
                             <td>{{ $p->fecha}}</td>
                             <td>{{ $p->numeroPago}}</td>
                             <td>{{ $p->totalPago}}</td>
-                            <td>
-                                <a class="btn btn-info" href="{{URL::action('PagoController@show',$p->idPago)}}">Ver Detalle</a>
-                            </td>
                         </tr>
                         @endforeach
                     </table>

@@ -2,30 +2,44 @@
 @extends('layouts.adminpanel')
 @section('titulo','Registrar pago')
 @section('contenido')
+<div>
+  <div class="page-title">
+      <div class="title_left">
+          <h3>Registrar pago</h3>
+      </div>
+  </div>
+  <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-            @if(count($errors)>0)
-            <div class="row">
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
+          <div class="x_title">
+                    <h2>Datos del pago</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
                     </ul>
-                </div>
-            </div>
-            @endif
+                    <div class="clearfix"></div>
+                  </div>
             <div class="x_content">
                 <br />
                 <form id="demo-form2" action="{{url('pagos')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
-                    <input type="hidden" name="idCajero" value="1">
-
+                    <input type="hidden" name="idCajero" value="{{\Auth::User()->cajero->idCajero}}">
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente<span class="required">*</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select class="form-control col-md-7 col-xs-12" name="idCliente" id="cliente" required >
-                                <option value="0">Seleccionar</option>
+                            <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idCliente" id="cliente" required >
+                                <option value="">Seleccionar</option>
                                 <option value="1">Daniel</option>
                                 <option value="2">Jose</option>
                                 <option value="3">Cristopher</option>
@@ -34,26 +48,24 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripcion <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <!--<input type="text" id="descripcion" required="required" name="descripcion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese una descripcion">-->
-                            <textarea id="descripcion" name="descripcion" class="form-control col-md-6 col-xs-12" placeholder="Ingrese una descripcion">
-                            </textarea>
+                            <textarea id="descripcion" name="descripcion" class="form-control col-md-6 col-xs-12" placeholder="Ingrese una descripcion"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de factura<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Número de factura<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="nfact" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el numero de factura">
+                            <input type="text" id="nfact" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el número de factura">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipo de pago <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                             <select class="form-control col-md-7 col-xs-12" name="idTipoPago" id="idTipoPago" required >
+                             <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idTipoPago" id="idTipoPago" required >
                                 <option value="">Seleccionar</option>
                                 @foreach($tiposPago as $tp)
                                     <option value="{{$tp->idTipoPago}}">{{$tp->nombre}}</option>
@@ -61,7 +73,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-6" for="first-name">Cantidad a Pagar <span class="required">*</span>
                         </label>
@@ -103,6 +115,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @push ('scripts')
 <script>

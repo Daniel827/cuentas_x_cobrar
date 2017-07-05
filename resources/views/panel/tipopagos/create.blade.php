@@ -25,30 +25,28 @@
                 <div class="x_content">
                   @include('panel.mensajes.error')
                   @include('panel.mensajes.exito')
-                    {!!Form::open(['url'=>'tipopagos'])!!}
+                    {!!Form::open(['url'=>'tipopagos','class'=>'form-horizontal form-label-left'])!!}
                         <div class="form-group">
                             <label for="nombre" class="col-lg-2 control-label">Nombre <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="nombre" id="nombre" class="form-control" type="text" value="{{old('nombre')}}"  onkeypress="return esLetra();" pattern="[A-ZÁÉÍÓÚa-zñáéíóú\s]{7,20}" minlength="7" maxlength="20" required>
+                                <input name="nombre" id="nombre" class="form-control" type="text" value="{{old('nombre')}}" onkeypress="return esLetra();" pattern="[A-ZÁÉÍÓÚa-zñáéíóú\s]{7,20}" minlength="7" maxlength="20" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="referencia" class="col-lg-2 control-label">Referencia<font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="referencia" id="referencia" class="form-control" type="text" value="{{old('referencia')}}" onkeypress="return esLetra();" pattern="[A-ZÁÉÍÓÚa-zñáéíóú\s]{7,20}" minlength="7" maxlength="20" required>
+                                <input name="referencia" id="referencia" class="form-control" type="text" value="{{old('referencia')}}" pattern="[A-ZÁÉÍÓÚa-zñáéíóú\s0-9]{7,20}" minlength="7" maxlength="20" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="descripcion" class="col-lg-2 control-label">Descripción <font color="red">*</font></label>
+                            <label for="descripcion" class="col-lg-2 control-label">Descripción</label>
                             <div class="col-lg-10">
-                                <textarea name="descripcion" id="descripcion" class="form-control validated" required>{{old('descripcion')}}
-                                  </textarea
+                                <textarea name="descripcion" id="descripcion" class="form-control validated">{{old('descripcion')}}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="estado" class="col-lg-2 control-label">Estado <font color="red">*</font></label>
                             <div class="col-lg-10">
-
                                 <select name="estado" id="estado" class="form-control " type="select" value="{{old('estado')}}"  required >
                                     <option value="">-- Estado de Pago-- </option>
                                     <option value="A">Activo</option>
@@ -56,8 +54,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <input class="btn btn-primary" type="submit" value="Añadir" />
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                <a href="{{url('tipopagos')}}" class="btn btn-default">Volver</a>
+                                <button class="btn btn-warning" type="reset">Resetear</button>
+                                <button type="submit" class="btn btn-primary">Crear</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -67,5 +70,5 @@
 </div>
 @endsection
 @push('scripts')
-<script src="{{asset('public\js\validaciones.js')}}"></script>
+<script src="{{asset('js\validaciones.js')}}"></script>
 @endpush

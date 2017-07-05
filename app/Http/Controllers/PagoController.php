@@ -31,15 +31,15 @@ class PagoController extends Controller
       public function store(PagoRequest $request){
         Pago::create($request->all());
         $idPago=Pago::max("idPago");
-      $total=0;
       for($i=0;$i<sizeof($request->idFactura);$i++ ){
         $idFactura=$request->idFactura[$i];
         $idTipoPago=$request->idTipoPago[$i];
         $pago=$request->pago[$i];
         DetallePago::create(["idPago"=>$idPago,"idFactura"=>$idFactura,"idTipoPago"=>$idTipoPago,"pago"=>$pago]);
-        $total+=$pago;
       }
-      Pago::updateOrCreate(["idPago"=>$idPago],["pago"=>$total]);
+      $total=DetallePago::where('idPago',$idPago)->sum('pago');
+      Pago::where('idPago',$idPago)->update(["totalPago"=>$total]);
+      //Pago::updateOrCreate(["idPago"=>$idPago],["totalPago"=>$total]);
         return Redirect::to('pagos');
       }
 

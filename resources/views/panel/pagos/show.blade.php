@@ -28,12 +28,12 @@
                         <p>{{ $pago->idCliente}}</p>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de factura
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de pago
                         </label>
                         <p>{{ $pago->numeroPago}}</p>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripcion
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción
                         </label>
                         <p>{{ $pago->descripcion}}</p>
                     </div>
@@ -51,7 +51,7 @@
                             <tfoot>
                             <th></th>
                             <th>TOTAL</th>
-                            <th><h4 id="total">$ 0.00</h4></th>
+                            <th><h4 id="total">$ {{$pago->totalPago}}</h4></th>
                             </tfoot>
                             <tbody>
                                 @foreach ($detalles as $p)
