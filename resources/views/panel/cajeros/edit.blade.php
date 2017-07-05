@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label for="cedula_ruc"  class="control-label col-lg-2">Cédula/RUC <font color="red">*</font></label>
                               <div class="col-lg-10">
-                                <input name="cedula_ruc" id="cedula_ruc" class="form-control" type="text" onkeypress="return esDigito()" pattern="[0-2][0-9]{9}(001)?" value="{{$cajero->cedula_ruc}}" required maxlength="13" minlength="10">
+                                <input name="cedula_ruc" id="cedula_ruc" class="form-control" type="text" onkeypress="return esDigito()" pattern="[0-2][0-9]{9}(001)?" value="{{$cajero->cedula_ruc}}" readonly maxlength="13" minlength="10">
                             </div>
                         </div>
                         <div class="form-group">
@@ -101,8 +101,8 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                <a href="{{url('cajeros')}}" class="btn btn-default">Volver</a>
                                 <button type="submit" class="btn btn-primary">Actualizar</button>
+                                <a href="{{url('cajeros')}}" class="btn btn-default">Volver</a>
                             </div>
                         </div>
                     </form>

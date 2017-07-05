@@ -32,7 +32,7 @@
                                 <select name="idUser" id="idUser" class="form-control" required onchange="crear(this.value)">
                                     <option value="">Elija un Usuario</option>
                                     @foreach ($usuarios as $p)
-                                    <option value="{{$p->id}}">{{$p->name}}</option>
+                                    <option {{old('idUser')==$p->id?'selected':''}} value="{{$p->id}}">{{$p->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -93,17 +93,17 @@
                             <div class="col-lg-10 col-xs-5 selectContainer">
                                 <select name="estado" id="estado" class="form-control" type="text" required onchange="crear(this.value)">
                                     <option value="">Elija un Estado</option>
-                                    <option value="A">Activo (A)</option>
-                                    <option value="I">Inactivo (I)</option>
+                                    <option {{old('estado')=='A'?'selected':''}} value="A">Activo</option>
+                                    <option {{old('estado')=='I'?'selected':''}} alue="I">Inactivo</option>
                                 </select>
                             </div>
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                <a href="{{url('cajeros')}}" class="btn btn-default">Volver</a>
-                                <button class="btn btn-warning" type="reset">Resetear</button>
                                 <button type="submit" class="btn btn-primary">Crear</button>
+                                <button class="btn btn-warning" type="reset">Resetear</button>
+                                <a href="{{url('cajeros')}}" class="btn btn-default">Volver</a>
                             </div>
                         </div>
                     </form>

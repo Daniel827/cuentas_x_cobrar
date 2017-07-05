@@ -4,7 +4,14 @@
 <div>
     <div class="page-title">
         <div class="title_left">
-            <h3>Cajeros <a href="{{url('cajeros/create')}}" title="Nuevo cajero" class="btn btn-link col-lg-6 col-md-6 col-sm-6 col-xs-12"><i class="fa fa-plus-circle"></i></a></h3>
+            <h3>Cajeros</h3>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+                <a href="{{url('cajeros/create')}}" title="Nuevo cajero" class="btn btn-default">
+                    <i class="fa fa-plus-circle"></i> Nuevo
+                </a>
+            </div>
         </div>
     </div>
     <div class="clearfix"></div>

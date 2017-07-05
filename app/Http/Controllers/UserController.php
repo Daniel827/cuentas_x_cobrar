@@ -32,12 +32,12 @@ class UserController extends Controller{
       $user->save();
       $role = Role::where('name', $request->rol)->firstOrFail();
       $user->rol()->sync([$role->id]);
-      return Redirect::to('usuarios')->with('updated', 'Usuario creado');
+      return Redirect::to('usuarios/create')->with('success', 'Usuario creado');
     }
 
     public function edit($id){
-      $usuarios=User::find($id);
-       return view ('panel.usuarios.edit',compact('usuarios'));
+      $usuario=User::find($id);
+       return view ('panel.usuarios.edit',compact('usuario'));
     }
 
     public function show($id){
@@ -45,8 +45,11 @@ class UserController extends Controller{
      }
 
     public function update(UserRequest $request,$id){
-      User::updateOrCreate(['id'=>$id],$request->all());
-      return Redirect::to('usuarios');
+      //User::updateOrCreate(['id'=>$id],$request->all());
+      $user=User::findOrFail($id);
+      $role = Role::where('name', $request->rol)->firstOrFail();
+      $user->rol()->sync([$role->id]);
+      return back()->with('success','Usuario actualizado');
     }
 
      public function destroy($id){

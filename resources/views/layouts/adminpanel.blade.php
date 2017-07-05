@@ -29,11 +29,8 @@
                         <div class="navbar nav_title" style="border: 0;">
                             <a href="{{url('/')}}" class="site_title"><i class="fa fa-paw"></i> <span>Cuentas x Cobrar</span></a>
                         </div>
-
                         <div class="clearfix"></div>
-
                         <br />
-
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">

@@ -47,19 +47,19 @@
                         <div class="form-group">
                             <label for="estado" class="col-lg-2 control-label">Estado <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <select name="estado" id="estado" class="form-control " type="select" value="{{old('estado')}}"  required >
+                                <select name="estado" id="estado" class="form-control" required >
                                     <option value="">-- Estado de Pago-- </option>
-                                    <option value="A">Activo</option>
-                                    <option value="I">Inactivo</option>
+                                    <option {{old('estado')=='A'?'selected':''}} value="A">Activo</option>
+                                    <option {{old('estado')=='I'?'selected':''}} value="I">Inactivo</option>
                                 </select>
                             </div>
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                <a href="{{url('tipopagos')}}" class="btn btn-default">Volver</a>
-                                <button class="btn btn-warning" type="reset">Resetear</button>
                                 <button type="submit" class="btn btn-primary">Crear</button>
+                                <button class="btn btn-warning" type="reset">Resetear</button>
+                                <a href="{{url('tipopagos')}}" class="btn btn-default">Volver</a>
                             </div>
                         </div>
                     </form>

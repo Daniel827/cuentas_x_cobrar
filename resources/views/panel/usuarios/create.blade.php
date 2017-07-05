@@ -28,7 +28,7 @@
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         <label for="name" class="col-md-4 control-label">Nombre de usuario <font color="red">*</font></label>
                         <div class="col-md-6">
-                            <input id="name" type="name" class="form-control" name="name"  value="{{ old('name') }}" required>
+                            <input id="name" type="name" class="form-control" onkeypress="return esAlfaNum()" name="name" maxlength="25" minlength="3" pattern="[a-z0-9]{3,25}"  value="{{ old('name') }}" required>
                             @if ($errors->has('name'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -39,7 +39,7 @@
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                       <label for="email" class="col-md-4 control-label">E-mail <font color="red">*</font></label>
                       <div class="col-md-6">
-                          <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                          <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" maxlength="50" minlength="12" required>
                           @if ($errors->has('email'))
                           <span class="help-block">
                               <strong>{{ $errors->first('email') }}</strong>
@@ -52,15 +52,15 @@
                       <div class="col-md-6">
                           <select class="form-control" required name="rol" id="rol">
                             <option value="">Seleccionar</option>
-                            <option {{$rol=='admin'?'selected':''}} value="admin">Administrador</option>
-                            <option {{$rol=='cajero'?'selected':''}} value="cajero">Cajero</option>
+                            <option {{old('rol')=='admin'?'selected':''}} value="admin">Administrador</option>
+                            <option {{old('rol')=='cajero'?'selected':''}} value="cajero">Cajero</option>
                           </select>
                       </div>
                   </div>
                   <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                       <label for="password" class="col-md-4 control-label">Contraseña <font color="red">*</font></label>
                       <div class="col-md-6">
-                          <input id="password" type="password" class="form-control" name="password" required>
+                          <input id="password" type="password" class="form-control" maxlength="25" minlength="8" name="password" required>
                           @if ($errors->has('password'))
                           <span class="help-block">
                               <strong>{{ $errors->first('password') }}</strong>
@@ -71,7 +71,7 @@
                   <div class="form-group{{ $errors->has('confirm_password') ? ' has-error' : '' }}">
                         <label for="confirm_password" class="col-md-4 control-label">Confirmar Contraseña <font color="red">*</font></label>
                         <div class="col-md-6">
-                            <input id="confirm_password" type="password" class="form-control" name="confirm_password" required>
+                            <input id="confirm_password" type="password" class="form-control" maxlength="25" minlength="8" name="confirm_password" required>
                             @if ($errors->has('confirm_password'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('confirm_password') }}</strong>
@@ -82,9 +82,9 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                <a href="{{url('usuarios')}}" class="btn btn-default">Volver</a>
-                                <button class="btn btn-warning" type="reset">Resetear</button>
                                 <button type="submit" class="btn btn-primary">Crear</button>
+                                <button class="btn btn-warning" type="reset">Resetear</button>
+                                <a href="{{url('usuarios')}}" class="btn btn-default">Volver</a>
                             </div>
                         </div>
                     </form>
@@ -96,6 +96,7 @@
 @endsection
 @push('scripts')
 @include('layouts.scripts.formValidation')
+<script type="text/javascript" src="{{asset('js/validaciones.js')}}"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#enableForm')
@@ -110,7 +111,16 @@ $(document).ready(function() {
                 name: {
                     validators: {
                         notEmpty: {
-                            message: 'Ingrese sus 2 nombres'
+                            message: 'Ingrese el nombre de usuario'
+                        },
+                        maxlength:{
+                          message: 'El nombre de usuario tiene que tener un máximo de 25 caracteres alfanuméricos'
+                        },
+                        minlength:{
+                          message: 'El nombre de usuario tiene que tener un máximo de 3 caracteres alfanuméricos'
+                        },
+                        pattern:{
+                          message: 'El nombre de usuario no cumple el patrón.'
                         }
                     }
                 },

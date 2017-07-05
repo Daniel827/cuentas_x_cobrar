@@ -6,6 +6,13 @@
         <div class="title_left">
             <h3>Pagos</h3>
         </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+                <a href="{{url('pagos/create')}}" title="Nuevo pago" class="btn btn-default">
+                    <i class="fa fa-plus-circle"></i> Nuevo
+                </a>
+            </div>
+        </div>
     </div>
     <div class="clearfix"></div>
     <div class="row">
@@ -25,6 +32,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                  @include('panel.mensajes.error')
+                  @include('panel.mensajes.exito')
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -46,8 +55,8 @@
                             <td>{{ $p->idCliente}}</td>
                             <td>{{ $p->descripcion}}</td>
                             <td>{{ $p->fecha}}</td>
-                            <td>{{ $p->numeroPago}}</td>
-                            <td>{{ $p->totalPago}}</td>
+                            <td class="text-right">{{ $p->numeroPago}}</td>
+                            <td class="text-right">$ {{ $p->totalPago}}</td>
                         </tr>
                         @endforeach
                     </table>

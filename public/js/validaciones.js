@@ -8,6 +8,16 @@ function esDigito() {
     return false;
 }
 
+function esAlfaNum() {
+  var evento = window.event;
+  var cod = evento.charCode || evento.keyCode;
+  var caracter = String.fromCharCode(cod);
+  if (caracter >= 0 && caracter <= 9 && caracter!==" " || (caracter >= 'a' && caracter <= 'z')) {
+      return true;
+  }
+  return false;
+}
+
 function esLetra() {
     var evento = window.event;
     var cod = evento.charCode || evento.keyCode;
