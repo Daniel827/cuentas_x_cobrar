@@ -102,7 +102,6 @@
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">Crear</button>
-                                <button class="btn btn-warning" type="reset">Resetear</button>
                                 <a href="{{url('cajeros')}}" class="btn btn-default">Volver</a>
                             </div>
                         </div>
