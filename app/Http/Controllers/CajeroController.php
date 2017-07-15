@@ -8,11 +8,12 @@ use App\Http\Requests;
 use App\Http\Requests\CajeroRequest;
 use App\Cajero;
 use App\User;
+use Auth;
 use Faker\Factory as Faker;
 
 class CajeroController extends Controller{
      public function _construct(){
-
+       $this->middleware('role:admin');
     }
 
     public function index(){

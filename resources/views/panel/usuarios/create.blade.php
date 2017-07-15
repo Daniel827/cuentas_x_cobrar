@@ -112,21 +112,19 @@ $(document).ready(function() {
                         notEmpty: {
                             message: 'Ingrese el nombre de usuario'
                         },
-                        maxlength:{
-                          message: 'El nombre de usuario tiene que tener un máximo de 25 caracteres alfanuméricos'
-                        },
-                        minlength:{
-                          message: 'El nombre de usuario tiene que tener un máximo de 3 caracteres alfanuméricos'
-                        },
-                        pattern:{
-                          message: 'El nombre de usuario no cumple el patrón.'
+                        stringLength:{
+                          min:3,max:20,
+                          message:'El nombre de usuario tiene que tener un mínimo de 3 caracteres alfanuméricos'
                         }
                     }
                 },
-                    email: {
+                email: {
                     validators: {
                         notEmpty: {
                             message: 'Ingrese su email'
+                        },
+                        emailAddress:{
+                          message: 'Ingrese una dirección de e-mail válida'
                         }
                     }
                 },

@@ -38,6 +38,7 @@
                                     <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Inicio </a>
                                     <li><a href="{{url('perfil')}}"><i class="fa fa-user"></i> Perfil </a>
                                     </li>
+                                    @role('admin')
                                     <li><a><i class="fa fa-users"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('usuarios')}}">Todos los usuarios</a></li>
@@ -56,12 +57,15 @@
                                             <li><a href="{{url('tipopagos/create')}}">Añadir nuevo</a></li>
                                         </ul>
                                     </li>
+                                    @endrole
+                                    @role('cajero')
                                     <li><a><i class="fa fa-calculator"></i>Pagos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('pagos')}}">Todos los pagos</a></li>
                                             <li><a href="{{url('pagos/create')}}">Registrar nuevo pago</a></li>
                                         </ul>
                                     </li>
+                                    @endrole
                                     <li><a><i class="fa fa-file-pdf-o"></i>Otros Reportes <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('reporte')}}" target="_blank">Clientes con sus movimientos</a></li>

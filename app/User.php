@@ -10,7 +10,7 @@ use App\Notifications\ResetearClave;
 class User extends Authenticatable {
 
     use Notifiable;
-    //use EntrustUserTrait;
+    use EntrustUserTrait;
 
     /**
      * The attributes that are mass assignable.

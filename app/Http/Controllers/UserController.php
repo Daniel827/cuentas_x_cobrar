@@ -47,9 +47,15 @@ class UserController extends Controller{
     public function update(UserRequest $request,$id){
       //User::updateOrCreate(['id'=>$id],$request->all());
       $user=User::findOrFail($id);
-      $role = Role::where('name', $request->rol)->firstOrFail();
-      $user->rol()->sync([$role->id]);
-      return back()->with('success','Usuario actualizado');
+      if ($request->password_now != null) {
+            $user->password = bcrypt($user->password);
+            $user->update();
+            return back()->with('success','Contraseña cambiada');
+      }else{
+        $role = Role::where('name', $request->rol)->firstOrFail();
+        $user->rol()->sync([$role->id]);
+        return back()->with('success','Usuario actualizado');
+      }
     }
 
      public function destroy($id){
