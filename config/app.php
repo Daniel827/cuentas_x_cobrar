@@ -171,7 +171,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-
+        Kim\Activity\ActivityServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -195,7 +195,7 @@ return [
     */
 
     'aliases' => [
-
+        'Activity' => Kim\Activity\ActivityFacade::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
