@@ -8,11 +8,31 @@ function esDigito() {
     return false;
 }
 
+function esClaveValida() {
+    var evento = window.event;
+    var cod = evento.charCode || evento.keyCode;
+    var caracter = String.fromCharCode(cod);
+    if (caracter!==" ") {
+        return true;
+    }
+    return false;
+}
+
 function esAlfaNum() {
   var evento = window.event;
   var cod = evento.charCode || evento.keyCode;
   var caracter = String.fromCharCode(cod);
   if (caracter >= 0 && caracter <= 9 && caracter!==" " || (caracter >= 'a' && caracter <= 'z')) {
+      return true;
+  }
+  return false;
+}
+
+function esAlfa(){
+  var evento = window.event;
+  var cod = evento.charCode || evento.keyCode;
+  var caracter = String.fromCharCode(cod);
+  if (caracter >= 'A' && caracter <= 'Z' || (caracter >= 'a' && caracter <= 'z')) {
       return true;
   }
   return false;

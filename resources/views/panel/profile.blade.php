@@ -106,19 +106,19 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_now">Contraseña actual <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" id="password_now" required="required" name="password_now" minlength="8" maxlength="20" class="form-control col-md-7 col-xs-12">
+                                <input type="password" id="password_now" onkeypress="return esClaveValida()" required="required" name="password_now" minlength="8" maxlength="20" class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Nueva contraseña <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" id="password" name="password" required="required" minlength="8" maxlength="20" class="form-control col-md-7 col-xs-12">
+                                <input type="password" id="password" name="password" onkeypress="return esClaveValida()" required="required" minlength="8" maxlength="20" class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="password_confirmation" class="control-label col-md-3 col-sm-3 col-xs-12">Confirmar contraseña <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="password_confirmation" class="form-control col-md-7 col-xs-12" minlength="8" maxlength="20" type="password" name="password_confirmation">
+                                <input id="password_confirmation" class="form-control col-md-7 col-xs-12" onkeypress="return esClaveValida()" minlength="8" maxlength="20" type="password" name="password_confirmation">
                             </div>
                         </div>
                         <div class="ln_solid"></div>
