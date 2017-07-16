@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level == 'error')
-# Whoops!
+# Oops!
 @else
-# Hello!
+# Hola!
 @endif
 @endif
 
@@ -51,7 +51,7 @@ Saludos,<br>{{ config('app.name') }}
 {{-- Subcopy --}}
 @isset($actionText)
 @component('mail::subcopy')
-Si tienes porblemas al hacer clic en el botón "{{ $actionText }}", copia y pega la URL de abajo en tu navegador: [{{ $actionUrl }}]({{ $actionUrl }})
+Si tienes problemas al hacer clic en el botón "{{ $actionText }}", copia y pega la URL de abajo en tu navegador: [{{ $actionUrl }}]({{ $actionUrl }})
 @endcomponent
 @endisset
 @endcomponent

@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Notifications\EnviarPago;
 use App\Http\Requests;
 use App\Http\Requests\PagoRequest;
 use App\Pago;
+use App\User;
 use App\DetallePago;
 use App\TipoPago;
 
 class PagoController extends Controller
 {
     public function _construct(){
-      $this->middleware('role:cajero')->except('indexs');
+      $this->middleware('role:cajero');
     }
 
    public function index(){
@@ -51,5 +52,12 @@ class PagoController extends Controller
      public function destroy($id){
        Pago::destroy($id);
        return Redirect::to('pago');
+     }
+
+     public function enviarPago(){
+       $user=new User;
+       $user->email="cristofima@hotmail.com";
+         \Notification::send($user, new EnviarPago());
+        return back();
      }
 }

@@ -38,12 +38,19 @@ class EnviarPago extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
+    public function toMail($notifiable){
+      $pdf = \PDF::loadView('panel.cajeros.reporte')->stream('reporte.pdf');
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Comprobante Electrónico- Cuentas por Cobrar')
+                    ->greeting('Hola')
+                    ->line('Estimado cliente')
+                    ->line('Reciba un cordial saludo de quienes hacemos el grupo CXC. Nos complace
+                    informarle que su documento electrónico ha sido generado con el Nro: PAGO-XXXXX')
+                    ->attachData($pdf, 'reporte.pdf', [
+                        'mime' => 'application/pdf',
+                    ])
+                    ->line('Adjunto encontrará su documento electrónico.')
+                    ->salutation('Saludos, '. config('app.name'));
     }
 
     /**
