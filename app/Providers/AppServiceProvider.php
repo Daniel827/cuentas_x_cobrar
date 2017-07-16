@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     private function validateCedulaRuc(){
-      Validator::extend('cedulaRuc',function($attribute,$value,$parametes){
+      Validator::extend('cedula_ruc',function($attribute,$value,$parametes){
           if(preg_match('/[0-2][0-9]{9}(001)?/',$value)){
             $c1=0;
             $c2=0;

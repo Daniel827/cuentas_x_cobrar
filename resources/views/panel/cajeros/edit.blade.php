@@ -91,7 +91,7 @@
                         <div class="form-group">
                             <label for="estado" class="col-lg-2 control-label">Estado <font color="red">*</font></label>
                             <div class="col-lg-10 col-xs-5 selectContainer">
-                                <select name="estado" id="estado" class="form-control" required onchange="crear(this.value)">
+                                <select name="estado" id="estado" class="form-control" required>
                                     <option value="">Elija un Estado</option>
                                     <option {{$cajero->estado=='A'?'selected':''}} value="A">Activo</option>
                                     <option {{$cajero->estado=='I'?'selected':''}} value="I">Inactivo</option>

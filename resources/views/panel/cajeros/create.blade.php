@@ -91,10 +91,10 @@
                         <div class="form-group">
                             <label for="estado" class="col-lg-2 control-label">Estado <font color="red">*</font></label>
                             <div class="col-lg-10 col-xs-5 selectContainer">
-                                <select name="estado" id="estado" class="form-control" type="text" required onchange="crear(this.value)">
+                                <select name="estado" id="estado" class="form-control" required>
                                     <option value="">Elija un Estado</option>
-                                    <option {{old('estado')=='A'?'selected':''}} value="A">Activo</option>
-                                    <option {{old('estado')=='I'?'selected':''}} alue="I">Inactivo</option>
+                                    <option {{old('estado')=="A"?'selected':''}} value="A">Activo</option>
+                                    <option {{old('estado')=="I"?'selected':''}} value="I">Inactivo</option>
                                 </select>
                             </div>
                         </div>
