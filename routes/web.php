@@ -14,6 +14,7 @@
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/','AdminPanelController@index');
   Route::get('numberConnections','AdminPanelController@getNumberOfConnections');
+  Route::get('enviarPago','PagoController@enviarPago');
   Route::get('perfil','AdminPanelController@profile');
   Route::get('reporte','AdminPanelController@getPDF');
   Route::resource('usuarios','UserController');
