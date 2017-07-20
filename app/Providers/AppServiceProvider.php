@@ -12,8 +12,8 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot(){
-      $this->validateCedula();
-      $this->validateCurrent_Password();
+/**$this->validateCedula();
+      $this->validateCurrent_Password();*/
     }
 
     /**
@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    private function validateCedula(){
+ /*  private function validateCedula(){
       Validator::extend('cedula',function($attribute,$value,$parametes){
           if(preg_match('/[0-2][0-9]{9}(001)?/',$value)){
             $c1=0;
@@ -64,5 +64,5 @@ class AppServiceProvider extends ServiceProvider
             return false;
           }
       });
-    }
+    }*/
 }
