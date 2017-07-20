@@ -29,11 +29,8 @@
                         <div class="navbar nav_title" style="border: 0;">
                             <a href="{{url('/')}}" class="site_title"><i class="fa fa-paw"></i> <span>Cuentas x Cobrar</span></a>
                         </div>
-
                         <div class="clearfix"></div>
-
                         <br />
-
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
@@ -41,6 +38,7 @@
                                     <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Inicio </a>
                                     <li><a href="{{url('perfil')}}"><i class="fa fa-user"></i> Perfil </a>
                                     </li>
+                                    @role('admin')
                                     <li><a><i class="fa fa-users"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('usuarios')}}">Todos los usuarios</a></li>
@@ -59,16 +57,19 @@
                                             <li><a href="{{url('tipopagos/create')}}">Añadir nuevo</a></li>
                                         </ul>
                                     </li>
+                                    @endrole
+                                    @role('cajero')
                                     <li><a><i class="fa fa-calculator"></i>Pagos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('pagos')}}">Todos los pagos</a></li>
                                             <li><a href="{{url('pagos/create')}}">Registrar nuevo pago</a></li>
                                         </ul>
                                     </li>
+                                    @endrole
                                     <li><a><i class="fa fa-file-pdf-o"></i>Otros Reportes <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('reporte')}}" target="_blank">Clientes con sus movimientos</a></li>
-                                            <li><a href="chartjs2.html" target="_blank">Listado de clientes con su saldo</a></li>
+                                            <li><a href="{{url('enviarPago')}}">Listado de clientes con su saldo</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -105,7 +106,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="{{asset('images/img.jpg')}}" alt="">John Doe
+                                        <strong>{{Auth::User()->name}}</strong>
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">

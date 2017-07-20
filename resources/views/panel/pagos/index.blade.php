@@ -6,10 +6,15 @@
         <div class="title_left">
             <h3>Pagos</h3>
         </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+                <a href="{{url('pagos/create')}}" title="Nuevo pago" class="btn btn-default">
+                    <i class="fa fa-plus-circle"></i> Nuevo
+                </a>
+            </div>
+        </div>
     </div>
-
     <div class="clearfix"></div>
-
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -20,7 +25,6 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
@@ -28,41 +32,44 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-
+                  @include('panel.mensajes.error')
+                  @include('panel.mensajes.exito')
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Cod Pago</th>
+                                <th class="text-center"></th>
                                 <th>Cajero</th>
                                 <th>Cliente</th>
-                                <th>Descripcion</th>
+                                <th>Descripción</th>
                                 <th>Fecha</th>
-                                <th>Num Pago</th>
+                                <th># Pago</th>
                                 <th>Total Pago</th>
-                                <th>Opciones</th>
                             </tr>
                         </thead>
-
-
                         @foreach ($pagos as $p)
                         <tr>
-                            <td>{{ $p->idPago}}</td>    <!--nombre de la variable de la base de datos-->
-                            <td>{{ $p->idCajero}}</td>
+                            <td class="text-center">
+                                <a class="btn btn-primary" title="Ver detalles" href="{{URL::action('PagoController@show',$p->idPago)}}"><i class="fa fa-folder"></i></a>
+                            </td>
+                            <td>{{ $p->cajero->apellidos}} {{ $p->cajero->nombres}}</td>
                             <td>{{ $p->idCliente}}</td>
                             <td>{{ $p->descripcion}}</td>
                             <td>{{ $p->fecha}}</td>
-                            <td>{{ $p->numeroPago}}</td>
-                            <td>{{ $p->totalPago}}</td>
-                            <td>
-                                <a class="btn btn-info" href="{{URL::action('PagoController@show',$p->idPago)}}">Ver Detalle</a>
-                            </td>
+                            <td class="text-right">{{ $p->numeroPago}}</td>
+                            <td class="text-right">$ {{ $p->totalPago}}</td>
                         </tr>
                         @endforeach
                     </table>
                 </div>
-                {{$pagos->render()}}   <!--Ayuda para mandar paginado-->
+                {{$pagos->render()}}
             </div>
         </div>
     </div>
 </div>
 @endsection
+@push('styles')
+@include('layouts.styles.datatables')
+@endpush
+@push('scripts')
+@include('layouts.scripts.datatables')
+@endpush

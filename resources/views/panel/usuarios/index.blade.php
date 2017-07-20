@@ -6,7 +6,17 @@
         <div class="title_left">
             <h3>Usuarios</h3>
         </div>
+<<<<<<< HEAD
 
+=======
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+                <a href="{{url('usuarios/create')}}" title="Nuevo usuario" class="btn btn-default">
+                    <i class="fa fa-plus-circle"></i> Nuevo
+                </a>
+            </div>
+        </div>
+>>>>>>> 3c5bbe73fc7c3dc9a3ee874ee9e7f1e31bb3cc85
     </div>
     <div class="clearfix"></div>
     <div class="row">
@@ -29,24 +39,34 @@
                                 <p class="text-muted font-13 m-b-30">Usuarios abilitados para usar el sistema</p>
                                 <table id="datatable-keytable" class="table table-striped table-bordered">
                                     <thead>
+                                    <th class="text-center"></th>
                                     <th>Nombre</th>
                                     <th>Email</th>
+                                    <th>Rol</th>
                                     <th>Fecha Creación</th>
-                                    <th>Ultima Actualización</th>
-                                    <th></th>
+                                    <th>Última Actualización</th>
                                     </thead>
                                     <tbody>
-                                    @foreach ($usuarios as $p)
-                                    <tr>
-                                        <td>{{ $p->name}}</td>
-                                        <td>{{ $p->email}}</td>
-                                        <td>{{ $p->created_at}}</td>
-                                        <td>{{ $p->updated_at}}</td>
-                                        <td class="text-center">
-                                            <a class="btn btn-danger" title="Eliminar" data-toggle="modal" data-name="{{ $p->name}}" data-action="{{URL::action('UserController@destroy',$p->id)}}" href="#modalEliminarUsuario"><i class="fa fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                                        @foreach ($usuarios as $u)
+                                        <tr>
+                                            <td class="text-center">
+                                                <a class="btn btn-info" title="Editar"  href="{{URL::action('UserController@edit',$u->id)}}"><i class="fa fa-edit"></i></a>
+                                            </td>
+                                            <td>{{ $u->name}}</td>
+                                            <td>{{ $u->email}}</td>
+                                            <td>
+                                                @if($u->rol->first()->name=='admin')
+                                                {{'Administrador'}}
+                                                @elseif($u->rol->first()->name=='cajero')
+                                                {{'Cajero'}}
+                                                @else
+                                                {{''}}
+                                                @endif
+                                            </td>
+                                            <td>{{ $u->created_at}}</td>
+                                            <td>{{ $u->updated_at}}</td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -61,40 +81,20 @@
 </div>
 @endsection
 @push('styles')
-<!-- Datatables -->
-<link href="{{asset('vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+@include('layouts.styles.datatables')
 @endpush
 @push('scripts')
-<!-- Datatables -->
-<script src="{{asset('vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
-<script src="{{asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
-<script src="{{asset('vendors/jszip/dist/jszip.min.js')}}"></script>
-<script src="{{asset('vendors/pdfmake/build/pdfmake.min.js')}}"></script>
-<script src="{{asset('vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+@include('layouts.scripts.datatables')
 <script type="text/javascript">
-$(document).ready(function () {
-    $('#modalEliminarUsuario').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var action = button.data('action');
-        var name = button.data('name');
-        var modal = $(this);
-        modal.find(".modal-body #txtEliminar").text("¿Estás seguro de eliminar al usurio con nombre " + name + "?");
-        modal.find(".modal-body form").attr('action', action);
+    $(document).ready(function () {
+        $('#modalEliminarUsuario').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var action = button.data('action');
+            var name = button.data('name');
+            var modal = $(this);
+            modal.find(".modal-body #txtEliminar").text("¿Estás seguro de eliminar al usurio con nombre " + name + "?");
+            modal.find(".modal-body form").attr('action', action);
+        });
     });
-});
 </script>
 @endpush

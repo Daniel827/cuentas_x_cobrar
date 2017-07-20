@@ -10,7 +10,6 @@ class TipoPago extends Model {
     protected $primaryKey = "idTipoPago";
     public $timestamps = false;
     protected $fillable = [
-        'codigo',
         'nombre',
         'referencia',
         'descripcion',

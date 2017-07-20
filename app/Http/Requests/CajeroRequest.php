@@ -28,7 +28,7 @@ class CajeroRequest extends FormRequest
             $id=Input::get('idCajero');
             return [
                 "idUser"=>"required|integer|exists:users,id|unique:cajeros,idUser,".$id.",idCajero",
-                "cedula_ruc"=>"required|min:10|max:13|unique:cajeros,cedula_ruc,".$id.",idCajero",
+                "cedula_ruc"=>"required|cedula_ruc|unique:cajeros,cedula_ruc,".$id.",idCajero",
                 "nombres"=>"required|string|min:3|max:25",
                 "apellidos"=>"required|string|min:3|max:25",
                 "fechaNac"=>"required|date",
@@ -41,7 +41,7 @@ class CajeroRequest extends FormRequest
         }else{
             return [
                 "idUser"=>"required|integer|exists:users,id|unique:cajeros",
-                "cedula_ruc"=>"required|unique:cajeros|min:10|max:13",
+                "cedula_ruc"=>"required|cedulaRuc|unique:cajeros|min:10|max:13",
                 "nombres"=>"required|min:3|max:25",
                 "apellidos"=>"required|min:3|max:25",
                 "fechaNac"=>"required|date",

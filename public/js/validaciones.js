@@ -1,29 +1,3 @@
-function check(persona,mod) {
-    var cedula = document.getElementById('ced'+persona+'').value;
-    var fecha = document.getElementById('fechaEmpleado');
-    if(mod){
-        cedula = document.getElementById('cedMod'+persona+'').value;
-        fecha = document.getElementById('fechaModEmpleado');
-    }
-    if(persona==='Empleado'){
-        var fechaEscogida = "" + fecha.value;
-        var valFecha = fechaEscogida.split("-");
-        var fechaActual = new Date();
-        var x=new Date();
-        x.setFullYear(valFecha[0],valFecha[1]-1,valFecha[2]);
-        if(x>fechaActual || valFecha[0]<2000){
-            $.toaster({ priority : 'danger', title : 'Error', message : 'Fecha mayor a la actual o menor al año 2000'});
-            return false;
-        }
-    }
-    var cedulaValida = verificarCedula(cedula + "");
-    if (!cedulaValida) {
-        $.toaster({ priority : 'danger', title : 'Error', message : 'Cédula / RUC Inválido'});
-        return false;
-    }
-    return true;
-}
-
 function esDigito() {
     var evento = window.event;
     var cod = evento.charCode || evento.keyCode;
@@ -32,6 +6,36 @@ function esDigito() {
         return true;
     }
     return false;
+}
+
+function esClaveValida() {
+    var evento = window.event;
+    var cod = evento.charCode || evento.keyCode;
+    var caracter = String.fromCharCode(cod);
+    if (caracter!==" ") {
+        return true;
+    }
+    return false;
+}
+
+function esAlfaNum() {
+  var evento = window.event;
+  var cod = evento.charCode || evento.keyCode;
+  var caracter = String.fromCharCode(cod);
+  if (caracter >= 0 && caracter <= 9 && caracter!==" " || (caracter >= 'a' && caracter <= 'z')) {
+      return true;
+  }
+  return false;
+}
+
+function esAlfa(){
+  var evento = window.event;
+  var cod = evento.charCode || evento.keyCode;
+  var caracter = String.fromCharCode(cod);
+  if (caracter >= 'A' && caracter <= 'Z' || (caracter >= 'a' && caracter <= 'z')) {
+      return true;
+  }
+  return false;
 }
 
 function esLetra() {
@@ -46,7 +50,7 @@ function esLetra() {
     return false;
 }
 
-function verificarCedula(cedula) {
+function verificarCedulaRuc(cedula) {
     var digitos = cedula.split("");
     var a = new Array();
     var c1 = 0, c2 = 0, d, e, f = 0;
@@ -71,7 +75,7 @@ function verificarCedula(cedula) {
             break;
         }
     }
-    
+
     if(digitos.length===10){
         return parseInt(digitos[9]) === f;
     }else if(digitos.length===13){

@@ -20,25 +20,23 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        if(Input::has('id')){
-            $id=Input::get('id');
+        if(Input::has('idUser')){
+            $id=Input::get('idUser');
             return [
-                 'name'=>'required|min:3|unique:users|max:20|regex:/^[a-záéóóúàèìòùäëïöüñ\s]+$/i',
-                 'email' => 'required|string|email|unique:users|max:255',
-            'password' => 'required|string|min:6',
-
-
-
+            'rol'=>'required_without:password_now|in:admin,cajero',
+            'password_now'=>'nullable|min:8|max:20|current_password',
+            'password' => 'nullable|required_with:password_now|different:password_now|confirmed|min:8|max:20',
+            'password_confirmation' => 'nullable|min:8|max:20'
             ];
         }else{
-                   return [
-          'name'=>'required|min:3|unique:users|max:20|regex:/^[a-záéóóúàèìòùäëïöüñ\s]+$/i',
-                 'email' => 'required|string|email|unique:users|max:255',
+          return [
+          'name'=>'required|min:3|unique:users|max:20|regex:/^[a-z0-9]+$/i',
+            'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required|string|min:6',
-
+            'rol'=>'required|in:admin,cajero',
         ];
         }
     }
 
-    
+
 }

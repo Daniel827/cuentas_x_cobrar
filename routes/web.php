@@ -11,17 +11,17 @@
 |
 */
 
-Route::group(['middleware' => 'guest'], function () {
+Route::group(['middleware' => 'auth'], function () {
   Route::get('/','AdminPanelController@index');
+  Route::get('numberConnections','AdminPanelController@getNumberOfConnections');
+  Route::get('enviarPago','PagoController@enviarPago');
   Route::get('perfil','AdminPanelController@profile');
-  Route::get('cajeros/cambiarEstado/{id}', 'CajeroController@cambiarEstado');
   Route::get('reporte','AdminPanelController@getPDF');
   Route::resource('usuarios','UserController');
-
-
-
   Route::resource('cajeros','CajeroController');
+  Route::get('cajeros/cambiarEstado/{id}', 'CajeroController@cambiarEstado');
   Route::resource('tipopagos','TipoPagoController');
+  Route::get('tipopagos/cambiarEstado/{id}', 'TipoPagoController@cambiarEstado');
   Route::resource('pagos','PagoController');
 });
 

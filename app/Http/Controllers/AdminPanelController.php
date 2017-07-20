@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Activity;
 
 class AdminPanelController extends Controller{
   public function __construct() {
@@ -10,6 +11,11 @@ class AdminPanelController extends Controller{
 
   public function index(){
       return view('panel.index');
+  }
+
+  public function getNumberOfConnections(){
+    $number = Activity::users()->count();
+    return response()->json($number);
   }
 
   public function profile(){
