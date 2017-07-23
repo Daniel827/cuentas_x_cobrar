@@ -11,7 +11,8 @@ use App\TipoPago;
 class TipoPagoController extends Controller
 {
      public function _construct(){
-      $this -> middleware('auth');
+       \Log::info('constructor desde TipoController');
+       $this->middleware('role:admin');
     }
 
     public function index(){

@@ -13,6 +13,7 @@ use Faker\Factory as Faker;
 
 class CajeroController extends Controller{
      public function _construct(){
+       \Log::info('constructor desde CajeroController');
        $this->middleware('role:admin');
     }
 

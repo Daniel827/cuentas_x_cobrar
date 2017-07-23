@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Redirect ;
 
 class UserController extends Controller{
   public function __construct() {
-
+    \Log::info('constructor desde UserController');
+    $this->middleware('role:admin');
   }
 
   public function index(){

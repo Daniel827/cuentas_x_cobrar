@@ -15,6 +15,7 @@ use App\TipoPago;
 class PagoController extends Controller
 {
     public function _construct(){
+      \Log::info('constructor desde PagoController');
       $this->middleware('role:cajero');
     }
 
