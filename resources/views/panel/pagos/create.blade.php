@@ -1,3 +1,4 @@
+
 @extends('layouts.adminpanel')
 @section('titulo','Registrar pago')
 @section('contenido')
