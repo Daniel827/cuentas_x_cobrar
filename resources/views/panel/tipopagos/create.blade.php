@@ -50,7 +50,7 @@
                                 <select name="estado" id="estado" class="form-control" required >
                                     <option value="">-- Estado de Pago-- </option>
                                     <option {{old('estado')=='A'?'selected':''}} value="A">Activo</option>
-                                    <option {{old('estado')=='I'?'selected':''}} value="I">Inactivo</option>
+                                    <option {{old('estado')=='I'?'selected':''}} value="I">Inactivo</option>    
                                 </select>
                             </div>
                         </div>
