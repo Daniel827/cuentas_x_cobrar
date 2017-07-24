@@ -20,6 +20,6 @@ class Pago extends Model {
     }
 
     public function cajero() {
-        return $this->belongsTo('App\Cajero', 'idCajero');
+        return $this->belongsTo('App\Cajero', 'idcajero');
     }
 }
