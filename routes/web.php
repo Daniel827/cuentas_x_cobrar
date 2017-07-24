@@ -12,6 +12,7 @@
 */
 
 Route::group(['middleware' => 'auth'], function () {
+  Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
   Route::get('/','AdminPanelController@index');
   Route::get('numberConnections','AdminPanelController@getNumberOfConnections');
   Route::get('perfil','AdminPanelController@profile');
