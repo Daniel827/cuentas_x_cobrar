@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Cliente;
+use DB;
 
 class SaldoController extends Controller
 {
@@ -12,7 +13,8 @@ class SaldoController extends Controller
     }
 
     public function index(){
-     $clientes=Cliente::orderBy('apellido')->get();
+      $clientes=DB::table('clientes as c')->join('facturas as f','f.idcliente','=','c.idcliente')
+     ->select('cedula,nombre,apellido,total as saldo')->orderBy('apellido')->get();
       return $clientes;
     }
 }
