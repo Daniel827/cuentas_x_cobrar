@@ -12,7 +12,7 @@ class SaldoController extends Controller
     }
 
     public function index(){
-     $clientes=Cliente::select('clientes.*,23')->get();
+     $clientes=Cliente::orderBy('apellido')->get();
       return $clientes;
     }
 }
