@@ -23,10 +23,10 @@ class Cajero extends Model {
     ];
 
     public function user() {
-        return $this->belongsTo('App\User','idUser');
+        return $this->belongsTo('App\User','iduser');
     }
 
     public function pagos() {
-        return $this->hasMany('App\Pago', 'idCajero');
+        return $this->hasMany('App\Pago', 'idcajero');
     }
 }

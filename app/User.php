@@ -35,7 +35,7 @@ class User extends Authenticatable {
     }
 
     public function cajero() {
-        return $this->hasOne('App\Cajero', 'idUser');
+        return $this->hasOne('App\Cajero', 'iduser');
     }
 
     public function rol() {
