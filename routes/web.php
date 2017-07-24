@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::resource('saldos','SaldoController');
 Route::group(['middleware' => 'auth'], function () {
   Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
   Route::get('/','AdminPanelController@index');
