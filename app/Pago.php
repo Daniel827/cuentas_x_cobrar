@@ -7,21 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Pago extends Model {
 
     protected $table = "pagos";
-    protected $primaryKey = "idPago";
+    protected $primaryKey = "idpago";
     public $timestamps = false;
     protected $fillable = [
         'idCajero',
         'idCliente',
-        'descripcion',
-        'numeroPago',
-        'totalPago'
+        'descripcion'
     ];
 
     public function detallesPago() {
-        return $this->hasMany('App\DetallePago', 'idPago');
+        return $this->hasMany('App\DetallePago', 'idpago');
     }
 
-    public function user() {
-        return $this->belongsTo('App\Cajero', 'idCajero');
+    public function cajero() {
+        return $this->belongsTo('App\Cajero', 'idcajero');
     }
 }

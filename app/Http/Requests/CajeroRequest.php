@@ -27,29 +27,29 @@ class CajeroRequest extends FormRequest
         if(Input::has('idCajero')){
             $id=Input::get('idCajero');
             return [
-                "idUser"=>"required|integer|min:1|max:11",
-                "cedula_ruc"=>"required|min:10|max:13",
-                "nombres"=>"required|min:3|max:25",
-                "apellidos"=>"required|min:3|max:25",
-                "fechaNac"=>"required|date", 
-                "ciudadNac"=>"required|min:3|max:25",
-                "direccion"=>"required|min:3|max:25",
+                "idUser"=>"required|integer|exists:users,id|unique:cajeros,idUser,".$id.",idCajero",
+                "cedula_ruc"=>"required|cedula_ruc|unique:cajeros,cedula_ruc,".$id.",idCajero",
+                "nombres"=>"required|string|min:3|max:25",
+                "apellidos"=>"required|string|min:3|max:25",
+                "fechaNac"=>"required|date",
+                "ciudadNac"=>"required|string|min:3|max:25",
+                "direccion"=>"required|string|min:3|max:25",
                 "telefono"=>"required|alpha_num|size:10",
-                "email"=>"required|min:3|max:50",
-                "estado"=>"required|alpha_num|size:1"
+                "email"=>"required|email|min:10|max:50|unique:cajeros,email,".$id.",idCajero",
+                "estado"=>"required|in:A,I"
             ];
         }else{
             return [
-                "idUser"=>"required|integer|min:1|max:11",
-                "cedula_ruc"=>"required|min:10|max:13",
+                "idUser"=>"required|integer|exists:users,id|unique:cajeros",
+                "cedula_ruc"=>"required|cedulaRuc|unique:cajeros|min:10|max:13",
                 "nombres"=>"required|min:3|max:25",
                 "apellidos"=>"required|min:3|max:25",
-                "fechaNac"=>"required|date", 
-                "ciudadNac"=>"required|min:3|max:25",
-                "direccion"=>"required|min:3|max:25",
+                "fechaNac"=>"required|date",
+                "ciudadNac"=>"required|string|min:3|max:25",
+                "direccion"=>"required|string|min:3|max:25",
                 "telefono"=>"required|alpha_num|size:10",
-                "email"=>"required|min:3|max:50",
-                "estado"=>"required|alpha_num|size:1"
+                "email"=>"required|email|unique:cajeros|min:10|max:50",
+                "estado"=>"required|in:A,I"
             ];
         }
     }

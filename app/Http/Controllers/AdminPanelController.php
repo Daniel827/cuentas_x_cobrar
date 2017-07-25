@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Activity;
 
 class AdminPanelController extends Controller{
   public function __construct() {
@@ -12,12 +13,18 @@ class AdminPanelController extends Controller{
       return view('panel.index');
   }
 
+  public function getNumberOfConnections(){
+    $number = Activity::users()->count();
+    return response()->json($number);
+  }
+
   public function profile(){
       return view('panel.profile');
   }
 
   public function getPDF(){
-    return \PDF::loadFile('http://www.github.com')->inline('github.pdf');
-    //return \PDF::loadView('panel.index')->download('inicio.pdf');
+    $texto="Hola";
+    $pdf = \PDF::loadView('panel.cajeros.reporte',["texto"=>$texto]);
+    return $pdf->stream('inicio.pdf');
   }
 }

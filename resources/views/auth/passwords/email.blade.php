@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+@if (session('status'))
+      <div class="alert alert-success alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+          {{ session('status') }}
+      </div>
+@endif
 <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
     {{ csrf_field() }}
     <h1>Resetear contraseña</h1>

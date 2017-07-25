@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use App\Notifications\ResetearClave;
 
 class User extends Authenticatable {
 
     use Notifiable;
-   
+    use EntrustUserTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -29,11 +30,15 @@ class User extends Authenticatable {
         'password', 'remember_token',
     ];
 
-    public function cajero() {
-        return $this->hasOne('App\Cajero', 'idCajero');
+    public function sendPasswordResetNotification($token){
+        $this->notify(new ResetearClave($token));
     }
 
-    public function roles() {
+    public function cajero() {
+        return $this->hasOne('App\Cajero', 'iduser');
+    }
+
+    public function rol() {
         return $this->belongsToMany('App\Role', 'role_user');
     }
 

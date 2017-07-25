@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cajero extends Model {
 
     protected $table = "cajeros";
-    protected $primaryKey = "idCajero";
+    protected $primaryKey = "idcajero";
     public $timestamps = false;
     protected $fillable = [
         'idUser',
@@ -23,10 +23,10 @@ class Cajero extends Model {
     ];
 
     public function user() {
-        return $this->belongsTo('App\User', 'idCajero');
+        return $this->belongsTo('App\User','iduser');
     }
 
     public function pagos() {
-        return $this->hasMany('App\Pago', 'idCajero');
+        return $this->hasMany('App\Pago', 'idcajero');
     }
 }

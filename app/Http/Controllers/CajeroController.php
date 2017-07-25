@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Notifications\CrearCajero;
 use App\Http\Requests;
 use App\Http\Requests\CajeroRequest;
 use App\Cajero;
+use App\User;
+use Auth;
+use Faker\Factory as Faker;
 
-class CajeroController extends Controller
-{
+class CajeroController extends Controller{
      public function _construct(){
-
+       \Log::info('constructor desde CajeroController');
+       $this->middleware('role:admin');
     }
 
     public function index(){
@@ -20,26 +23,37 @@ class CajeroController extends Controller
     }
 
     public function create(){
-      return view('panel.cajeros.create');
+      $usuarios=User::orderBy('name')->get();
+      return view('panel.cajeros.create', compact('usuarios'));
     }
 
     public function store(CajeroRequest $request){
       Cajero::create($request->all());
-         return Redirect::to('cajeros');
+      $faker = Faker::create();
+      $clave = $faker->regexify('[a-zA-Z0-9]{8}');
+      User::updateOrCreate(['id'=>$request->idUser],['password'=>bcrypt($clave)]);
+      $user=User::findOrFail($request->idUser);
+      \Notification::send($user, new CrearCajero($user->email,$clave));
+      return Redirect::to('cajeros')->with('success', 'Cajero creado');
     }
 
    public function edit($id){
-      $cajeros=Cajero::find($id);
-       return view ('panel.cajeros.edit',compact('cajeros'));
+      $cajero=Cajero::find($id);
+      // CuentasXCobrar
+      // cuentas_x_cobrar_utn@hotmail.com
+      $usuarios=User::orderBy('name')->get();
+       return view ('panel.cajeros.edit',compact('cajero','usuarios'));
 
     }
     public function update(CajeroRequest $request,$id){
       Cajero::updateOrCreate(['idCajero'=>$id],$request->all());
-      return Redirect::to('cajeros');
+      return Redirect::to('cajeros')->with('success', 'Cajero actualizado');
     }
 
-    public function destroy($id){
-      Cajero::destroy($id);
-      return Redirect::to('cajero');
+   public function cambiarEstado($id){
+      $cajero=Cajero::find($id);
+        $cajero->estado=$cajero->estado=='A' ? 'I' : 'A';
+        $cajero->update();
+        return Redirect::to('cajeros')->with('success','Estado del cajero "'.($cajero->estado=='A'?'Activado':'Desactivado').'"');
     }
 }

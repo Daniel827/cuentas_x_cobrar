@@ -11,8 +11,7 @@ class TipopagoRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
@@ -21,26 +20,12 @@ class TipopagoRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    { 
-        if(Input::has('idTipoPago')){
-            $id=Input::Get('idTipoPago');
-            return[
-                "codigo"=>"required|unique:tipopagos,codigo,".$id.",idTipoPago|alpha_num|size:8",
-                "nombre"=>"required|min:3|max:20|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/i",
-                "referencia"=>"required|min:10|max:200",
-                "descripcion"=>"required|min:10|max:200",
-                "estado"=>"required|max:5"
- 
-            ];
-        }else{
-            return [
-                "codigo"=>"required|unique:tipopagos|alpha_num|size:8",
-                "nombre"=>"required|min:3|max:20|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/i",
-                "referencia"=>"required|min:10|max:200",
-                "descripcion"=>"required|min:10|max:200",
-                "estado"=>"required|min:1|max:5"
-            ];
-        }
+    public function rules() {
+      return [
+          "nombre"=>"required|string|min:3|max:20",
+          "referencia"=>"required|string|min:5|max:20",
+          "descripcion"=>"nullable|string|max:200",
+          "estado"=>"required|in:A,I"
+      ];
     }
 }

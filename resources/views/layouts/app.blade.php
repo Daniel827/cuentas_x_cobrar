@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Gentelella Alela! | </title>
+        <title>Cuentas x Cobrar</title>
 
         <!-- Bootstrap -->
         <link href="{{asset('vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -36,8 +36,8 @@
                             <br />
 
                             <div>
-                                <h1><i class="fa fa-paw"></i> Cuentas x Cobrar</h1>
-                                <p>©{{date('Y')}} All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template</p>
+                                <h1><i class="fa fa-paw"></i> Cuentas por Cobrar</h1>
+                                <p>©{{date('Y')}} Todos los derechos reservados. CXC</p>
                             </div>
                         </div>
                         </form>
