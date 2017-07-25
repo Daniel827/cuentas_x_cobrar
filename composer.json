@@ -6,11 +6,12 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "kim/activity": "^1.1",
         "barryvdh/laravel-dompdf": "^0.8.0",
+        "kim/activity": "^1.1",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
+        "rap2hpoutre/laravel-log-viewer": "^0.10.4",
         "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {

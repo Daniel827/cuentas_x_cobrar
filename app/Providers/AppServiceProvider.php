@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot(){
+<<<<<<< HEAD
 
 /**$this->validateCedula();
       $this->validateCurrent_Password();
@@ -22,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
       $this->validateCedulaRuc();
       $this->validateCurrent_Password();*/
 
+=======
+      $this->validateCedulaRuc();
+      $this->validateCurrent_Password();
+>>>>>>> 3de4653c1c3ab1187ad849135e51ef18689b8bef
     }
 
     /**
@@ -40,12 +45,14 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
+<<<<<<< HEAD
  /*  private function validateCedula(){
       Validator::extend('cedula',function($attribute,$value,$parametes){
 =======
+=======
+>>>>>>> 3de4653c1c3ab1187ad849135e51ef18689b8bef
     private function validateCedulaRuc(){
       Validator::extend('cedula_ruc',function($attribute,$value,$parametes){
->>>>>>> 3c5bbe73fc7c3dc9a3ee874ee9e7f1e31bb3cc85
           if(preg_match('/[0-2][0-9]{9}(001)?/',$value)){
             $c1=0;
             $c2=0;
@@ -76,5 +83,5 @@ class AppServiceProvider extends ServiceProvider
             return false;
           }
       });
-    }*/
+    }
 }

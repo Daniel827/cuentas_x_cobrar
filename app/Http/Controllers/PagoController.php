@@ -15,6 +15,7 @@ use App\TipoPago;
 class PagoController extends Controller
 {
     public function _construct(){
+      \Log::info('constructor desde PagoController');
       $this->middleware('role:cajero');
     }
 
@@ -39,7 +40,6 @@ class PagoController extends Controller
       }
       $total=DetallePago::where('idPago',$idPago)->sum('pago');
       Pago::where('idPago',$idPago)->update(["totalPago"=>$total]);
-      //Pago::updateOrCreate(["idPago"=>$idPago],["totalPago"=>$total]);
         return Redirect::to('pagos/create')->with('success','Pago registrado');
       }
 
