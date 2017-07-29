@@ -23,7 +23,7 @@ class AdminPanelController extends Controller{
   }
 
   public function getPDF(){
-    $texto="Hola";
+    $texto="";
     $pdf = \PDF::loadView('panel.cajeros.reporte',["texto"=>$texto]);
     return $pdf->stream('inicio.pdf');
   }

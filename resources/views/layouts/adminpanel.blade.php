@@ -55,7 +55,7 @@
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('tipopagos')}}">Todos los tipos de pago</a></li>
                                             <li><a href="{{url('tipopagos/create')}}">Añadir nuevo</a></li>
-                                        </ul>
+                                              </ul>
                                     </li>
                                     @endrole
                                     @role('cajero')
@@ -63,15 +63,20 @@
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('pagos')}}">Todos los pagos</a></li>
                                             <li><a href="{{url('pagos/create')}}">Registrar nuevo pago</a></li>
+
+
                                         </ul>
                                     </li>
                                     @endrole
+                               
                                     <li><a><i class="fa fa-file-pdf-o"></i>Otros Reportes <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
+                                        <!-- <li><a href="{{url('')}}" target="_blank">Clientes con sus movimientosC1</a></li> -->
                                             <li><a href="{{url('reporte')}}" target="_blank">Clientes con sus movimientos</a></li>
                                             <li><a href="{{url('pagos/enviarPago')}}">Listado de clientes con su saldo</a></li>
                                         </ul>
                                     </li>
+                              
                                 </ul>
                             </div>
                         </div>

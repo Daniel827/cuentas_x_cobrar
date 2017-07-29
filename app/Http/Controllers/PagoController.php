@@ -11,6 +11,7 @@ use App\Pago;
 use App\User;
 use App\DetallePago;
 use App\TipoPago;
+use App\TipoPago;
 
 class PagoController extends Controller
 {
@@ -60,4 +61,7 @@ class PagoController extends Controller
          \Notification::send($user, new EnviarPago());
         return back();
      }
+
+
+
 }

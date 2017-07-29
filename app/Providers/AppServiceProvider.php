@@ -9,18 +9,14 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
+ 
     public function boot(){
 
-$this->validateCedula();
+/**$this->validateCedula();
       $this->validateCurrent_Password();
 
       $this->validateCedulaRuc();
-      $this->validateCurrent_Password();
+      $this->validateCurrent_Password();*/
 
 
       $this->validateCedulaRuc();
@@ -28,11 +24,7 @@ $this->validateCedula();
 
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+ 
     public function register()
     {
         //
@@ -45,8 +37,8 @@ $this->validateCedula();
     }
 
 
- private function validateCedula(){
-      Validator::extend('cedula',function($attribute,$value,$parametes){
+ //private function validateCedula(){
+   //   Validator::extend('cedula',function($attribute,$value,$parametes){
 
     private function validateCedulaRuc(){
       Validator::extend('cedula_ruc',function($attribute,$value,$parametes){
