@@ -6,10 +6,7 @@
         <div class="title_left">
             <h3>Usuarios</h3>
         </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> bb50b1ccdb56e9b9b09656b28772c92951739c99
         <div class="title_right">
             <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
                 <a href="{{url('usuarios/create')}}" title="Nuevo usuario" class="btn btn-default">
