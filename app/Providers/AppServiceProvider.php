@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
       $this->validateCurrent_Password();
       TipoPago::creating(function ($tipoPago) {
             $nextId=DB::select('select last_value from tipopagos_idtipopago_seq');
-            $codigo=str_pad($nextId."", 5, "0",STR_PAD_LEFT);
+            $codigo="TP-".(str_pad($nextId."", 5, "0",STR_PAD_LEFT));
             $tipoPago->codigo=$codigo;
         });
     }
