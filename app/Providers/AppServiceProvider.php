@@ -12,6 +12,7 @@ use App\Pago;
 
 class AppServiceProvider extends ServiceProvider
 {
+<<<<<<< HEAD
  
     public function boot(){
 
@@ -27,16 +28,29 @@ class AppServiceProvider extends ServiceProvider
       $this->validateCurrent_Password();
 
       $this->validateCedulaRuc();
+=======
+
+    public function boot(){
+      $this->validateCedula();
+>>>>>>> d79744f99ff8d8b4770b3073b8ed2479c514abb2
       $this->validateCurrent_Password();
       TipoPago::creating(function ($tipoPago) {
             $nextId=DB::select('select last_value from tipopagos_idtipopago_seq');
             $codigo="TP-".(str_pad($nextId."", 5, "0",STR_PAD_LEFT));
             $tipoPago->codigo=$codigo;
         });
+<<<<<<< HEAD
 
+=======
+      Pago::creating(function ($pago) {
+              $nextId=DB::select('select last_value from pagos_idpago_seq');
+              $codigo="PAGO-".(str_pad($nextId."", 5, "0",STR_PAD_LEFT));
+              $pago->numeropago=$codigo;
+          });
+>>>>>>> d79744f99ff8d8b4770b3073b8ed2479c514abb2
     }
 
- 
+
     public function register()
     {
         //
@@ -48,12 +62,15 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
+<<<<<<< HEAD
 
 
  //private function validateCedula(){
    //   Validator::extend('cedula',function($attribute,$value,$parametes){
 
 
+=======
+>>>>>>> d79744f99ff8d8b4770b3073b8ed2479c514abb2
     private function validateCedulaRuc(){
       Validator::extend('cedula_ruc',function($attribute,$value,$parametes){
           if(preg_match('/[0-2][0-9]{9}(001)?/',$value)){
