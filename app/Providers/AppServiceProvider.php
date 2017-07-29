@@ -8,6 +8,7 @@ use Hash;
 use Illuminate\Support\ServiceProvider;
 use DB;
 use App\TipoPago;
+use App\Pago;
 
 class AppServiceProvider extends ServiceProvider
 {
