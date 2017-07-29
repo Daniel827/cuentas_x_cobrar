@@ -35,13 +35,13 @@
                         <div class="form-group">
                             <label for="nombre" class="col-lg-2 control-label">Nombre <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="nombre" id="nombre" class="form-control" type="text" value="{{$tipopago->nombre}}"  onkeypress="return esLetra();" pattern="[A-ZÁÉÍÓÚa-zñáéíóú\s]{7,20}" minlength="7" maxlength="20" required>
+                                <input name="nombre" id="nombre" class="form-control" type="text" value="{{$tipopago->nombre}}"  onkeypress="return esLetra();" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú\s]{6,19}" minlength="7" maxlength="20" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="referencia" class="col-lg-2 control-label">Referencia<font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="referencia" id="referencia" class="form-control" type="text" value="{{$tipopago->referencia}}" pattern="[A-ZÁÉÍÓÚa-zñáéíóú\s0-9]{7,20}" minlength="7" maxlength="20" required>
+                                <input name="referencia" id="referencia" class="form-control" type="text" value="{{$tipopago->referencia}}" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú\s]{6,19}" minlength="7" maxlength="20" required>
                             </div>
                         </div>
                         <div class="form-group">

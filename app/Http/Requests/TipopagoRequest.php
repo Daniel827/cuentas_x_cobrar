@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\support\Facades\Input;
-class TipopagoRequest extends FormRequest
+class TipoPagoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
