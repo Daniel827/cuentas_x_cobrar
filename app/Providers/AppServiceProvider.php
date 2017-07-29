@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
 {
 
     public function boot(){
-      $this->validateCedula();
+      $this->validateCedulaRuc();
       $this->validateCurrent_Password();
       TipoPago::creating(function ($tipoPago) {
             $nextId=DB::select('select last_value from tipopagos_idtipopago_seq');
