@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Redirect ;
 
 class UserController extends Controller{
   public function __construct() {
-    \Log::info('constructor desde UserController');
     $this->middleware('role:admin');
   }
 
@@ -49,7 +48,7 @@ class UserController extends Controller{
       //User::updateOrCreate(['id'=>$id],$request->all());
       $user=User::findOrFail($id);
       if ($request->password_now != null) {
-            $user->password = bcrypt($user->password);
+            $user->password = bcrypt($request->password);
             $user->update();
             return back()->with('success','Contraseña cambiada');
       }else{
@@ -59,7 +58,7 @@ class UserController extends Controller{
       }
     }
 
-     public function destroy($id){
+    public function destroy($id){
       User::destroy($id);
       return Redirect::to('usuarios');
     }

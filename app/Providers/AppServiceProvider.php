@@ -6,6 +6,8 @@ use Validator;
 use Auth;
 use Hash;
 use Illuminate\Support\ServiceProvider;
+use DB;
+use App\TipoPago;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,18 +17,13 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot(){
-<<<<<<< HEAD
-
-/**$this->validateCedula();
-      $this->validateCurrent_Password();
-
-      $this->validateCedulaRuc();
-      $this->validateCurrent_Password();*/
-
-=======
       $this->validateCedulaRuc();
       $this->validateCurrent_Password();
->>>>>>> 3de4653c1c3ab1187ad849135e51ef18689b8bef
+      TipoPago::creating(function ($tipoPago) {
+            $nextId=DB::select('select last_value from tipopagos_idtipopago_seq');
+            $codigo=str_pad($nextId."", 5, "0",STR_PAD_LEFT);
+            $tipoPago->codigo=$codigo;
+        });
     }
 
     /**
@@ -45,12 +42,6 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-<<<<<<< HEAD
- /*  private function validateCedula(){
-      Validator::extend('cedula',function($attribute,$value,$parametes){
-=======
-=======
->>>>>>> 3de4653c1c3ab1187ad849135e51ef18689b8bef
     private function validateCedulaRuc(){
       Validator::extend('cedula_ruc',function($attribute,$value,$parametes){
           if(preg_match('/[0-2][0-9]{9}(001)?/',$value)){
