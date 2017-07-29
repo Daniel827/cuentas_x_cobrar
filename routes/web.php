@@ -18,6 +18,9 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('perfil','AdminPanelController@profile');
   Route::get('reporte','AdminPanelController@getPDF');
   Route::resource('usuarios','UserController');
+
+
+
   Route::resource('cajeros','CajeroController');
   Route::group(['prefix' => 'cajeros'], function () {
       Route::get('/cambiarEstado/{id}', 'CajeroController@cambiarEstado');

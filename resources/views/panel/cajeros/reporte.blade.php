@@ -52,6 +52,23 @@
 		.texto {
     		color: #848484;
 		}
+        #datos {
+            color: #848484;
+             font-family: "Lucida Sans Unicode";
+        }
+     body {font-family: Arial, Helvetica, sans-serif;}
+
+
+table {     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;    margin-right:50px;     width: 700px; text-align: center;    border-collapse: collapse; }
+
+th {     font-size: 13px;     font-weight: normal;     padding: 8px;     background: #b9c9fe;
+    border-top: 4px solid #aabcfe;    border-bottom: 1px solid #fff; color: #039; }
+
+td {    padding: 8px;     background: #e8edff;     border-bottom: 1px solid #fff;
+    color: #669;    border-top: 1px solid transparent; }
+
+tr:hover td { background: #d0dafd; color: #339; }
     </style>
 </head>
 <body>
@@ -63,7 +80,43 @@
 				</b>
 			</p>
     </div>
-    <h1>{{$texto}}</h1>
+
+       <h1>{{$texto}}</h1>
+    <div id="datos">
+        <caption >Reporte del Cliente con sus movimientos</caption> <br><br>
+<label for="" >Nombres: </label><br><br>
+<label for="" >Cédula: </label><br><br>
+
+
+
+</div>
+  <table >
+
+
+ <div> 
+
+   
+
+   </div>
+<tr> 
+    <th>Pago</th> 
+    <th>Descripcion</th> 
+    <th>Fecha</th>
+<th>TotaPago</th> 
+
+</tr>
+<tr> <td>Pago-001</td> <td>tarjeta</td> <td>12/2012/1999</td> <td>23,89</td> 
+</tr>
+<tr> <td>Pago-002</td> <td>contado</td> <td>12/2012/2000</td> <td>23,89</td> 
+</tr>
+<tr> <td>Pago-003</td> <td>tarjeta</td> <td>12/2012/1993</td> <td>23,89</td> 
+</tr>
+<tr> <td>Pago-004</td> <td>tarjeta</td> <td>12/2012/1993</td> <td>23,89</td> 
+</tr>
+</table>
+
+
+
     <!--footer para cada pagina-->
     <div id="footer">
         <!--aqui se muestra el numero de la pagina en numeros romanos-->
