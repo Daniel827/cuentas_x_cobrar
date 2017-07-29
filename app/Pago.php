@@ -10,8 +10,8 @@ class Pago extends Model {
     protected $primaryKey = "idpago";
     public $timestamps = false;
     protected $fillable = [
-        'idCajero',
-        'idCliente',
+        'idcajero',
+        'idcliente',
         'descripcion'
     ];
 
