@@ -1,5 +1,5 @@
 <?php
-
+//cury
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
