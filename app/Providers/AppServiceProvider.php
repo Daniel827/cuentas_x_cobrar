@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
             $codigo="TP-".(str_pad($nextId."", 5, "0",STR_PAD_LEFT));
             $tipoPago->codigo=$codigo;
         });
+
       Pago::creating(function ($pago) {
               $nextId=DB::select('select last_value from pagos_idpago_seq');
               $codigo="PAGO-".(str_pad($nextId."", 5, "0",STR_PAD_LEFT));
