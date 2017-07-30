@@ -115,7 +115,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-6" for="cantidad">Cantidad a Pagar <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="number" id="cantidad" min=0.01 max=1200 step="0.01" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cantidad a pagar">
+                                <input type="number" id="cantidad" min=0.01 max=1200 step="0.01" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cantidad a pagar" onkeypress="return NumCheck(event, this)">
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -344,6 +344,42 @@ function getArrayPagos(){
   return pagos;
 }
 
+
+
+function NumCheck(e, field) {
+ key = e.keyCode ? e.keyCode : e.which
+    // backspace
+    if (key == 8) return true
+ 
+    // 0-9 a partir del .decimal  
+    if (field.value != "") {
+        if ((field.value.indexOf(".")) > 0) {
+            //si tiene un punto valida dos digitos en la parte decimal
+            if (key > 47 && key < 58) {
+                if (field.value == "") return true
+                regexp = /[0-9]{2}$/
+                return !(regexp.test(field.value))
+            }
+        }
+    }
+    // 0-9 
+    if (key > 47 && key < 58) {
+        if (field.value == "") return true
+        regexp = /[0-9]{10}/
+        return !(regexp.test(field.value))
+    }
+    // .
+    if (key == 46) {
+        if (field.value == "") return false
+        regexp = /^[0-9]+$/
+        return regexp.test(field.value)
+    }
+    // other key
+    return false
+}
+
+
+
 $(document).ready(function() {
     $('#demo-form2').formValidation({
         framework: 'bootstrap',
@@ -357,6 +393,29 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: 'El campo descripción es obligatorio'
+                    }
+                }
+            },
+             nfact: {                    
+                validators: {
+                    notEmpty: {
+                        message: 'The full name is required'
+                    }
+                }
+            },
+
+             idTipoPago: {                    
+                validators: {
+                    notEmpty: {
+                        message: 'The full name is required'
+                    }
+                }
+            },
+
+             cantidad: {                    
+                validators: {
+                    notEmpty: {
+                        message: 'The full name is required'
                     }
                 }
             }

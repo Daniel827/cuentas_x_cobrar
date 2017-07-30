@@ -209,7 +209,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p><i class="fa fa-square red"></i>Others </p>
+                                        <p><i class="fa fa-square red"></i>Otros</p>
                                     </td>
                                     <td>30%</td>
                                 </tr>

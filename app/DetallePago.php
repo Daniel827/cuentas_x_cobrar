@@ -11,7 +11,7 @@ class DetallePago extends Model {
     public $timestamps = false;
     protected $fillable = [
         'idPago',
-        'idTipoPago',
+        'idTipoPago'
         'idFactura',
         'pago'
     ];
