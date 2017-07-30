@@ -1,4 +1,3 @@
-
 @extends('layouts.adminpanel')
 @section('titulo','Registrar pago')
 @section('contenido')
@@ -10,6 +9,7 @@
     </div>
     <div class="clearfix"></div>
     <form id="demo-form2" action="{{url('pagos')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -36,23 +36,25 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <input type="hidden" name="idCajero" value="{{\Auth::User()->cajero->idCajero}}">
+                        <input type="hidden" name="idcajero" value="{{\Auth::User()->cajero->idcajero}}">
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <font color="red">*</font></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idCliente">Cliente <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idCliente" id="cliente" required >
-                                    <option value="">Seleccionar</option>
-                                    <option {{old('idCliente')==1?'selected':''}} value="1">Daniel</option>
-                                    <option {{old('idCliente')==2?'selected':''}} value="2">Jose</option>
-                                    <option {{old('idCliente')==3?'selected':''}} value="3">Cristopher</option>
-                                    <option {{old('idCliente')==4?'selected':''}} value="4">Emiro</option>
+                                <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idcliente" id="idCliente" required>
+                                    <option value="">--- Seleccionar ---</option>
+                                    @foreach($clientes as $cl)
+                                      <option {{old('idcliente')==$cl->idcliente?'selected':''}} value="{{$cl->idcliente}}">{{$cl->apellidos}} {{$cl->nombres}}</option>
+                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción <font color="red">*</font></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Descripción <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="descripcion" name="descripcion" class="form-control col-md-6 col-xs-12" placeholder="Ingrese una descripción"></textarea>
+                                <textarea id="descripcion" name="descripcion" maxlength="200" required class="form-control col-md-6 col-xs-12" placeholder="Ingrese una descripción" required="true" >{{old('descripcion')}}</textarea>
+                                
+                           
                             </div>
                         </div>
                         <div class="ln_solid"></div>
@@ -92,31 +94,28 @@
                     <div class="x_content">
                         <br />
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Número de factura <font color="red">*</font></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nfact">Número de factura <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="nfact" id="nfact" >
-                                    <option value="">Seleccionar</option>
-                                    @for ($i = 1; $i <=20; $i++)
-                                    <option value="{{$i}}">FACT-{{str_pad(''.$i,5, "0", STR_PAD_LEFT)}}</option>
-                                    @endfor
+                                    <option value="">--- Seleccionar ---</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipo de pago <font color="red">*</font></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idTipoPago">Tipo de pago <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idTipoPago" id="idTipoPago" >
-                                    <option value="">Seleccionar</option>
+                                    <option value="">--- Seleccionar ---</option>
                                     @foreach($tiposPago as $tp)
-                                    <option value="{{$tp->idTipoPago}}">{{$tp->nombre}}</option>
+                                    <option value="{{$tp->idtipopago}}">{{$tp->nombre}} - {{$tp->referencia}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-6" for="first-name">Cantidad a Pagar <font color="red">*</font></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-6" for="cantidad">Cantidad a Pagar <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="number" id="pago" min=0.01 step="0.01" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cantidad a pagar">
+                                <input type="number" id="cantidad" min=0.01 max=1200 step="0.01" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cantidad a pagar">
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -129,11 +128,11 @@
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                        <table id="datatable-fixed-header" class="table table-striped table-bordered table-condensed table-hover">
+                                        <table id="detalles" class="table table-striped">
                                             <thead>
                                             <th></th>
-                                            <th>Num Factura</th>
-                                            <th>Tipo Pago</th>
+                                            <th>Número de Factura</th>
+                                            <th>Tipo de Pago</th>
                                             <th>Pago</th>
                                             </thead>
                                             <tbody>
@@ -159,32 +158,79 @@
 @endpush
 @push ('scripts')
 @include('layouts.scripts.datatables')
+@include('layouts.scripts.formValidation')
+@include('panel.pagos.scripts')
 <script type="text/javascript" src="{{asset('js/jquery.toaster.js')}}"></script>
-<script>
+<script type="text/javascript" src="{{asset('js/jquery.number.js')}}"></script>
+<script type="text/javascript"></script>
+
+<script type="text/javascript">
+
+
+
 $(document).ready(function () {
+
     $('#bt_add').click(function () {
         agregar();
     });
 });
 
+$("#demo-form2").on("submit",function(e){
+  var currentForm = this;
+  e.preventDefault();
+  bootbox.confirm("Desea realizar el cobro", function(result) {
+            if (result) {
+                currentForm.submit();
+            }
+        });
+  /*bootbox.confirm({
+      title: 'Advertencia',
+      message: "<p>Desea realizar el cobro</p>",
+      buttons: {
+          cancel: {
+              label: "Cancelar",
+              className: 'btn-default',
+              callback: function(){
+              }
+          },
+          confirm: {
+              label: "Aceptar",
+              className: 'btn-warning',
+              callback: function(){
+                console.log('ok');
+                  currentForm.submit();
+              }
+          }
+      }
+    });*/
+});
+
+$('#cantidad').number( true, 2 );
+
+var saldoTotal=1200;
 var cont = 0;
 total = 0;
 subtotal = [];
 var total = 0;
 var subtotal = [];
+var facturas=[];
+var tipos=[];
+var pagos=[];
 $("#guardar").attr('disabled', true);
 
 function existe(fact, tipoPago) {
     if (cont > 0) {
-        $("#datatable-fixed-header tbody tr").each(function () {
-            /* Obtener todas las celdas */
-            var celdas = $(this).find('td');
-            console.log($(celdas[1]).val()+", "+fact);
-            console.log($(celdas[2]).val()+", "+tipoPago);
-            if ($(celdas[1]).val() === fact && $(celdas[2]).val() === tipoPago) {
-                return true;
-            }
-        });
+            var facturas=getArrayFacturas();
+            var contTipos=0;
+            var ex=false;
+            $("input[name='idTipoPago[]']").each(function() {
+              if (facturas[contTipos]=== fact && $(this).val() === tipoPago) {
+                  ex=true;
+                  return false;
+              }
+              contTipos++;
+          });
+          return ex;
     }
     return false;
 }
@@ -192,22 +238,27 @@ function existe(fact, tipoPago) {
 function agregar() {
     nfact = $("#nfact option:selected").val();
     idTipoPago = $("#idTipoPago option:selected").val();
-    pago = $("#pago").val();
-    if (!existe(nfact, idTipoPago)) {
+    pago = $("#cantidad").val();
+    var exis=existe(nfact, idTipoPago);
+    if (!exis) {
         if (nfact != "" && idTipoPago != "" && pago > 0) {
             subtotal[cont] = pago * 1;
             total = total + subtotal[cont];
+            saldoTotal-=pago;
+            $('#pago').attr('max',saldoTotal);
             tp = $("#idTipoPago option:selected").text();
+            fact = $("#nfact option:selected").text();
             var fila = '<tr class="selected" id="fila' + cont + '"><td class="text-center">\n\
             <button type="button" class="btn btn-danger" title="Eliminar detalle" onclick="eliminar(' + cont + ');" ><i class="fa fa-trash"></i></button></td>\n\
-            <td><input type="hidden" name="idFactura[]" value="' + nfact + '">' + nfact + '</td>\n\
-            <td><input type="hidden" name="idTipoPago[]" value="' + idTipoPago + '">' + tp + '</td>\n\
-            <td class="text-right"><input type="hidden" name="pago[]" value="' + pago + '">$ ' + pago + '</td></tr>';
+            <td><input type="hidden" name="idfactura[]" value="' + nfact + '">' + fact + '</td>\n\
+            <td><input type="hidden" name="idtipoPago[]" value="' + idTipoPago + '">' + tp + '</td>\n\
+            <td class="text-right"><input type="hidden" name="pago[]" value="' + pago + '">$ ' + subtotal[cont].toFixed(2) + '</td></tr>';
+            var filas=recorrerTabla();
             cont++;
             limpiar();
-            $('#total').html("$ " +total);
+            $("#total").html("$ " + total.toFixed(2));
             evaluar();
-            $('#datatable-fixed-header tbody').append(fila);
+            $('#detalles tbody').html(fila+filas);
             $.toaster({priority: 'success', title: 'Éxito', message: 'Detalle añadido'});
         } else {
             $.toaster({priority: 'danger', title: 'Error', message: 'Revise los campos de los detalles'});
@@ -233,7 +284,9 @@ function evaluar() {
 }
 
 function eliminar(index) {
-    total = total - subtotal[index];
+    total-=subtotal[index];
+    saldoTotal+=subtotal[index];
+    $('#cantidad').attr('max',saldoTotal);
     $("#total").html("$ " + total);
     $("#fila" + index).remove();
     evaluar();
@@ -241,24 +294,78 @@ function eliminar(index) {
 }
 
 function recorrerTabla() {
-    var filas = new array();
+  var filas = "";
     if (cont > 0) {
-        $("#datatable-fixed-header tbody tr").each(function (index) {
+      //var facturas=getArrayFacturas();
+      tipos=getArrayTipos();
+      pagos=getArrayPagos();
+        $("#detalles tbody tr").each(function (index) {
             /* Obtener todas las celdas */
             var celdas = $(this).find('td');
             var fila = '<tr class="selected" id="fila' + index + '"><td class="text-center">\n\
             <button type="button" class="btn btn-danger" title="Eliminar detalle" onclick="eliminar(' + index + ');" ><i class="fa fa-trash"></i></button></td>\n\
-            <td><input type="hidden" name="idFactura[]" value="' + $(celdas[1]).val() + '">' + $(celdas[1]).text() + '</td>\n\
-            <td><input type="hidden" name="idTipoPago[]" value="' + $(celdas[2]).val() + '">' + $(celdas[2]).val() + '</td>\n\
-            <td class="text-right"><input type="hidden" name="pago[]" value="' + $(celdas[3]).val() + '">$ ' + $(celdas[3]).val() + '</td></tr>\n';
-            filas[index] = fila;
+            <td><input type="hidden" name="idfactura[]" value="' + facturas[index]+ '">' + $(celdas[1]).text() + '</td>\n\
+            <td><input type="hidden" name="idtipopago[]" value="' + tipos[index] + '">' + $(celdas[2]).text() + '</td>\n\
+            <td class="text-right"><input type="hidden" name="pago[]" value="' +pagos[index]+'">' + $(celdas[3]).text() + '</td></tr>\n';
+            filas+=fila;
         });
-        $("#datatable-fixed-header tbody").remove();
+        $("#detalles tbody").html("");
     }
-    $('#datatable-fixed-header tbody').html(filas);
-    /*for (var i = 0; i < filas.length; i++) {
-     $('#datatable-fixed-header tbody').append(filas[i]);
-     }*/
+    return filas;
 }
+
+function getArrayFacturas(){
+  var facturas=[];
+    var contFact=0;
+    $("input[name='idFactura[]']").each(function() {
+      facturas[contFact]=$(this).val();
+      contFact++;
+  });
+  return facturas;
+}
+
+function getArrayTipos(){
+    var tipos=[];
+    var contTipos=0;
+    $("input[name='idTipoPago[]']").each(function() {
+      tipos[contTipos]=$(this).val();
+      contTipos++;
+  });
+  return tipos;
+}
+
+function getArrayPagos(){
+    var pagos=[];
+    var contPagos=0;
+    $("input[name='pago[]']").each(function() {
+      pagos[contPagos]=$(this).val();
+      contPagos;
+  });
+  return pagos;
+}
+
+$(document).ready(function() {
+    $('#demo-form2').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            descripcion: {
+                validators: {
+                    notEmpty: {
+                        message: 'El campo descripción es obligatorio'
+                    }
+                }
+            }
+        }
+    });
+});
 </script>
 @endpush
+
+
+
+    
