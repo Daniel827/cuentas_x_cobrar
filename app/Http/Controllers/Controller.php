@@ -46,7 +46,7 @@ class Controller extends BaseController
         $numero="FACT-".(str_pad($id, 5, "0",STR_PAD_LEFT));
         if(isset($list['facturaspendientes'])){
           $fact=$list['facturaspendientes'];
-          dd($fact);
+          dd($fact[0]);
           $saldo=$fact[0]['SALDO'];
           $factura=Factura::find($id);
           if($factura==null){
