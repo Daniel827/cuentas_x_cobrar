@@ -7,6 +7,7 @@ use Activity;
 use App\Cliente;
 use App\Factura;
 use App\Pago;
+use DB;
 
 class AdminPanelController extends Controller{
   public function __construct() {
