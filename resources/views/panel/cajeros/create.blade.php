@@ -29,10 +29,10 @@
                         <div class="form-group">
                             <label for="estado" class="control-label col-lg-2">Usuario <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <select name="idUser" id="idUser" class="form-control" required onchange="crear(this.value)">
+                                <select name="iduser" id="idUser" class="form-control" required onchange="crear(this.value)">
                                     <option value="">Elija un Usuario</option>
                                     @foreach ($usuarios as $p)
-                                    <option {{old('idUser')==$p->id?'selected':''}} value="{{$p->id}}">{{$p->name}}</option>
+                                    <option {{old('iduser')==$p->id?'selected':''}} value="{{$p->id}}">{{$p->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -61,13 +61,13 @@
                             @endphp
                             <label for="fechaNac" class="col-lg-2 control-label">Fecha Nacimiento <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="fechaNac" id="fechaNac" class="form-control" type="date" value="{{old('fechaNac')}}" required min="1980-01-01" max="{{$hoy}}">
+                                <input name="fechanac" id="fechaNac" class="form-control" type="date" value="{{old('fechanac')}}" required min="1980-01-01" max="{{$hoy}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="ciudadNac" class="col-lg-2 control-label">Ciudad Nacimiento <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="ciudadNac" id="ciudadNac" class="form-control" type="text" value="{{old('ciudadNac')}}" required maxlength="25" minlength="3">
+                                <input name="ciudadnac" id="ciudadNac" class="form-control" type="text" value="{{old('ciudadnac')}}" required maxlength="25" minlength="3">
                             </div>
                         </div>
                         <div class="form-group">
