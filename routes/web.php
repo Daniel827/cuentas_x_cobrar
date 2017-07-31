@@ -16,10 +16,11 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/','AdminPanelController@index');
   Route::get('numberConnections','AdminPanelController@getNumberOfConnections');
   Route::get('perfil','AdminPanelController@profile');
-  Route::get('getPagosFechas','AdminPanelController@getPagosFechas');
   Route::get('reportes','AdminPanelController@reportes');
+  Route::get('getPagosFechas','AdminPanelController@getPagosFechas');
    Route::get('getMovimientosClientes','AdminPanelController@getMovimientosClientes');
-  Route::get('getSaldos','AdminPanelController@getSaldos');
+  Route::get('getSaldosClientes','AdminPanelController@getSaldosClientes');
+
   Route::get('getFacturasPendientes','ClienteController@getFacturasPendientes');
   Route::get('getSaldoDisponible','ClienteController@getSaldoDisponible');
   Route::resource('pagos','PagoController');
