@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Activity;
+use App\Cliente;
 
 class AdminPanelController extends Controller{
   public function __construct() {
@@ -22,7 +23,8 @@ class AdminPanelController extends Controller{
       return view('panel.profile');
   }
    public function reportes(){
-      return view('panel.reportes');
+     $clientes=Cliente::orderBy('apellidos')->get();
+      return view('panel.reportes',compact('clientes'));
   }
 
   public function getPDF(){

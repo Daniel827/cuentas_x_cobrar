@@ -24,7 +24,7 @@ class PagoController extends Controller{
     }
 
    public function create(){
-        $this->getClientes();
+      $this->getClientes();
        $clientes=Cliente::orderBy('apellidos')->get();
        $tiposPago=TipoPago::orderBy('nombre')->get();
        return view('panel.pagos.create',compact("clientes",'tiposPago'));
