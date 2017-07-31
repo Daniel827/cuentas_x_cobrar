@@ -39,7 +39,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idCliente">Cliente <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idcliente" id="idCliente" required >
+                              <input type="hidden" name=idcliente value="">
+                                <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="cliente" id="idCliente" required >
                                     <option value="">--- Seleccionar ---</option>
                                     @foreach($clientes as $cl)
                                       <option {{old('idcliente')==$cl->idcliente?'selected':''}} value="{{$cl->idcliente}}">{{$cl->apellidos}} {{$cl->nombres}}</option>
@@ -231,7 +232,7 @@ function validarSaldo(factura,cantidad){
     facturas=[];
   }
   $('#btn_add').attr('disabled',true);
-  var idCliente= $("#idcliente option:selected").val();
+  var idCliente= $("#cliente option:selected").val();
   var pagos=getArrayPagos();
   var valido=false;
   $.ajax({
@@ -423,7 +424,7 @@ $(document).ready(function() {
                     }
                 }
             },
-            idcliente: {
+            cliente: {
                validators: {
                    notEmpty: {
                        message: 'Elija una cliente'

@@ -26,7 +26,8 @@ $('#idCliente').on('change',function(e){
            $('#nfact').empty();
            $('#nfact').append(op);
            $('#nfact').selectpicker('refresh');
-           $('#idCliente').prop('readonly', true);
+           $('#idCliente').attr('disabled', true);
+           $('input[name="idcliente"]').val(idCliente);
         },
         error:function(){
             console.log('error');
