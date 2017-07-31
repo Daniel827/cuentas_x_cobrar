@@ -115,7 +115,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                 <a class="btn btn-primary" title="Ver saldos"
+                                 <a class="btn btn-primary" title="Ver saldos" target="_blank"
                                  href="{{URL::action('AdminPanelController@getSaldosClientes')}}">Ver saldos</a>
                       </div>
                 </div>
