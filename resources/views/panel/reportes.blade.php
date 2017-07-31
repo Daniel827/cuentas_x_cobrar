@@ -126,7 +126,7 @@
 @endsection
 @push('scripts')
 @include('layouts.scripts.formValidation')
-<script>
+<script type="text/javacript">
 $(document).ready(function() {
     $('#demo-form3').formValidation({
         framework: 'bootstrap',

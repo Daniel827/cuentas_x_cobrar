@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js" ></script>
 <script src="https://cdn.jsdelivr.net/jquery.formvalidation/0.6.1/js/formValidation.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/jquery.formvalidation/0.6.1/js/framework/bootstrap.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/jquery.formvalidation/0.6.1/js/framework/foundation.min.js" ></script>
