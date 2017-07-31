@@ -45,7 +45,7 @@ class CajeroController extends Controller{
 
     }
     public function update(CajeroRequest $request,$id){
-      Cajero::updateOrCreate(['idCajero'=>$id],$request->all());
+      Cajero::updateOrCreate(['idcajero'=>$id],$request->all());
       return Redirect::to('cajeros')->with('success', 'Cajero actualizado');
     }
 }

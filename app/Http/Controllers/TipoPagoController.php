@@ -34,7 +34,7 @@ class TipoPagoController extends Controller
     }
 
     public function update(TipoPagoRequest $request, $id){
-      TipoPago::updateOrCreate(['idTipoPago'=>$id], $request->all());
+      TipoPago::updateOrCreate(['idtipopago'=>$id], $request->all());
       return back()->with('success', 'Tipo de pago actualizado');
     }
 }
