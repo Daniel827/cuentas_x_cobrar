@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Clientes con sus Movimientos</title>
+    <title>Saldos de los clientes</title>
     <style type="text/css">
         /* estilos para el footer y el numero de pagina */
         @page { margin: 180px 75px; }

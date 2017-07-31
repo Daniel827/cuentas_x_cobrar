@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Clientes con sus Movimientos</title>
+    <title>Pagos por fechas</title>
     <style type="text/css">
         /* estilos para el footer y el numero de pagina */
         @page { margin: 180px 75px; }
@@ -41,17 +41,17 @@
             color: #848484;
         }
         .page-break {
-    		page-break-after: always;
-		}
-		img.alineadoTextoImagenCentro{
-  			float:left;
-  			width: 108px;
-  			height: 83px;
+            page-break-after: always;
+        }
+        img.alineadoTextoImagenCentro{
+            float:left;
+            width: 108px;
+            height: 83px;
   /* Ojo vertical-align: text-middle no existe*/
-		}
-		.texto {
-    		color: #848484;
-		}
+        }
+        .texto {
+            color: #848484;
+        }
         #datos {
             color: #848484;
              font-family: "Lucida Sans Unicode";
@@ -74,44 +74,40 @@ tr:hover td { background: #d0dafd; color: #339; }
 <body>
     <!--header para cada pagina-->
     <div id="header">
-        <img class="alineadoTextoImagenCentro" src="https://caiutn.files.wordpress.com/2015/05/logo-utn.png?w=480"/><p><b>		UNIVERSIDAD TÉCNICA DEL NORTE<br>
-        		FACULTAD DE INGENIERÍA EN CIENCIAS APLICADAS<br>
-        			CARRERA DE INGENIERÍA EN SISTEMAS COMPUTACIONALES
-				</b>
-			</p>
+        <img class="alineadoTextoImagenCentro" src="https://caiutn.files.wordpress.com/2015/05/logo-utn.png?w=480"/><p><b>      UNIVERSIDAD TÉCNICA DEL NORTE<br>
+                FACULTAD DE INGENIERÍA EN CIENCIAS APLICADAS<br>
+                    CARRERA DE INGENIERÍA EN SISTEMAS COMPUTACIONALES
+                </b>
+            </p>
     </div>
 
-       <h1>{{$texto}}</h1>
     <div id="datos">
-        <caption >LISTADO DE CLIENTES CON SU SALDO</caption> <br><br>
+        <caption >Listado de pagos de clientes filtrados por fecha inicial y final</caption> <br><br>
 
-
+<b>Fecha Inicial: </b> {{$fechaIni}}<br><br>
+<b>Fecha Final: </b> {{$fechaFin}}<br><br>
 
 </div>
   <table >
-
-
- <div> 
-
-   
-
-   </div>
-<tr> 
-    <th>Cédula</th> 
-    <th>Apellidos</th> 
-    <th>Nombres</th>
-    <th>Teléfono</th>
-    <th>Saldo</th>  
-
+<thead>
+<tr>
+    <th>Pago</th>
+     <th>Cliente</th>
+    <th>Fecha Pago</th>
+    <th>Total Pago</th>
 </tr>
-<tr> <td>1250134762</td> <td>Coronado Moreira</td> <td>Cristopher Geovanny</td> <td>0997312449</td> <td>$ 30.00</td> 
-</tr>
-<tr> <td>0401652904</td> <td>Cuasapud Revelo</td> <td>John Henry</td> <td>0988913705</td> <td>$ 60.00</td> 
-</tr>
+</thead>
+<tbody>
+  @foreach($pagos as $pago)
+    <tr>
+      <td>{{$pago->numeropago}}</td>
+      <td>{{$pago->cliente->apellidos}} {{$pago->cliente->nombres}}</td>
+      <td>{{$pago->fecha}}</td>
+      <td>{{$pago->totalpago}}</td>
+    </tr>
+  @enforeach
+</tbody>
 </table>
-
-
-
     <!--footer para cada pagina-->
     <div id="footer">
         <!--aqui se muestra el numero de la pagina en numeros romanos-->
@@ -120,7 +116,5 @@ tr:hover td { background: #d0dafd; color: #339; }
     <div id="footer2">
         <!--aqui se muestra el numero de la pagina en numeros romanos-->
     </div>
-<div class="page-break"></div>
-<h1>Page 2</h1>
 </body>
 </html>

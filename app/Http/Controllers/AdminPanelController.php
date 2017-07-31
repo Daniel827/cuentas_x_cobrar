@@ -30,10 +30,12 @@ class AdminPanelController extends Controller{
       return view('panel.reportes',compact('clientes'));
   }
 
-  public function getPDF(){
-    $texto="";
-    $pdf = \PDF::loadView('panel.cajeros.reporte',["texto"=>$texto]);
-    return $pdf->stream('inicio.pdf');
+  public function getPagosFechas(Request $request){
+    $fechaIni=$request->fechaini;
+    $fechaFin=$request->fechafin;
+    $pagos=Pago::whereDate('fecha','>=' ,$fechaIni)->whereDate('fecha','<=',$fechaFin)->orderBy('fecha')->get();
+    $pdf = \PDF::loadView('panel.reportes.fechas',["pagos"=>$pagos,'fechaIni'=>$fechaIni,'fechaFin'=>$fechaFin]);
+    return $pdf->stream('pagos por fechas.pdf');
   }
 
   public function getMovimientosClientes(Request $request){

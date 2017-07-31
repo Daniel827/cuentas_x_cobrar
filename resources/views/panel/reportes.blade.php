@@ -69,21 +69,21 @@
                 </div>
                 <div class="x_content">
                     <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <form id="demo-form2" action="{{url('getPagosFechas')}}" data-parsley-validate class="form-horizontal form-label-left">
  <div class="form-group">
                             @php
                             $hoy=date('Y-m-d');
                             @endphp
                             <label for="fechaini" class="col-lg-2 control-label">Fecha inicial <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="fechaini" id="fechaini" class="form-control" type="date" value="{{old('fechaNac')}}" required min="1980-01-01" max="{{$hoy}}">
+                                <input name="fechaini" id="fechaini" class="form-control" type="date" value="{{old('fechaini')}}" required min="1980-01-01" max="{{$hoy}}">
                             </div>
                         </div>
 <br>
                     <div class="form-group">
                             <label for="fechafin" class="col-lg-2 control-label">Fecha final <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="fechafin" id="fechafin" class="form-control" type="date" value="{{old('fechaNac')}}" required min="1980-01-01" max="{{$hoy}}">
+                                <input name="fechafin" id="fechafin" class="form-control" type="date" value="{{old('fechafin')}}"  required min="1980-01-01" max="{{$hoy}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -113,13 +113,11 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-               <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                  <a class="btn btn-primary" title="Ver saldos"
-                                 href="{{URL::action('AdminPanelController@getSaldos')}}">Ver saldos</a>
-                            </div>
-                    </form>
+                                 href="{{URL::action('AdminPanelController@getSaldoClientes')}}">Ver saldos</a>
+                      </div>
                 </div>
             </div>
         </div>
