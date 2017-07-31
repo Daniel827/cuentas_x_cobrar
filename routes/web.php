@@ -17,22 +17,18 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('numberConnections','AdminPanelController@getNumberOfConnections');
   Route::get('perfil','AdminPanelController@profile');
   Route::get('reporte','AdminPanelController@getPDF');
+  Route::get('getFacturasPendientes','ClienteController@getFacturasPendientes');
+  Route::get('getSaldoDisponible','ClienteController@getSaldoDisponible');
+  Route::resource('pagos','PagoController');
   Route::resource('usuarios','UserController');
+<<<<<<< HEAD
 
  Route::get('reportes','AdminPanelController@reportes');
   Route::get('reporte2','AdminPanelController@getPDF2');
+=======
+>>>>>>> 674cee526520610152a7d0cea4584d92118d4e9e
   Route::resource('cajeros','CajeroController');
-  Route::group(['prefix' => 'cajeros'], function () {
-      Route::get('/cambiarEstado/{id}', 'CajeroController@cambiarEstado');
-  });
   Route::resource('tipopagos','TipoPagoController');
-  Route::group(['prefix' => 'tipopagos'], function () {
-      Route::get('/cambiarEstado/{id}', 'TipoPagoController@cambiarEstado');
-  });
-  Route::resource('pagos','PagoController');
-  Route::group(['prefix' => 'pagos'], function () {
-      Route::get('/enviarPago','PagoController@enviarPago');
-  });
 });
 
 Auth::routes();
