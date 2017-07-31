@@ -14,7 +14,7 @@ class Factura extends Model
         'idfactura',
         'idcliente',
         'numerofactura',
-        'total'
+        'saldo'
     ];
 
     public function cliente() {
