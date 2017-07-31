@@ -21,6 +21,9 @@ class AdminPanelController extends Controller{
   public function profile(){
       return view('panel.profile');
   }
+   public function reportes(){
+      return view('panel.reportes');
+  }
 
   public function getPDF(){
     $texto="";

@@ -100,9 +100,9 @@ tr:hover td { background: #d0dafd; color: #339; }
    </div>
 <tr> 
     <th>Pago</th> 
-    <th>Descripcion</th> 
-    <th>Fecha</th>
-<th>TotaPago</th> 
+    <th>Descripción</th> 
+    <th>Fecha Pago</th>
+<th>Total Pago</th> 
 
 </tr>
 <tr> <td>Pago-001</td> <td>tarjeta</td> <td>12/2012/1999</td> <td>23,89</td> 

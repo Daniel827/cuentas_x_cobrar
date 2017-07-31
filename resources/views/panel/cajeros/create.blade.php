@@ -24,7 +24,7 @@
                 <div class="x_content">
                     @include('panel.mensajes.error')
                     @include('panel.mensajes.exito')
-                    <form action="{{url('cajeros')}}" data-parsley-validate method="POST" class="form-horizontal form-label-left">
+                    <form id="stringLengthForm" action="{{url('cajeros')}}" data-parsley-validate method="POST" class="form-horizontal form-label-left">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="estado" class="control-label col-lg-2">Usuario <font color="red">*</font></label>
@@ -113,5 +113,100 @@
 </div>
 @endsection
 @push('scripts')
-<script src="{{asset('js\validaciones.js')}}"></script>
+@include('layouts.scripts.formValidation')
+<script type="text/javascript" src="{{asset('js/validaciones.js')}}"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#stringLengthForm').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            cedula_ruc: {
+                validators: {
+                    stringLength: {
+                        max: 50,
+                        message: 'Ingrese su Cédula Correctamente'
+                    }
+                }
+            },
+            nombres: {
+                validators: {
+                    stringLength: {
+                        max: 50,
+                        message: 'Escriba sus 2 Nombres'
+                    }
+                }
+            },
+            apellidos: {
+                validators: {
+                    stringLength: {
+                        max: 200,
+                        message: 'Escriba sus 2 Apellidos'
+                    }
+                }
+            },
+            ciudadNac: {
+                validators: {
+                    stringLength: {
+                        max: 200,
+                        message: 'Escriba su Ciudad de Nacimiento'
+                    }
+                }
+            },
+            direccion: {
+                validators: {
+                    stringLength: {
+                        max: 200,
+                        message: 'Escriba su Dirección de Domicilio'
+                    }
+                }
+            },
+             telefono: {
+                validators: {
+                    stringLength: {
+                        max: 10,
+                        message: 'Escriba su Número Telefónico'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    emailAddress: {
+                        message: 'Su Email no es Valido Ejm: usuario@dominio.com'
+                    }
+                }
+            },
+            fechaNac: {
+                validators: {
+                    date: {
+                        format: 'DD/MM/YYYY',
+                        message: 'La Fecha no es Valida'
+                    }
+                }
+            },
+
+            idUser: {
+                    validators: {
+                        notEmpty: {
+                            message: 'El IdUsuario es Requerido'
+                        }
+                    }
+                },
+            estado: {
+                    validators: {
+                        notEmpty: {
+                            message: 'El Estado es Reuerido'
+                        }
+                    }
+                }
+        }
+    });
+});
+</script>
 @endpush
+
