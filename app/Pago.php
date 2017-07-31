@@ -22,4 +22,8 @@ class Pago extends Model {
     public function cajero() {
         return $this->belongsTo('App\Cajero', 'idcajero');
     }
+
+    public function cliente() {
+        return $this->belongsTo('App\Cliente', 'idcliente');
+    }
 }

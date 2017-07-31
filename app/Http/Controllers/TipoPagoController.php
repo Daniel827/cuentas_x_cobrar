@@ -10,8 +10,7 @@ use App\TipoPago;
 
 class TipoPagoController extends Controller
 {
-     public function _construct(){
-       \Log::info('constructor desde TipoController');
+     public function __construct(){
        $this->middleware('role:admin');
     }
 
@@ -37,17 +36,5 @@ class TipoPagoController extends Controller
     public function update(TipoPagoRequest $request, $id){
       TipoPago::updateOrCreate(['idTipoPago'=>$id], $request->all());
       return back()->with('success', 'Tipo de pago actualizado');
-    }
-
-    public function cambiarEstado($id){
-       $tipo=TipoPago::find($id);
-         $tipo->estado=$tipo->estado=='A' ? 'I' : 'A';
-         $tipo->update();
-         return Redirect::to('tipopagos')->with('success','Estado del tipo de pago "'.($tipo->estado=='A'?'Activado':'Desactivado').'"');
-     }
-
-    public function destroy($id){
-      TipoPago::destroy($id);
-      return Redirect::to('tipopago');
     }
 }

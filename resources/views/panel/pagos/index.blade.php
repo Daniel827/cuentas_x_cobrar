@@ -31,7 +31,6 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
-                <div class="card-box table-responsive">
                 <div class="x_content">
                   @include('panel.mensajes.error')
                   @include('panel.mensajes.exito')
@@ -41,7 +40,6 @@
                                 <th class="text-center"></th>
                                 <th>Cajero</th>
                                 <th>Cliente</th>
-                                <th>Descripción</th>
                                 <th>Fecha</th>
                                 <th># Pago</th>
                                 <th>Total Pago</th>
@@ -50,19 +48,17 @@
                         @foreach ($pagos as $p)
                         <tr>
                             <td class="text-center">
-                                <a class="btn btn-primary" title="Ver detalles" href="{{URL::action('PagoController@show',$p->idPago)}}"><i class="fa fa-folder"></i></a>
+                                <a class="btn btn-primary" title="Ver detalles" href="{{URL::action('PagoController@show',$p->numeropago)}}"><i class="fa fa-folder"></i></a>
                             </td>
                             <td>{{ $p->cajero->apellidos}} {{ $p->cajero->nombres}}</td>
-                            <td>{{ $p->idCliente}}</td>
-                            <td>{{ $p->descripcion}}</td>
+                            <td>{{ $p->cliente->apellidos}} {{ $p->cliente->nombres}}</td>
                             <td>{{ $p->fecha}}</td>
-                            <td class="text-right">{{ $p->numeroPago}}</td>
-                            <td class="text-right">$ {{ $p->totalPago}}</td>
+                            <td class="text-right">{{ $p->numeropago}}</td>
+                            <td class="text-right">$ {{ $p->totalpago}}</td>
                         </tr>
                         @endforeach
                     </table>
                 </div>
-                 </div>
                 {{$pagos->render()}}
             </div>
         </div>

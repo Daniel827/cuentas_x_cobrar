@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Input;
+use Illuminate\support\Facades\Input;
 
 class CajeroRequest extends FormRequest
 {
@@ -24,28 +24,28 @@ class CajeroRequest extends FormRequest
      */
     public function rules()
     {
-        if(Input::has('idCajero')){
-            $id=Input::get('idCajero');
+        if(Input::has('idcajero')){
+            $id=Input::get('idcajero');
             return [
-                "idUser"=>"required|integer|exists:users,id|unique:cajeros,idUser,".$id.",idCajero",
-                "cedula_ruc"=>"required|cedula_ruc|unique:cajeros,cedula_ruc,".$id.",idCajero",
+                "iduser"=>"required|integer|exists:users,id|unique:cajeros,iduser,".$id.",idcajero",
+                "cedula_ruc"=>"required|cedula_ruc|unique:cajeros,cedula_ruc,".$id.",idcajero",
                 "nombres"=>"required|string|min:3|max:25",
                 "apellidos"=>"required|string|min:3|max:25",
-                "fechaNac"=>"required|date",
-                "ciudadNac"=>"required|string|min:3|max:25",
+                "fechanac"=>"required|date",
+                "ciudadnac"=>"required|string|min:3|max:25",
                 "direccion"=>"required|string|min:3|max:25",
                 "telefono"=>"required|alpha_num|size:10",
-                "email"=>"required|email|min:10|max:50|unique:cajeros,email,".$id.",idCajero",
+                "email"=>"required|email|min:10|max:50|unique:cajeros,email,".$id.",idcajero",
                 "estado"=>"required|in:A,I"
             ];
         }else{
             return [
-                "idUser"=>"required|integer|exists:users,id|unique:cajeros",
-                "cedula_ruc"=>"required|cedulaRuc|unique:cajeros|min:10|max:13",
+                "iduser"=>"required|integer|exists:users,id|unique:cajeros",
+                "cedula_ruc"=>"required|cedula_ruc|unique:cajeros|min:10|max:13",
                 "nombres"=>"required|min:3|max:25",
                 "apellidos"=>"required|min:3|max:25",
-                "fechaNac"=>"required|date",
-                "ciudadNac"=>"required|string|min:3|max:25",
+                "fechanac"=>"required|date",
+                "ciudadnac"=>"required|string|min:3|max:25",
                 "direccion"=>"required|string|min:3|max:25",
                 "telefono"=>"required|alpha_num|size:10",
                 "email"=>"required|email|unique:cajeros|min:10|max:50",

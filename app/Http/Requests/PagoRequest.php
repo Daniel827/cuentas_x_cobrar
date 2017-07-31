@@ -20,34 +20,14 @@ class PagoRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-        if(Input::has('idPago')){
-            $id=Input::Get('idPago');
-        return [
-            "idCajero"=>"",
-            "idCliente"=>"",
-            "descripcion"=>"required|max:300",
-            "numeroPago"=>"required|unique:pagos,numeropago,".$id."idPago",
-            "totalPago"=>"required|numeric"
-            //
-        ];
-     }else{
-        return[
-            "idCajero"=>"required",
-            "idCliente"=>"required",
-           "descripcion"=>"required|max:300",
-            "numeroPago"=>"required|unique:pagos",
-
     public function rules(){
         return[
-            "idCajero"=>"required|exists:cajeros,idCajero",
-            "idCliente"=>"required|numeric",
+            "idcajero"=>"required|exists:cajeros,idcajero",
+            "idcliente"=>"required|numeric",
            "descripcion"=>"required|string|max:100",
-           "idFactura"=>"required|array",
-           "idTipoPago"=>"required|array",
+           "idfactura"=>"required|array",
+           "idtipopago"=>"required|array",
            "pago"=>"required|array",
-
         ];
      }
 }

@@ -45,7 +45,6 @@
                                     @foreach($clientes as $cl)
                                       <option {{old('idcliente')==$cl->idcliente?'selected':''}} value="{{$cl->idcliente}}">{{$cl->apellidos}} {{$cl->nombres}}</option>
                                     @endforeach
-
                                 </select>
                             </div>
                         </div>
@@ -53,8 +52,6 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Descripción <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <textarea id="descripcion" name="descripcion" maxlength="200" required class="form-control col-md-6 col-xs-12" placeholder="Ingrese una descripción" required="true" >{{old('descripcion')}}</textarea>
-                                
-                           
                             </div>
                         </div>
                         <div class="ln_solid"></div>
@@ -162,52 +159,40 @@
 @include('panel.pagos.scripts')
 <script type="text/javascript" src="{{asset('js/jquery.toaster.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.number.js')}}"></script>
-<script type="text/javascript"></script>
-
 <script type="text/javascript">
-
-
-
 $(document).ready(function () {
-
     $('#bt_add').click(function () {
-        agregar();
+      agregar();
     });
 });
 
 $("#demo-form2").on("submit",function(e){
   var currentForm = this;
   e.preventDefault();
-  bootbox.confirm("Desea realizar el cobro", function(result) {
-            if (result) {
-                currentForm.submit();
-            }
-        });
-  /*bootbox.confirm({
-      title: 'Advertencia',
-      message: "<p>Desea realizar el cobro</p>",
-      buttons: {
-          cancel: {
-              label: "Cancelar",
-              className: 'btn-default',
-              callback: function(){
-              }
-          },
-          confirm: {
-              label: "Aceptar",
-              className: 'btn-warning',
-              callback: function(){
-                console.log('ok');
-                  currentForm.submit();
-              }
-          }
-      }
-    });*/
+   var dialog = bootbox.dialog({
+  title: 'Advertencia',
+  message: "<p>Desea realizar el cobro</p>",
+  buttons: {
+     cancel: {
+         label: "Cancelar",
+         className: 'btn-default',
+         callback: function(){
+             console.log('cancel clicked');
+         }
+     },
+     ok: {
+         label: "Guardar",
+         className: 'btn-warning',
+         callback: function(){
+             currentForm.submit();
+         }
+     }
+  }
+  });
 });
 
 $('#cantidad').number( true, 2 );
 
-var saldoTotal=1200;
 var cont = 0;
 total = 0;
 subtotal = [];
@@ -220,19 +205,73 @@ $("#guardar").attr('disabled', true);
 
 function existe(fact, tipoPago) {
     if (cont > 0) {
-            var facturas=getArrayFacturas();
+            facturas=getArrayFacturas();
             var contTipos=0;
             var ex=false;
-            $("input[name='idTipoPago[]']").each(function() {
+            $("input[name='idtipopago[]']").each(function() {
               if (facturas[contTipos]=== fact && $(this).val() === tipoPago) {
                   ex=true;
                   return false;
               }
               contTipos++;
           });
+          console.log(ex);
           return ex;
     }
     return false;
+}
+
+function validarSaldo(factura,cantidad){
+  if(cont==0){
+    pagos=[];
+    facturas=[];
+  }
+  $('#btn_add').attr('disabled',true);
+  var idCliente= $("#idcliente option:selected").val();
+  var pagos=getArrayPagos();
+  var valido=false;
+  $.ajax({
+    type:"GET",
+    url:"{!! URL::to('getSaldoDisponible') !!}",
+    data:{
+      'idCliente':idCliente,
+      'idFactura':facturas,
+      'pagos':pagos,
+      'factura':factura,
+      'cantidad':cantidad
+    },
+    success:function(data){
+      if(data){
+        registrar(factura,cantidad);
+      }else{
+        $.toaster({priority: 'danger', title: 'Error', message: 'La cantidad es superior al saldo que debe'});
+      }
+      $('#btn_add').attr('disabled',false);
+    },
+    error:function(){
+        $.toaster({priority: 'danger', title: 'Error', message: 'Error de servidor'});
+        $('#btn_add').attr('disabled',false);
+    }
+  });
+}
+
+function registrar(nfact,cantidad){
+  subtotal[cont] = cantidad;
+  total = total + subtotal[cont];
+  var tp = $("#idTipoPago option:selected").text();
+  var fact = $("#nfact option:selected").text();
+  var fila = '<tr class="selected" id="fila' + cont + '"><td class="text-center">\n\
+  <button type="button" class="btn btn-danger" title="Eliminar detalle" onclick="eliminar(' + cont + ');" ><i class="fa fa-trash"></i></button></td>\n\
+  <td><input type="hidden" name="idfactura[]" value="' + nfact + '">' + fact + '</td>\n\
+  <td><input type="hidden" name="idtipopago[]" value="' + idTipoPago + '">' + tp + '</td>\n\
+  <td class="text-right"><input type="hidden" name="pago[]" value="' + pago + '">$ ' + subtotal[cont].toFixed(2) + '</td></tr>';
+  var filas=recorrerTabla();
+  cont++;
+  limpiar();
+  $("#total").html("$ " + total.toFixed(2));
+  evaluar();
+  $('#detalles tbody').html(fila+filas);
+  $.toaster({priority: 'success', title: 'Éxito', message: 'Detalle añadido'});
 }
 
 function agregar() {
@@ -242,24 +281,7 @@ function agregar() {
     var exis=existe(nfact, idTipoPago);
     if (!exis) {
         if (nfact != "" && idTipoPago != "" && pago > 0) {
-            subtotal[cont] = pago * 1;
-            total = total + subtotal[cont];
-            saldoTotal-=pago;
-            $('#pago').attr('max',saldoTotal);
-            tp = $("#idTipoPago option:selected").text();
-            fact = $("#nfact option:selected").text();
-            var fila = '<tr class="selected" id="fila' + cont + '"><td class="text-center">\n\
-            <button type="button" class="btn btn-danger" title="Eliminar detalle" onclick="eliminar(' + cont + ');" ><i class="fa fa-trash"></i></button></td>\n\
-            <td><input type="hidden" name="idfactura[]" value="' + nfact + '">' + fact + '</td>\n\
-            <td><input type="hidden" name="idtipoPago[]" value="' + idTipoPago + '">' + tp + '</td>\n\
-            <td class="text-right"><input type="hidden" name="pago[]" value="' + pago + '">$ ' + subtotal[cont].toFixed(2) + '</td></tr>';
-            var filas=recorrerTabla();
-            cont++;
-            limpiar();
-            $("#total").html("$ " + total.toFixed(2));
-            evaluar();
-            $('#detalles tbody').html(fila+filas);
-            $.toaster({priority: 'success', title: 'Éxito', message: 'Detalle añadido'});
+            validarSaldo(nfact,pago * 1);
         } else {
             $.toaster({priority: 'danger', title: 'Error', message: 'Revise los campos de los detalles'});
         }
@@ -270,7 +292,7 @@ function agregar() {
 function limpiar() {
     $("cliente").val("");
     $("nfact").val("");
-    $("idTipoPago").val("");
+    $("idtipopago").val("");
     $("descripcion").val("");
     $("pago").val("");
 }
@@ -285,8 +307,6 @@ function evaluar() {
 
 function eliminar(index) {
     total-=subtotal[index];
-    saldoTotal+=subtotal[index];
-    $('#cantidad').attr('max',saldoTotal);
     $("#total").html("$ " + total);
     $("#fila" + index).remove();
     evaluar();
@@ -296,7 +316,6 @@ function eliminar(index) {
 function recorrerTabla() {
   var filas = "";
     if (cont > 0) {
-      //var facturas=getArrayFacturas();
       tipos=getArrayTipos();
       pagos=getArrayPagos();
         $("#detalles tbody tr").each(function (index) {
@@ -317,8 +336,9 @@ function recorrerTabla() {
 function getArrayFacturas(){
   var facturas=[];
     var contFact=0;
-    $("input[name='idFactura[]']").each(function() {
+    $("input[name='idfactura[]']").each(function() {
       facturas[contFact]=$(this).val();
+      console.log('idFactura -> '+$(this).val());
       contFact++;
   });
   return facturas;
@@ -327,7 +347,7 @@ function getArrayFacturas(){
 function getArrayTipos(){
     var tipos=[];
     var contTipos=0;
-    $("input[name='idTipoPago[]']").each(function() {
+    $("input[name='idtipopago[]']").each(function() {
       tipos[contTipos]=$(this).val();
       contTipos++;
   });
@@ -344,14 +364,12 @@ function getArrayPagos(){
   return pagos;
 }
 
-
-
 function NumCheck(e, field) {
  key = e.keyCode ? e.keyCode : e.which
     // backspace
     if (key == 8) return true
- 
-    // 0-9 a partir del .decimal  
+
+    // 0-9 a partir del .decimal
     if (field.value != "") {
         if ((field.value.indexOf(".")) > 0) {
             //si tiene un punto valida dos digitos en la parte decimal
@@ -362,7 +380,7 @@ function NumCheck(e, field) {
             }
         }
     }
-    // 0-9 
+    // 0-9
     if (key > 47 && key < 58) {
         if (field.value == "") return true
         regexp = /[0-9]{10}/
@@ -377,8 +395,6 @@ function NumCheck(e, field) {
     // other key
     return false
 }
-
-
 
 $(document).ready(function() {
     $('#demo-form2').formValidation({
@@ -396,7 +412,7 @@ $(document).ready(function() {
                     }
                 }
             },
-             nfact: {                    
+             nfact: {
                 validators: {
                     notEmpty: {
                         message: 'El campo descripción es obligatorio'
@@ -404,7 +420,7 @@ $(document).ready(function() {
                 }
             },
 
-             idTipoPago: {                    
+             idTipoPago: {
                 validators: {
                     notEmpty: {
                         message: 'El campo descripción es obligatorio'
@@ -412,7 +428,7 @@ $(document).ready(function() {
                 }
             },
 
-             cantidad: {                    
+             cantidad: {
                 validators: {
                     notEmpty: {
                         message: 'El campo descripción es obligatorio'
@@ -424,7 +440,3 @@ $(document).ready(function() {
 });
 </script>
 @endpush
-
-
-
-    

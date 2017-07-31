@@ -129,15 +129,15 @@ $(document).ready(function() {
             cedula_ruc: {
                 validators: {
                     stringLength: {
-                        max: 50,
-                        message: 'Ingrese su Cédula Correctamente'
+                        min: 10,
+                        message: 'Ingrese su cédula correctamente'
                     }
                 }
             },
             nombres: {
                 validators: {
                     stringLength: {
-                        max: 50,
+                        min: 7,
                         message: 'Escriba sus 2 Nombres'
                     }
                 }
@@ -145,7 +145,7 @@ $(document).ready(function() {
             apellidos: {
                 validators: {
                     stringLength: {
-                        max: 200,
+                        min: 7,
                         message: 'Escriba sus 2 Apellidos'
                     }
                 }
@@ -153,7 +153,7 @@ $(document).ready(function() {
             ciudadNac: {
                 validators: {
                     stringLength: {
-                        max: 200,
+                        min: 3,
                         message: 'Escriba su Ciudad de Nacimiento'
                     }
                 }
@@ -161,15 +161,15 @@ $(document).ready(function() {
             direccion: {
                 validators: {
                     stringLength: {
-                        max: 200,
-                        message: 'Escriba su Dirección de Domicilio'
+                        min: 10,
+                        message: 'Escriba su dirección de Domicilio'
                     }
                 }
             },
              telefono: {
                 validators: {
                     stringLength: {
-                        max: 10,
+                        min: 10,
                         message: 'Escriba su Número Telefónico'
                     }
                 }
@@ -177,7 +177,7 @@ $(document).ready(function() {
             email: {
                 validators: {
                     emailAddress: {
-                        message: 'Su Email no es Valido Ejm: usuario@dominio.com'
+                        message: 'Su Email no es válido, Ejm: usuario@dominio.com'
                     }
                 }
             },
@@ -185,22 +185,21 @@ $(document).ready(function() {
                 validators: {
                     date: {
                         format: 'DD/MM/YYYY',
-                        message: 'La Fecha no es Valida'
+                        message: 'La fecha no es válida'
                     }
                 }
             },
-
             idUser: {
                     validators: {
                         notEmpty: {
-                            message: 'El IdUsuario es Requerido'
+                            message: 'El usuario es requerido'
                         }
                     }
                 },
             estado: {
                     validators: {
                         notEmpty: {
-                            message: 'El Estado es Reuerido'
+                            message: 'El estado es Requerido'
                         }
                     }
                 }
@@ -209,4 +208,3 @@ $(document).ready(function() {
 });
 </script>
 @endpush
-

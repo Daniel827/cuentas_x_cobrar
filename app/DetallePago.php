@@ -7,18 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class DetallePago extends Model {
 
     protected $table = "detallespago";
-    protected $primaryKey = "idDetalle";
+    protected $primaryKey = "iddetalle";
     public $timestamps = false;
     protected $fillable = [
-        'idPago',
-        'idTipoPago'
-        'idFactura',
+        'idpago',
+        'idtipopago',
+        'idfactura',
         'pago'
     ];
 
-
     public function tipoPago(){
-    	return $this->belongsTo('App\TipoPago', 'idTipoPago');
+    	return $this->belongsTo('App\TipoPago', 'idtipopago');
     }
-  
+
+    public function factura(){
+      return $this->belongsTo('App\Factura', 'idfactura');
+    }
 }

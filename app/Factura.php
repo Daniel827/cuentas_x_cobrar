@@ -8,5 +8,16 @@ class Factura extends Model
 {
     protected $table = "facturas";
     protected $primaryKey = "idfactura";
-    public $timestamps = true;
+    public $timestamps = false;
+
+    protected $fillable = [
+        'idfactura',
+        'idcliente',
+        'numerofactura',
+        'total'
+    ];
+
+    public function cliente() {
+        return $this->belongsTo('App\Cliente', 'idcliente');
+    }
 }

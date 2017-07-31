@@ -25,7 +25,7 @@
                 <div class="x_content">
                   @include('panel.mensajes.error')
                   @include('panel.mensajes.exito')
-                    {{Form::open(['action'=>['TipoPagoController@update',$tipopago->idTipoPago],'class'=>'form-horizontal form-label-left','method'=>'PATCH'])}}
+                    {{Form::open(['action'=>['TipoPagoController@update',$tipopago->idtipopago],'class'=>'form-horizontal form-label-left','method'=>'PATCH'])}}
                     <div class="form-group">
                         <label for="nombre" class="col-lg-2 control-label">Código <font color="red">*</font></label>
                         <div class="col-lg-10">

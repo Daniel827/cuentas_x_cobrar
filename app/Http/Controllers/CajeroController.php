@@ -12,8 +12,7 @@ use Auth;
 use Faker\Factory as Faker;
 
 class CajeroController extends Controller{
-     public function _construct(){
-       \Log::info('constructor desde CajeroController');
+     public function __construct(){
        $this->middleware('role:admin');
     }
 
@@ -23,7 +22,9 @@ class CajeroController extends Controller{
     }
 
     public function create(){
-      $usuarios=User::orderBy('name')->get();
+      $usuarios = User::with(['rol' => function ($query) {
+          $query->where('name','cajero');
+      }])->orderBy('name')->get();
       return view('panel.cajeros.create', compact('usuarios'));
     }
 
@@ -39,21 +40,12 @@ class CajeroController extends Controller{
 
    public function edit($id){
       $cajero=Cajero::find($id);
-      // CuentasXCobrar
-      // cuentas_x_cobrar_utn@hotmail.com
       $usuarios=User::orderBy('name')->get();
        return view ('panel.cajeros.edit',compact('cajero','usuarios'));
-
     }
+
     public function update(CajeroRequest $request,$id){
       Cajero::updateOrCreate(['idCajero'=>$id],$request->all());
       return Redirect::to('cajeros')->with('success', 'Cajero actualizado');
-    }
-
-   public function cambiarEstado($id){
-      $cajero=Cajero::find($id);
-        $cajero->estado=$cajero->estado=='A' ? 'I' : 'A';
-        $cajero->update();
-        return Redirect::to('cajeros')->with('success','Estado del cajero "'.($cajero->estado=='A'?'Activado':'Desactivado').'"');
     }
 }

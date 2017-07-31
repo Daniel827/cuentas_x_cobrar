@@ -6,7 +6,7 @@
 <div>
     <div class="page-title">
         <div class="title_left">
-            <h3>Pago</h3>
+            <h3>Pago <a href="{{url('pagos')}}" class="btn btn-default">Volver</a></h3>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -49,17 +49,20 @@
                             <div class="col-sm-4 invoice-col">
                                 Cliente
                                 <address>
-                                    <strong>Iron Admin, Inc.</strong>
-                                    <br>New York, CA 94107
-                                    <br>Teléfono: 1 (804) 123-9876
-                                    <br>Email: ironadmin.com
+                                    @php
+                                      $cliente=$pago->cliente;
+                                    @endphp
+                                    <strong>{{$cliente->nombres}} {{$cliente->apellidos}}</strong>
+                                    <br>{{$cliente->direccion}}
+                                    <br>Teléfono: {{$cliente->telefono}}
+                                    <br>Email: {{$cliente->email}}
                                 </address>
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-4 invoice-col">
                                 Cajero
                                 <address>
-                                    @php 
+                                    @php
                                     $cajero=$pago->cajero;
                                     @endphp
                                     <strong>{{$cajero->nombres}} {{$cajero->apellidos}}</strong>
@@ -70,9 +73,12 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-4 invoice-col">
-                                <b>{{$pago->numeroPago}}</b>
+                                <b>{{$pago->numeropago}}</b>
                                 <br>
                                 <b>Fecha del pago:</b> {{$pago->fecha}}
+                                <br>
+                                <b>Descripción:</b>
+                                <p class="text-justify">{{$pago->descripcion}}</p>
                             </div>
                             <!-- /.col -->
                         </div>
@@ -92,7 +98,7 @@
                                         @foreach ($detalles as $p)
                                         <tr>
                                             <td>{{ $p->tipoPago->nombre}}</td>
-                                            <td class="text-right">{{ $p->idFactura}}</td>
+                                            <td>{{ $p->factura->numerofactura}}</td>
                                             <td class="text-right">$ {{ $p->pago}}</td>
                                         </tr>
                                         @endforeach
@@ -115,7 +121,7 @@
                                         <tbody>
                                             <tr>
                                                 <th>Total:</th>
-                                                <td class="text-right">$ {{$pago->totalPago}}</td>
+                                                <td class="text-right">$ {{$pago->totalpago}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

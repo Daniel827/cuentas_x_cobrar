@@ -68,9 +68,9 @@
                                         </ul>
                                     </li>
                                     @endrole
-                               
+
                                <li><a href="{{url('reportes')}}"><i class="fa fa-file-pdf-o"></i> Otros Reportes</a></li>
-                              
+
                                 </ul>
                             </div>
                         </div>
@@ -140,6 +140,7 @@
         <!-- Bootstrap -->
         <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
         <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
         <!-- FastClick -->
         <script src="{{asset('vendors/fastclick/lib/fastclick.js')}}"></script>
         <!-- NProgress -->

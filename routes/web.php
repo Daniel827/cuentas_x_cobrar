@@ -17,17 +17,13 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('numberConnections','AdminPanelController@getNumberOfConnections');
   Route::get('perfil','AdminPanelController@profile');
   Route::get('reporte','AdminPanelController@getPDF');
+  Route::get('reportes','AdminPanelController@reportes');
+   Route::get('reporte2','AdminPanelController@getPDF2');
   Route::get('reporte3','AdminPanelController@getPDF3');
   Route::get('getFacturasPendientes','ClienteController@getFacturasPendientes');
   Route::get('getSaldoDisponible','ClienteController@getSaldoDisponible');
   Route::resource('pagos','PagoController');
   Route::resource('usuarios','UserController');
-<<<<<<< HEAD
-
- Route::get('reportes','AdminPanelController@reportes');
-  Route::get('reporte2','AdminPanelController@getPDF2');
-=======
->>>>>>> 674cee526520610152a7d0cea4584d92118d4e9e
   Route::resource('cajeros','CajeroController');
   Route::resource('tipopagos','TipoPagoController');
 });

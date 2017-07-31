@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TipoPago extends Model {
 
     protected $table = "tipopagos";
-    protected $primaryKey = "idTipoPago";
+    protected $primaryKey = "idtipopago";
     public $timestamps = false;
     protected $fillable = [
         'nombre',
@@ -17,6 +17,6 @@ class TipoPago extends Model {
     ];
 
     public function detallesPago() {
-        return $this->hasMany('App\DetallePago', 'idTipoPago');
+        return $this->hasMany('App\DetallePago', 'idtipopago');
     }
 }

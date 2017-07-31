@@ -52,7 +52,7 @@
                                             <td class="text-center">
                                                 <a class="btn btn-info" title="Editar"  href="{{URL::action('CajeroController@edit',$p->idCajero)}}"><i class="fa fa-edit"></i></a>
                                             </td>
-                                            <td>{{ $p->idUser!=null?$p->user->name:''}}</td>
+                                            <td>{{ $p->iduser!=null?$p->user->name:''}}</td>
                                             <td>{{ $p->cedula_ruc}}</td>
                                             <td>{{ $p->nombres}}</td>
                                             <td>{{ $p->apellidos}}</td>
@@ -89,9 +89,9 @@
         $('#modalEliminarCajero').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var action = button.data('action');
-            var idUser = button.data('idUser');
+            var username = button.data('username');
             var modal = $(this);
-            modal.find(".modal-body #txtEliminar").text("¿Estás seguro de eliminar al Caj con IdUsuario " + idUser + "?");
+            modal.find(".modal-body #txtEliminar").text("¿Estás seguro de eliminar al Caj con nombre de usuario " + username + "?");
             modal.find(".modal-body form").attr('action', action);
         });
     });

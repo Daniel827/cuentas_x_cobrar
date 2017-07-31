@@ -10,12 +10,12 @@ class Cajero extends Model {
     protected $primaryKey = "idcajero";
     public $timestamps = false;
     protected $fillable = [
-        'idUser',
+        'iduser',
         'cedula_ruc',
         'nombres',
         'apellidos',
-        'fechaNac',
-        'ciudadNac',
+        'fechanac',
+        'ciudadnac',
         'direccion',
         'telefono',
         'email',
