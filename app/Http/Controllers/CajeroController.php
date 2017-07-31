@@ -32,8 +32,8 @@ class CajeroController extends Controller{
       Cajero::create($request->all());
       $faker = Faker::create();
       $clave = $faker->regexify('[a-zA-Z0-9]{8}');
-      User::updateOrCreate(['id'=>$request->idUser],['password'=>bcrypt($clave)]);
-      $user=User::findOrFail($request->idUser);
+      User::updateOrCreate(['id'=>$request->iduser],['password'=>bcrypt($clave)]);
+      $user=User::findOrFail($request->iduser);
       \Notification::send($user, new CrearCajero($user->email,$clave));
       return Redirect::to('cajeros')->with('success', 'Cajero creado');
     }
@@ -42,8 +42,8 @@ class CajeroController extends Controller{
       $cajero=Cajero::find($id);
       $usuarios=User::orderBy('name')->get();
        return view ('panel.cajeros.edit',compact('cajero','usuarios'));
-    }
 
+    }
     public function update(CajeroRequest $request,$id){
       Cajero::updateOrCreate(['idCajero'=>$id],$request->all());
       return Redirect::to('cajeros')->with('success', 'Cajero actualizado');
