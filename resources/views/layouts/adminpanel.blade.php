@@ -69,13 +69,7 @@
                                     </li>
                                     @endrole
                                
-                                    <li><a><i class="fa fa-file-pdf-o"></i>Otros Reportes <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                        <!-- <li><a href="{{url('')}}" target="_blank">Clientes con sus movimientosC1</a></li> -->
-                                            <li><a href="{{url('reporte')}}" target="_blank">Clientes con sus movimientos</a></li>
-                                            <li><a href="{{url('pagos/enviarPago')}}">Listado de clientes con su saldo</a></li>
-                                        </ul>
-                                    </li>
+                               <li><a href="{{url('reportes')}}"><i class="fa fa-user"></i> Reportes</a></li>
                               
                                 </ul>
                             </div>

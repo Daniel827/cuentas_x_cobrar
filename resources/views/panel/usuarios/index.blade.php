@@ -33,7 +33,7 @@
                     <div class="row">
                        <div class="card-box table-responsive">
                             <div class="card-box table-responsive">
-                                <p class="text-muted font-13 m-b-30">Usuarios abilitados para usar el sistema</p>
+                                <p class="text-muted font-13 m-b-30">Usuarios habilitados para usar el sistema</p>
                                 <table id="datatable-keytable" class="table table-striped table-bordered">
                                     <thead>
                                     <th class="text-center"></th>
