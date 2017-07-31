@@ -7,29 +7,36 @@ use Auth;
 use Hash;
 use Illuminate\Support\ServiceProvider;
 use DB;
-use App\TipoPago;
 use App\Pago;
+use App\TipoPago;
 
 class AppServiceProvider extends ServiceProvider
 {
-
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
     public function boot(){
       $this->validateCedulaRuc();
       $this->validateCurrent_Password();
       TipoPago::creating(function ($tipoPago) {
-            $nextId=DB::select('select last_value from tipopagos_idtipopago_seq');
-            $codigo="TP-".(str_pad($nextId."", 5, "0",STR_PAD_LEFT));
+            $nextId=DB::select(DB::raw('select last_value from tipopagos_idtipopago_seq'));
+            $codigo="TP-".(str_pad($nextId[0]->last_value, 5, "0",STR_PAD_LEFT));
             $tipoPago->codigo=$codigo;
         });
-
-      Pago::creating(function ($pago) {
-              $nextId=DB::select('select last_value from pagos_idpago_seq');
-              $codigo="PAGO-".(str_pad($nextId."", 5, "0",STR_PAD_LEFT));
-              $pago->numeropago=$codigo;
-          });
+        Pago::creating(function ($pago) {
+                $nextId=DB::select('select last_value from pagos_idpago_seq');
+                $codigo="PAGO-".(str_pad($nextId[0]->last_value, 5, "0",STR_PAD_LEFT));
+                $pago->numeropago=$codigo;
+            });
     }
 
-
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
     public function register()
     {
         //
