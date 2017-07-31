@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('numberConnections','AdminPanelController@getNumberOfConnections');
   Route::get('perfil','AdminPanelController@profile');
   Route::get('reporte','AdminPanelController@getPDF');
+  Route::get('reporte3','AdminPanelController@getPDF3');
   Route::get('getFacturasPendientes','ClienteController@getFacturasPendientes');
   Route::get('getSaldoDisponible','ClienteController@getSaldoDisponible');
   Route::resource('pagos','PagoController');

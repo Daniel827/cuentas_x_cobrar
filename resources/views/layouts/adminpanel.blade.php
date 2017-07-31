@@ -69,7 +69,7 @@
                                     </li>
                                     @endrole
                                
-                               <li><a href="{{url('reportes')}}"><i class="fa fa-user"></i> Reportes</a></li>
+                               <li><a href="{{url('reportes')}}"><i class="fa fa-file-pdf-o"></i> Otros Reportes</a></li>
                               
                                 </ul>
                             </div>
