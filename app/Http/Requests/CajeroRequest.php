@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\support\Facades\Input;
+use Illuminate\Support\Facades\Input;
 
 class CajeroRequest extends FormRequest
 {

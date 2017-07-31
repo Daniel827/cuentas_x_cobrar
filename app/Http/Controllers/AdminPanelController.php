@@ -23,6 +23,7 @@ class AdminPanelController extends Controller{
       return view('panel.profile');
   }
    public function reportes(){
+     $this->getClientes();
      $clientes=Cliente::orderBy('apellidos')->get();
       return view('panel.reportes',compact('clientes'));
   }
