@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idCliente">Cliente <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idcliente" id="idCliente" required>
+                                <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idcliente" id="idCliente" required >
                                     <option value="">--- Seleccionar ---</option>
                                     @foreach($clientes as $cl)
                                       <option {{old('idcliente')==$cl->idcliente?'selected':''}} value="{{$cl->idcliente}}">{{$cl->apellidos}} {{$cl->nombres}}</option>
@@ -168,6 +168,11 @@ $(document).ready(function () {
 $("#demo-form2").on("submit",function(e){
   var currentForm = this;
   e.preventDefault();
+  var f=getArrayFacturas();
+  if(f.length==0){
+    $.toaster({priority: 'danger', title: 'Error', message: 'Ingrese al menos un detalle'});
+    return false;
+  }
    var dialog = bootbox.dialog({
   title: 'Advertencia',
   message: "<p>Desea realizar el cobro</p>",
