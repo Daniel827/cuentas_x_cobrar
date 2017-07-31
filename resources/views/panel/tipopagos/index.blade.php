@@ -30,7 +30,7 @@
                 </div>
                 <div class="x_content">
                     <div class="row">
-                        <div class="col-sm-12">
+                       <div class="card-box table-responsive">
                             <div class="card-box table-responsive">
                                 <p class="text-muted font-13 m-b-30">Tipos de pago para usar el sistema</p>
                                 <table id="datatable-keytable" class="table table-striped table-bordered">

@@ -31,6 +31,7 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
+                <div class="card-box table-responsive">
                 <div class="x_content">
                   @include('panel.mensajes.error')
                   @include('panel.mensajes.exito')
@@ -61,6 +62,7 @@
                         @endforeach
                     </table>
                 </div>
+                 </div>
                 {{$pagos->render()}}
             </div>
         </div>

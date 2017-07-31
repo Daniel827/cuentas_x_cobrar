@@ -30,7 +30,7 @@
                 </div>
                 <div class="x_content">
                     <div class="row">
-                        <div class="col-sm-12">
+                          <div class="card-box table-responsive">
                             <div class="card-box table-responsive">
                                 <p class="text-muted font-13 m-b-30">Cajeros abilitados para realizar las transacciones.</p>
                                 @include('panel.mensajes.error')

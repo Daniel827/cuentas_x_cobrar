@@ -4,7 +4,7 @@
 <div>
     <div class="page-title">
         <div class="title_left">
-            <h3>Usuarios</h3>
+            <h3>Usuarioshola</h3>
         </div>
 
         <div class="title_right">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="x_content">
                     <div class="row">
-                        <div class="col-sm-12">
+                       <div class="card-box table-responsive">
                             <div class="card-box table-responsive">
                                 <p class="text-muted font-13 m-b-30">Usuarios abilitados para usar el sistema</p>
                                 <table id="datatable-keytable" class="table table-striped table-bordered">
