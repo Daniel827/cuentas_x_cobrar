@@ -427,7 +427,7 @@ $(document).ready(function() {
             cliente: {
                validators: {
                    notEmpty: {
-                       message: 'Elija una cliente'
+                       message: 'Elija un cliente'
                    }
                }
            },
@@ -438,7 +438,6 @@ $(document).ready(function() {
                     }
                 }
             },
-
              cantidad: {
                 validators: {
                     notEmpty: {
