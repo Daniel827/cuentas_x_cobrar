@@ -45,8 +45,9 @@ class Controller extends BaseController
         $id=$list['IDCABECERA'];
         $numero="FACT-".(str_pad($id, 5, "0",STR_PAD_LEFT));
         if(isset($list['facturaspendientes'])){
-          $fact=$list['facturaspendientes'];
-          $saldo=$fact[0]['SALDO'];
+          $fact=$list['facturaspendientes'][0];
+          \Log::info('saldo = '.$fact['SALDO']);
+          $saldo=$fact['SALDO'];
           $factura=Factura::find($id);
           if($factura==null){
             Factura::create(['idfactura'=>$id,'idcliente'=>$idCliente,'saldo'=>$saldo,'numerofactura'=>$numero]);
