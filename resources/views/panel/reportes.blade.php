@@ -69,7 +69,7 @@
                 </div>
                 <div class="x_content">
                     <br />
-                        <form id="demo-form2" action="{{url('getPagosFechas')}}" data-parsley-validate class="form-horizontal form-label-left">
+                        <form id="demo-form3" action="{{url('getPagosFechas')}}" data-parsley-validate class="form-horizontal form-label-left">
  <div class="form-group">
                             @php
                             $hoy=date('Y-m-d');
@@ -116,7 +116,7 @@
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                  <a class="btn btn-primary" title="Ver saldos"
-                                 href="{{URL::action('AdminPanelController@getSaldoClientes')}}">Ver saldos</a>
+                                 href="{{URL::action('AdminPanelController@getSaldosClientes')}}">Ver saldos</a>
                       </div>
                 </div>
             </div>
@@ -126,4 +126,62 @@
 @endsection
 @push('scripts')
 @include('layouts.scripts.formValidation')
+<script>
+$(document).ready(function() {
+    $('#demo-form3').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            fechaini: {
+                validators: {
+                    date: {
+                        message: 'Formato inválido',
+                        format: 'DD-MM-YYYY'
+                    },
+                    callback: {
+                        message: 'Fecha inválida',
+                        callback: function(value, validator) {
+                            var m = new moment(value, 'DD-MM-YYYY', true);
+                            if (!m.isValid()) {
+                                return false;
+                            }
+                            var fin=$('#fechafin').val();
+                            if(fin==null || fin==""){
+                              return true;
+                            }
+                            return m.isBefore(fin);
+                        }
+                    }
+                }
+            },
+            fechafin: {
+                validators: {
+                    date: {
+                        message: 'Formato inválido',
+                        format: 'DD-MM-YYYY'
+                    },
+                    callback: {
+                        message: 'Fecha inválida',
+                        callback: function(value, validator) {
+                            var m = new moment(value, 'DD-MM-YYYY', true);
+                            if (!m.isValid()) {
+                                return false;
+                            }
+                            var ini=$('#fechaini').val();
+                            if(ini==null || ini==""){
+                              return true;
+                            }
+                            return m.isAfter(ini);
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
 @endpush

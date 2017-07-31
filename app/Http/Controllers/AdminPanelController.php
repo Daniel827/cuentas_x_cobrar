@@ -45,7 +45,7 @@ class AdminPanelController extends Controller{
     $pdf = \PDF::loadView('panel.reportes.clientesmov',["cliente"=>$cliente,'pagos'=>$pagos]);
     return $pdf->stream('movimientos.pdf');
   }
-    public function getSaldoClientes(){
+    public function getSaldosClientes(){
       $clientes=DB::table('clientes as c')->join('facturas as f','f.idcliente','=','c.idcliente')
      ->select('cedula','nombres','apellidos','saldo')
      ->where('saldo','>',0)
