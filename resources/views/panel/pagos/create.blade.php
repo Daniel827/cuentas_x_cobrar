@@ -414,7 +414,7 @@ $(document).ready(function() {
              nfact: {
                 validators: {
                     notEmpty: {
-                        message: 'El campo descripción es obligatorio'
+                        message: 'Elija una factura'
                     }
                 }
             },
@@ -422,7 +422,7 @@ $(document).ready(function() {
              idTipoPago: {
                 validators: {
                     notEmpty: {
-                        message: 'El campo descripción es obligatorio'
+                        message: 'Elija un tipo de pago'
                     }
                 }
             },
@@ -430,7 +430,7 @@ $(document).ready(function() {
              cantidad: {
                 validators: {
                     notEmpty: {
-                        message: 'El campo descripción es obligatorio'
+                        message: 'Ingrese una cantidad'
                     }
                 }
             }
