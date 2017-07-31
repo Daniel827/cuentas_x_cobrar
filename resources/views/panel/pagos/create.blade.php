@@ -399,7 +399,7 @@ $(document).ready(function() {
              nfact: {                    
                 validators: {
                     notEmpty: {
-                        message: 'The full name is required'
+                        message: 'El campo descripción es obligatorio'
                     }
                 }
             },
@@ -407,7 +407,7 @@ $(document).ready(function() {
              idTipoPago: {                    
                 validators: {
                     notEmpty: {
-                        message: 'The full name is required'
+                        message: 'El campo descripción es obligatorio'
                     }
                 }
             },
@@ -415,7 +415,7 @@ $(document).ready(function() {
              cantidad: {                    
                 validators: {
                     notEmpty: {
-                        message: 'The full name is required'
+                        message: 'El campo descripción es obligatorio'
                     }
                 }
             }
