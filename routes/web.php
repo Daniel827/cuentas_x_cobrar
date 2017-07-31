@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('reporte','AdminPanelController@getPDF');
   Route::get('reportes','AdminPanelController@reportes');
    Route::get('getMovimientosClientes','AdminPanelController@getMovimientosClientes');
-  Route::get('reporte3','AdminPanelController@getPDF3');
+  Route::get('getSaldos','AdminPanelController@getSaldos');
   Route::get('getFacturasPendientes','ClienteController@getFacturasPendientes');
   Route::get('getSaldoDisponible','ClienteController@getSaldoDisponible');
   Route::resource('pagos','PagoController');

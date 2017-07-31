@@ -30,8 +30,7 @@
                     <br />
                     <form id="demo-form2" action="{{url('getMovimientosClientes')}}" data-parsley-validate class="form-horizontal form-label-left">
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula del Cliente<font color="red">*</font>
-                            </label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idcliente" id="idCliente" required>
                                     <option value="">--- Seleccionar ---</option>
@@ -89,7 +88,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4"> <br>
-                                <a href="{{url('reporte2')}}" class="btn btn-primary" target="_blank">Generar</a>
+                                <button type="submit" class="btn btn-primary">Generar</button>
                             </div>
                         </div>
                     </form>
@@ -117,7 +116,8 @@
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                 <a href="{{url('reporte')}}" class="btn btn-primary" target="_blank">Generar</a>
+                                 <a class="btn btn-primary" title="Ver saldos"
+                                 href="{{URL::action('AdminPanelController@getSaldos')}}">Ver saldos</a>
                             </div>
                     </form>
                 </div>
