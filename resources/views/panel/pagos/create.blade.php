@@ -423,7 +423,13 @@ $(document).ready(function() {
                     }
                 }
             },
-
+            idcliente: {
+               validators: {
+                   notEmpty: {
+                       message: 'Elija una cliente'
+                   }
+               }
+           },
              idTipoPago: {
                 validators: {
                     notEmpty: {
