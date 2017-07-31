@@ -16,6 +16,7 @@ class SaldoController extends Controller
       $clientes=DB::table('clientes as c')->join('facturas as f','f.idcliente','=','c.idcliente')
      ->select('cedula','nombres','apellidos',DB::raw('SUM(saldo) as saldo'))
      ->where('saldo','>',0)
+     ->groupBy('cedula','nombres','apellidos')
      ->orderBy('apellidos')->get();
       return $clientes;
     }
