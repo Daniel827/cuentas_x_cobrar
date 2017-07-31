@@ -27,4 +27,8 @@ class Cliente extends Model
     public function facturas() {
         return $this->hasMany('App\Factura', 'idcliente');
     }
+
+    public function pagos() {
+        return $this->hasMany('App\Pago', 'idcliente');
+    }
 }

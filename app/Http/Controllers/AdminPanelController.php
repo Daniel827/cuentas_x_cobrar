@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Activity;
 use App\Cliente;
+use App\Factura;
+use App\Pago;
 
 class AdminPanelController extends Controller{
   public function __construct() {
@@ -34,10 +36,12 @@ class AdminPanelController extends Controller{
     return $pdf->stream('inicio.pdf');
   }
 
-     public function getPDF2(){
-    $texto="Hola";
-    $pdf = \PDF::loadView('panel.cajeros.reporte2',["texto"=>$texto]);
-    return $pdf->stream('inicio.pdf');
+  public function getMovimientosClientes(Request $request){
+    $idCliente=$request->idcliente;
+    $cliente=Cliente::findOrFail($idCliente);
+    $pagos=$cliente->pagos()->orderBy('idpago','desc')->get();
+    $pdf = \PDF::loadView('panel.reportes.clientesmov',["cliente"=>$cliente,'pagos'=>$pagos]);
+    return $pdf->stream('movimientos.pdf');
   }
     public function getPDF3(){
     $texto="Hola";

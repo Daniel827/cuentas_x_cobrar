@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('perfil','AdminPanelController@profile');
   Route::get('reporte','AdminPanelController@getPDF');
   Route::get('reportes','AdminPanelController@reportes');
-   Route::get('reporte2','AdminPanelController@getPDF2');
+   Route::get('getMovimientosClientes','AdminPanelController@getMovimientosClientes');
   Route::get('reporte3','AdminPanelController@getPDF3');
   Route::get('getFacturasPendientes','ClienteController@getFacturasPendientes');
   Route::get('getSaldoDisponible','ClienteController@getSaldoDisponible');
