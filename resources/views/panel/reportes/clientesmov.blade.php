@@ -82,9 +82,10 @@ tr:hover td { background: #d0dafd; color: #339; }
     </div>
     <div id="datos">
         <caption >Movimientos del Cliente</caption> <br><br>
-<label>Nombres: </label>{{$cliente->nombres}}<br><br>
-<label>Apellidos: </label>{{$cliente->apellidos}}<br><br>
-<label>Cédula: </label>{{$cliente->cedula}}<br><br>
+<b>Nombres: </b>{{$cliente->nombres}}<br><br>
+<b>Apellidos: </b>{{$cliente->apellidos}}<br><br>
+<b>Cédula: </b>{{$cliente->cedula}}<br><br>
+<b>Teléfono: </b>{{$cliente->telefono}}<br><br>
 </div>
   <table>
  <thead>
@@ -99,10 +100,10 @@ tr:hover td { background: #d0dafd; color: #339; }
   @foreach($pagos as $pago)
     @foreach($pago->detallesPago as $detalle)
     <tr>
-      <td>{{$detalle->numerofactura}}</td>
+      <td>{{$detalle->factura->numerofactura}}</td>
       <td>{{$detalle->tipoPago->nombre}}</td>
       <td>{{$pago->fecha}}</td>
-      <td>{{$detalle->pago}}/td>
+      <td>{{$detalle->pago}}</td>
     </tr>
   @endforeach
   @endforeach
@@ -116,6 +117,6 @@ tr:hover td { background: #d0dafd; color: #339; }
     <div id="footer2">
         <!--aqui se muestra el numero de la pagina en numeros romanos-->
     </div>
-<div class="page-break"></div>
+<!--<div class="page-break"></div>-->
 </body>
 </html>
