@@ -46,7 +46,7 @@
                                         @foreach ($tipopagos as $p)
                                         <tr>
                                             <td class="text-center">
-                                                <a class="btn btn-info" title="Editar" href="{{URL::action('TipoPagoController@edit',$p->idTipoPago)}}"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-info" title="Editar" href="{{URL::action('TipoPagoController@edit',$p->idtipopago)}}"><i class="fa fa-edit"></i></a>
                                             </td>
                                             <td>{{ $p->codigo}}</td>
                                             <td>{{ $p->nombre}}</td>

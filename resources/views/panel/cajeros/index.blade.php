@@ -50,7 +50,7 @@
                                         @foreach ($cajeros as $p)
                                         <tr>
                                             <td class="text-center">
-                                                <a class="btn btn-info" title="Editar"  href="{{URL::action('CajeroController@edit',$p->idCajero)}}"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-info" title="Editar"  href="{{URL::action('CajeroController@edit',$p->idcajero)}}"><i class="fa fa-edit"></i></a>
                                             </td>
                                             <td>{{ $p->iduser!=null?$p->user->name:''}}</td>
                                             <td>{{ $p->cedula_ruc}}</td>
