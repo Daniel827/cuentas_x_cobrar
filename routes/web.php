@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::resource('usuarios','UserController');
 
  Route::get('reportes','AdminPanelController@reportes');
-
+  Route::get('reporte2','AdminPanelController@getPDF2');
   Route::resource('cajeros','CajeroController');
   Route::group(['prefix' => 'cajeros'], function () {
       Route::get('/cambiarEstado/{id}', 'CajeroController@cambiarEstado');

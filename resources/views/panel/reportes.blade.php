@@ -92,7 +92,8 @@
                 
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4"> <br>
-                                <button type="submit" class="btn btn-primary">Generar</button>
+                                <button type="submit" class="btn btn-primary">Generar
+                                 <li><a href="{{url('reporte2')}}" target="_blank">reportegenerar</a></li></button>
                               
                             </div>
                         </div>
