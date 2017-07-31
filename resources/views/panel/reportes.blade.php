@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                <a type="submit" target="_blank" class="btn btn-primary">Generar</a>
+                                <button type="submit" class="btn btn-primary">Generar</button>
                             </div>
                         </div>
                     </form>
