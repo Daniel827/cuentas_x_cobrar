@@ -11,8 +11,8 @@
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-              @include('panel.mensajes.error')
-              @include('panel.mensajes.exito')
+                @include('panel.mensajes.error')
+                @include('panel.mensajes.exito')
                 <div class="x_title">
                     <h2>Consulta de clientes con todos sus movimientos</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -28,14 +28,14 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form id="demo-form2" action="{{url('getMovimientosClientes')}}" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="form-movimientos" action="{{url('getMovimientosClientes')}}" target="_blank" data-parsley-validate class="form-horizontal form-label-left">
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idcliente" id="idCliente" required>
                                     <option value="">--- Seleccionar ---</option>
                                     @foreach($clientes as $cl)
-                                      <option {{old('idcliente')==$cl->idcliente?'selected':''}} value="{{$cl->idcliente}}">{{$cl->apellidos}} {{$cl->nombres}}</option>
+                                    <option {{old('idcliente')==$cl->idcliente?'selected':''}} value="{{$cl->idcliente}}">{{$cl->apellidos}} {{$cl->nombres}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -69,20 +69,20 @@
                 </div>
                 <div class="x_content">
                     <br />
-                        <form id="demo-form3" action="{{url('getPagosFechas')}}" data-parsley-validate class="form-horizontal form-label-left">
- <div class="form-group">
+                    <form id="form-fechas" action="{{url('getPagosFechas')}}" target="_blank" data-parsley-validate class="form-horizontal form-label-left">
+                        <div class="form-group">
                             @php
                             $hoy=date('Y-m-d');
                             @endphp
-                            <label for="fechaini" class="col-lg-2 control-label">Fecha inicial <font color="red">*</font></label>
-                            <div class="col-lg-10">
+                            <label for="fechaini" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha inicial <font color="red">*</font></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input name="fechaini" id="fechaini" class="form-control" type="date" value="{{old('fechaini')}}" required min="1980-01-01" max="{{$hoy}}">
                             </div>
                         </div>
-<br>
-                    <div class="form-group">
-                            <label for="fechafin" class="col-lg-2 control-label">Fecha final <font color="red">*</font></label>
-                            <div class="col-lg-10">
+                        <br>
+                        <div class="form-group">
+                            <label for="fechafin" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha final <font color="red">*</font></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input name="fechafin" id="fechafin" class="form-control" type="date" value="{{old('fechafin')}}"  required min="1980-01-01" max="{{$hoy}}">
                             </div>
                         </div>
@@ -113,11 +113,13 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                 <a class="btn btn-primary" title="Ver saldos" target="_blank"
-                                 href="{{URL::action('AdminPanelController@getSaldosClientes')}}">Ver saldos</a>
-                      </div>
+                <div class="x_content">
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                            <a class="btn btn-primary" title="Ver saldos" target="_blank"
+                               href="{{URL::action('AdminPanelController@getSaldosClientes')}}">Ver saldos</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -128,7 +130,7 @@
 @include('layouts.scripts.formValidation')
 <script type="text/javacript">
 $(document).ready(function() {
-    $('#demo-form3').formValidation({
+    $('#form-fechas').formValidation({
         framework: 'bootstrap',
         icon: {
             valid: 'glyphicon glyphicon-ok',
@@ -142,19 +144,9 @@ $(document).ready(function() {
                         message: 'Formato inválido',
                         format: 'DD-MM-YYYY'
                     },
-                    callback: {
-                        message: 'Fecha inválida',
-                        callback: function(value, validator) {
-                            var m = new moment(value, 'DD-MM-YYYY', true);
-                            if (!m.isValid()) {
-                                return false;
-                            }
-                            var fin=$('#fechafin').val();
-                            if(fin==null || fin==""){
-                              return true;
-                            }
-                            return m.isBefore(fin);
-                        }
+                    different: {
+                        field: 'fechafin',
+                        message: 'La fecha inicial y final no pueden ser iguales'
                     }
                 }
             },
@@ -164,19 +156,9 @@ $(document).ready(function() {
                         message: 'Formato inválido',
                         format: 'DD-MM-YYYY'
                     },
-                    callback: {
-                        message: 'Fecha inválida',
-                        callback: function(value, validator) {
-                            var m = new moment(value, 'DD-MM-YYYY', true);
-                            if (!m.isValid()) {
-                                return false;
-                            }
-                            var ini=$('#fechaini').val();
-                            if(ini==null || ini==""){
-                              return true;
-                            }
-                            return m.isAfter(ini);
-                        }
+                    different: {
+                        field: 'fechaini',
+                        message: 'La fecha inicial y final no pueden ser iguales'
                     }
                 }
             }
