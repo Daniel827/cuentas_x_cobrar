@@ -1,4 +1,7 @@
+
+
 <?php
+//Clase Controlador para los cajeros el cual es encargado de hacer la conexión con Route.php
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
@@ -15,7 +18,7 @@ class CajeroController extends Controller{
      public function __construct(){
        $this->middleware('role:admin');
     }
-
+// Metodos creados para Edicion Adicion e ingreso de Datos
     public function index(){
       $cajeros=Cajero::paginate(10);
       return view('panel.cajeros.index', compact('cajeros'));

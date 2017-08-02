@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-                <div class="x_title">
+                <div class="x_ti
                     <h2>Datos del tipo de pago</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label for="nombre" class="col-lg-2 control-label">Nombre <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="nombre" id="nombre" class="form-control" onkeypress="return esLetra()" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú\s]{6,19}" type="text" value="{{old('nombre')}}" required minlength="7" maxlength="20">
+                                <input name="nombre" id="nombre" class="form-control" onkeypress="return esLetra()" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú\s]{6,19}" type="text" value="{{old('nombre')}}" required minlength="3" maxlength="20">
                             </div>
                         </div>
                         <div class="form-group">
