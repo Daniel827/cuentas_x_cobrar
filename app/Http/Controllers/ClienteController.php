@@ -6,12 +6,23 @@ use Illuminate\Http\Request;
 use App\Cliente;
 use App\Factura;
 
+/**
+ * Controlador ClienteController, métodos para los clientes
+ */
 class ClienteController extends Controller {
 
+    /**
+     * Se necesita rol de cajero para acceder a los métodos
+     */
     public function __construct() {
         $this->middleware('role:cajero');
     }
 
+    /**
+     * Obtiene las facturas pendientes de un cliente
+     * @param  Request $request Cliente
+     * @return JSON Facturas pendientes
+     */
     public function getFacturasPendientes(Request $request) {
         $cliente = Cliente::findOrFail($request->idCliente);
         $this->getPendientes($cliente->idcliente);
@@ -19,6 +30,11 @@ class ClienteController extends Controller {
         return response()->json($facturas);
     }
 
+    /**
+     * Obtiene el saldo temporal que debe el cliente antes de realizar el cobro
+     * @param  Request $request Atributos del cliente y sus pagos
+     * @return JSON Saldo temporal
+     */
     public function getSaldoTemporal(Request $request){
       $arrayFacturas = $request->idFactura;
       $arrayPagos = $request->pagos;
@@ -29,10 +45,14 @@ class ClienteController extends Controller {
               $saldoTemporal-= $arrayPagos[$i];
           }
       }
-      \Log::info("saldoTemporal -> ".$saldoTemporal.", y saldoTotal -> ".$factura->saldo);
       return response()->json($saldoTemporal);
     }
 
+    /**
+     * Valida si la cantidad agregada es menor o igual a el saldo disponible de una factura
+     * @param  Request $request Atributos del clientes
+     * @return JSON Bolean (Cantida válida al insertar)
+     */
     public function getSaldoDisponible(Request $request) {
         $arrayFacturas = $request->idFactura;
         $arrayPagos = $request->pagos;
@@ -53,7 +73,6 @@ class ClienteController extends Controller {
         } else {
             $valido = false;
         }
-        \Log::info('acumulado = ' . $acumulado . ', saldo = ' . $saldo . ', cantidad = ' . $cantidad . ', monto Actual = ' . $montoActual);
         return response()->json($valido);
     }
 

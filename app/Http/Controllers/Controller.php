@@ -9,10 +9,16 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Cliente;
 use App\Factura;
 
+/**
+ * Controlador Controller, contiene los métodos para consumir los WS del módulo de facturación
+ */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * Obtiene los clientes registrados del módulo de facturación y los registra en la BD
+     */
     protected function getClientes(){
       $url="http://modulofactura.herokuapp.com/clientes";
       try {
@@ -40,6 +46,11 @@ class Controller extends BaseController
       }
     }
 
+    /**
+     * Obtiene la factura pendiente
+     * @param  int $idFactura id de la Factura
+     * @return Array  Datos de la factua pendiente
+     */
     private function findFacturaCliente($idFactura){
       $url="http://modulofactura.herokuapp.com/FacturasPendientes";
       try {
@@ -58,6 +69,10 @@ class Controller extends BaseController
       }
     }
 
+    /**
+     * Busca todas las facturas pendientes del cliente y las registra/actualiza en la BD
+     * @param  int $idCliente id del Cliente
+     */
     protected function getPendientes($idCliente){
       $url="http://modulofactura.herokuapp.com/cabeceras";
       try {
@@ -86,6 +101,11 @@ class Controller extends BaseController
       }
     }
 
+    /**
+     * Actualiza el saldo de la factura en la BD del módulo de facturación
+     * @param  int $idFactura Id de la factura
+     * @param  int $cantidad  Cantidad a abonar
+     */
     protected function updateSaldoFacturas($idFactura,$cantidad){
       $pendiente=$this->findFacturaCliente($idFactura);
       if($pendiente!=null){
