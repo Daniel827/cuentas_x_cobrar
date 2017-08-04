@@ -42,12 +42,20 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    /**
+     * Valida la clave actual al momento de cambiar de contraseña
+     * @return boolean Clave actual válida
+     */
     private function validateCurrent_Password(){
         Validator::extend('current_password',function($attribute,$value,$parametes){
           return Hash::check($value, Auth::user()->password);
         });
     }
 
+    /**
+     * Valida la cédula o ruc
+     * @return boolean Cédula / RUC válido
+     */
     private function validateCedulaRuc(){
       Validator::extend('cedula_ruc',function($attribute,$value,$parametes){
           if(preg_match('/[0-2][0-9]{9}(001)?/',$value)){

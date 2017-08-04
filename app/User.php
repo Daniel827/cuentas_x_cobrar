@@ -7,6 +7,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use App\Notifications\ResetearClave;
 
+/**
+ * Modelo User
+ */
 class User extends Authenticatable {
 
     use Notifiable;
@@ -30,14 +33,24 @@ class User extends Authenticatable {
         'password', 'remember_token',
     ];
 
+    /**
+     * Envia la notificación de reseteo de contraseña al e-mail del usuaio
+     * @param string $token Token
+     */
     public function sendPasswordResetNotification($token){
         $this->notify(new ResetearClave($token));
     }
 
+    /**
+     * @return Cajero Cajero que tiene ese usuario
+     */
     public function cajero() {
         return $this->hasOne('App\Cajero', 'iduser');
     }
 
+    /**
+     * @return Role[] Roles del usuario
+     */
     public function rol() {
         return $this->belongsToMany('App\Role', 'role_user');
     }

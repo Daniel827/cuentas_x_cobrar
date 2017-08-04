@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Modelo Factura
+ */
 class Factura extends Model
 {
     protected $table = "facturas";
@@ -17,6 +20,9 @@ class Factura extends Model
         'saldo'
     ];
 
+    /**
+     * @return Cliente Cliente al que pertenece la factura
+     */
     public function cliente() {
         return $this->belongsTo('App\Cliente', 'idcliente');
     }
