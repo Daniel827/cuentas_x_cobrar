@@ -21,11 +21,21 @@ class TipoPagoRequest extends FormRequest
      * @return array
      */
     public function rules() {
-      return [
-          "nombre"=>"required|string|min:3|max:20",
-          "referencia"=>"required|string|min:5|max:20",
-          "descripcion"=>"nullable|string|max:200",
-          "estado"=>"required|in:A,I"
-      ];
+      if(Input::has('idtipopago')){
+        $id=Input::get('idtipopago');
+        return [
+            "nombre"=>"required|min:3|max:30|unique:tipopagos,nombre,".$id.",idtipopago",
+            "referencia"=>"required|string|min:5|max:20",
+            "descripcion"=>"nullable|string|max:200",
+            "estado"=>"required|in:A,I"
+        ];
+      }else{
+        return [
+            "nombre"=>"required|min:3|max:30|unique:tipopagos",
+            "referencia"=>"required|string|min:5|max:20",
+            "descripcion"=>"nullable|string|max:200",
+            "estado"=>"required|in:A,I"
+        ];
+      }
     }
 }

@@ -37,7 +37,7 @@ class PagoController extends Controller{
           $idFactura=$request->idfactura[$i];
           $idTipoPago=$request->idtipopago[$i];
           $pago=$request->pago[$i];
-          //$this->updateSaldoFacturas($idFactura,$pago);
+          $this->updateSaldoFacturas($idFactura,$pago);
           DetallePago::create(["idpago"=>$idpago,"idfactura"=>$idFactura,"idtipopago"=>$idTipoPago,"pago"=>$pago]);
         }
         $total=DetallePago::where('idpago',$idpago)->sum('pago');

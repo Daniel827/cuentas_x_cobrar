@@ -96,16 +96,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($pagos as $pago)
-                @foreach($pago->detallesPago as $detalle)
+                @forelse($pagos as $pago)
+                  @foreach($pago->detallesPago as $detalle)
+                  <tr>
+                      <td>{{$detalle->factura->numerofactura}}</td>
+                      <td>{{$detalle->tipoPago->nombre}}</td>
+                      <td>{{$pago->fecha}}</td>
+                      <td>{{$detalle->pago}}</td>
+                  </tr>
+                  @endforeach
+                @empty
                 <tr>
-                    <td>{{$detalle->factura->numerofactura}}</td>
-                    <td>{{$detalle->tipoPago->nombre}}</td>
-                    <td>{{$pago->fecha}}</td>
-                    <td>{{$detalle->pago}}</td>
+                  <td colspan="4" style="text-align:center">No se encontraron movimientos de ese cliente</td>
                 </tr>
-                @endforeach
-                @endforeach
+                @endforelse
                 </tobdy>
         </table>
         <!--footer para cada pagina-->

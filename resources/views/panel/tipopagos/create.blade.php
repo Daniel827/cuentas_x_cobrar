@@ -29,13 +29,13 @@
                         <div class="form-group">
                             <label for="nombre" class="col-lg-2 control-label">Nombre <font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="nombre" id="nombre" class="form-control" onkeypress="return esLetra()" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú\s]{6,19}" type="text" value="{{old('nombre')}}" required minlength="7" maxlength="20">
+                                <input name="nombre" id="nombre" class="form-control" onkeypress="return esLetra()" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú\s]{4,29}" type="text" value="{{old('nombre')}}" required minlength="5" maxlength="30">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="referencia" class="col-lg-2 control-label">Referencia<font color="red">*</font></label>
                             <div class="col-lg-10">
-                                <input name="referencia" id="referencia" class="form-control" onkeypress="return esLetra()" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú\s]{6,19}" type="text" value="{{old('referencia')}}" required minlength="7" maxlength="20">
+                                <input name="referencia" id="referencia" class="form-control" onkeypress="return esLetra()" pattern="[A-ZÁÉÍÓÚ][a-zñáéíóú\s]{4,19}" type="text" value="{{old('referencia')}}" required minlength="5" maxlength="20">
                             </div>
                         </div>
                         <div class="form-group">

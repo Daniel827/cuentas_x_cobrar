@@ -15,7 +15,7 @@ class TipoPagoController extends Controller
     }
 
     public function index(){
-      $tipopagos=TipoPago::paginate(10);
+      $tipopagos=TipoPago::orderBy('codigo','desc')->paginate(10);
       return view('panel.tipopagos.index', compact('tipopagos'));
     }
 

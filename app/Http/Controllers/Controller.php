@@ -14,52 +14,86 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected function getClientes(){
-      $url="http://modulofacturacion.herokuapp.com/clientes";
-      $json=file_get_contents($url);
-      $listado=json_decode($json,true);
-      foreach($listado['datos'] as $list){
-        $cliente=Cliente::find($list['IDCLIENTE']);
-        if($cliente==null){
-          $id=$list['IDCLIENTE'];
-          $cedula=$list['CEDULA'];
-          $tipo=$list['IDTIPO'];
-          $nombre=$list['NOMBRE'];
-          $apellido=$list['APELLIDO'];
-          $fecha=$list['NACIMIENTO'];
-          $ciudad=$list['CIUDAD'];
-          $direccion=$list['DIRECCION'];
-          $telefono=$list['TELEFONO'];
-          $email=$list['EMAIL'];
-          $estado=$list['ESTADO'];
-          Cliente::create(['idcliente'=>$id,'cedula'=>$cedula,'idtipo'=>$tipo,'nombres'=>$nombre,'apellidos'=>$apellido,
-            'nacimiento'=>$fecha,'ciudad'=>$ciudad,'telefono'=>$telefono,'email'=>$email,'estado'=>$estado]);
+      $url="http://modulofactura.herokuapp.com/clientes";
+      try {
+        $json=file_get_contents($url);
+        $listado=json_decode($json,true);
+        foreach($listado['datos'] as $list){
+          $cliente=Cliente::find($list['idcliente']);
+          if($cliente==null){
+            $id=$list['idcliente'];
+            $cedula=$list['cedula'];
+            $tipo=$list['idtipo'];
+            $nombre=$list['nombre'];
+            $apellido=$list['apellido'];
+            $fecha=$list['nacimiento'];
+            $ciudad=$list['ciudad'];
+            $direccion=$list['direccion'];
+            $telefono=$list['telefono'];
+            $email=$list['email'];
+            $estado=$list['estado'];
+            Cliente::create(['idcliente'=>$id,'cedula'=>$cedula,'idtipo'=>$tipo,'nombres'=>$nombre,'apellidos'=>$apellido,
+              'nacimiento'=>$fecha,'ciudad'=>$ciudad,'telefono'=>$telefono,'email'=>$email,'estado'=>$estado]);
+          }
         }
+      } catch (Exception $e) {
+      }
+    }
+
+    private function findFacturaCliente($idFactura){
+      $url="http://modulofactura.herokuapp.com/FacturasPendientes";
+      try {
+        $json=file_get_contents($url);
+        $listado=json_decode($json,true);
+        if(isset($listado['datos'])){
+          foreach($listado['datos'] as $list){
+              if($list['idcabecera']==$idFactura){
+                return $list;
+              }
+          }
+        }
+        return null;
+      } catch (Exception $e) {
+        return null;
       }
     }
 
     protected function getPendientes($idCliente){
-      $url="http://modulofacturacion.herokuapp.com/cliente/".$idCliente."/facturaspendientes";
-      $json=file_get_contents($url);
-      $listado=json_decode($json,true);
-      foreach($listado['data'] as $list){
-        $id=$list['IDCABECERA'];
-        $numero="FACT-".(str_pad($id, 5, "0",STR_PAD_LEFT));
-        if(isset($list['facturaspendientes'])){
-          $fact=$list['facturaspendientes'][0];
-          $saldo=$fact['SALDO'];
-          $factura=Factura::find($id);
-          if($factura==null){
-            Factura::create(['idfactura'=>$id,'idcliente'=>$idCliente,'saldo'=>$saldo,'numerofactura'=>$numero]);
-          }else{
-            $factura->saldo=$saldo;
-            $factura->update();
+      $url="http://modulofactura.herokuapp.com/cabeceras";
+      try {
+        $json=file_get_contents($url);
+        $listado=json_decode($json,true);
+        if(isset($listado['datos'])){
+          foreach($listado['datos'] as $list){
+            $id=$list['idcabecera'];
+            $numero="FACT-".(str_pad($id, 5, "0",STR_PAD_LEFT));
+            $factura=Factura::find($id);
+            $lista=$this->findFacturaCliente($id);
+            if($lista==null){
+              $saldo=0;
+            }else{
+              $saldo=$lista['saldo'];
+            }
+            if($factura==null){
+              Factura::create(['idfactura'=>$id,'idcliente'=>$idCliente,'saldo'=>$saldo,'numerofactura'=>$numero]);
+            }else{
+              $factura->saldo=$saldo;
+              $factura->update();
+            }
           }
         }
+      } catch (Exception $e) {
       }
     }
 
     protected function updateSaldoFacturas($idFactura,$cantidad){
-      $url="http://modulofacturacion.herokuapp.com/cabecera/".$idFactura."/facturaspendientes/".$cantidad;
-      file_get_contents($url);
+      $pendiente=$this->findFacturaCliente($idFactura);
+      if($pendiente!=null){
+        try{
+          $url="http://modulofactura.herokuapp.com/cabecera/".$pendiente['idpendiente']."/facturaspendientes/".$cantidad;
+          file_get_contents($url);
+        } catch (Exception $e) {
+        }
+      }
     }
 }

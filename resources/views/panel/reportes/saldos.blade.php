@@ -93,14 +93,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($clientes as $cli)
+                @forelse($clientes as $cli)
                 <tr>
                     <td>{{$cli->cedula}}</td>
                     <td>{{$cli->apellidos}}</td>
                     <td>{{$cli->nombres}}</td>
                     <td>{{$cli->saldo}}</td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                  <td colspan="4" style="text-align:center">No se registra saldo de ningún cliente</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
         <!--footer para cada pagina-->

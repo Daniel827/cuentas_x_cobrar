@@ -13,10 +13,13 @@ class SaldoController extends Controller
     }
 
     public function index(){
-      $clientes=DB::table('clientes as c')->join('facturas as f','f.idcliente','=','c.idcliente')
-     ->select('cedula','nombres','apellidos','saldo')
-     ->where('saldo','>',0)
-     ->orderBy('apellidos')->get();
+      $this->getClientes();
+      $clientes = DB::table('clientes as c')->join('facturas as f', 'f.idcliente', '=', 'c.idcliente')
+                      ->select('cedula', 'nombres', 'apellidos', DB::raw('sum(saldo) as saldo'))
+                      ->where('saldo', '>', 0)
+                      ->groupBy('cedula', 'nombres', 'apellidos')
+                      ->havingRaw('sum(saldo) > 0')
+                      ->orderBy('apellidos')->get();
       return $clientes;
     }
 }

@@ -110,9 +110,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-6" for="cantidad">Cantidad a Pagar <font color="red">*</font></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="number" id="cantidad" min=0.01 max=1200 step="0.01" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cantidad a pagar" onkeypress="return NumCheck(event, this)">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-6" for="cantidad">Cantidad <font color="red">*</font></label>
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <input type="number" id="cantidad" min=0.01 step="0.01" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cantidad" onkeypress="return NumCheck(event, this)">
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <input type="text" id="saldoTemporal" class="form-control col-md-7 col-xs-12" placeholder="Saldo Temporal" title="Saldo Temporal" readonly>
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -204,13 +207,15 @@ subtotal = [];
 var total = 0;
 var subtotal = [];
 var facturas=[];
+var historalIdFacturas=[];
 var tipos=[];
 var pagos=[];
 $("#guardar").attr('disabled', true);
 
 function existe(fact, tipoPago) {
-    if (cont > 0) {
-            facturas=getArrayFacturas();
+    facturas=getArrayFacturas();
+    if (facturas.length > 0) {
+
             var contTipos=0;
             var ex=false;
             $("input[name='idtipopago[]']").each(function() {
@@ -263,6 +268,7 @@ function validarSaldo(factura,cantidad){
 function registrar(nfact,cantidad){
   subtotal[cont] = cantidad;
   total = total + subtotal[cont];
+  historalIdFacturas[cont]=nfact;
   var tp = $("#idTipoPago option:selected").text();
   var fact = $("#nfact option:selected").text();
   var fila = '<tr class="selected" id="fila' + cont + '"><td class="text-center">\n\
@@ -277,6 +283,7 @@ function registrar(nfact,cantidad){
   evaluar();
   $('#detalles tbody').html(fila+filas);
   $.toaster({priority: 'success', title: 'Éxito', message: 'Detalle añadido'});
+  mostrarSaldoTemporal(nfact);
 }
 
 function agregar() {
@@ -311,16 +318,24 @@ function evaluar() {
 }
 
 function eliminar(index) {
-    total-=subtotal[index];
-    $("#total").html("$ " + total);
     $("#fila" + index).remove();
+    subtotales=getArrayPagos();
+    total=0;
+    for (var i = 0; i <subtotales.length; i++) {
+      total+=subtotales[i];
+    }
+    //total-=subtotal[index];
+    total=total*1;
+    $("#total").html("$ " + total.toFixed(2));
     evaluar();
+    var idFact=historalIdFacturas[index];
+    mostrarSaldoTemporal(idFact);
     $.toaster({priority: 'warning', title: 'Advertencia', message: 'Detalle eliminado'});
 }
 
 function recorrerTabla() {
   var filas = "";
-    if (cont > 0) {
+    if (getArrayFacturas().length > 0) {
       tipos=getArrayTipos();
       pagos=getArrayPagos();
         $("#detalles tbody tr").each(function (index) {
@@ -343,7 +358,6 @@ function getArrayFacturas(){
     var contFact=0;
     $("input[name='idfactura[]']").each(function() {
       facturas[contFact]=$(this).val();
-      console.log('idFactura -> '+$(this).val());
       contFact++;
   });
   return facturas;
@@ -417,13 +431,6 @@ $(document).ready(function() {
                     }
                 }
             },
-             nfact: {
-                validators: {
-                    notEmpty: {
-                        message: 'Elija una factura'
-                    }
-                }
-            },
             cliente: {
                validators: {
                    notEmpty: {
@@ -431,20 +438,6 @@ $(document).ready(function() {
                    }
                }
            },
-             idTipoPago: {
-                validators: {
-                    notEmpty: {
-                        message: 'Elija un tipo de pago'
-                    }
-                }
-            },
-             cantidad: {
-                validators: {
-                    notEmpty: {
-                        message: 'Ingrese una cantidad'
-                    }
-                }
-            }
         }
     });
 });

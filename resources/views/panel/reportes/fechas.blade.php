@@ -96,14 +96,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($pagos as $pago)
+                @forelse($pagos as $pago)
                 <tr>
                     <td>{{$pago->numeropago}}</td>
                     <td>{{$pago->cliente->apellidos}} {{$pago->cliente->nombres}}</td>
                     <td>{{$pago->fecha}}</td>
                     <td style="text-align: right">{{$pago->totalpago}}</td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                  <td colspan="4" style="text-align: center">No se encontraron registros</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
         <!--footer para cada pagina-->

@@ -25,7 +25,7 @@
                     @include('panel.mensajes.error')
                     @include('panel.mensajes.exito')
                     {{Form::open(['action'=>['UserController@update',$usuario->id],'class'=>'form-horizontal form-label-left','method'=>'PATCH'])}}
-                    <input type="hidden" name="idUser" value="{{$usuario->id}}">
+                    <input type="hidden" name="iduser" value="{{$usuario->id}}">
                     <div class="form-group">
                         <label for="name" class="col-md-4 control-label">Nombre de usuario</label>
                         <div class="col-md-6">

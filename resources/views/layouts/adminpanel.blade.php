@@ -63,13 +63,11 @@
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('pagos')}}">Todos los pagos</a></li>
                                             <li><a href="{{url('pagos/create')}}">Registrar nuevo pago</a></li>
-
-
                                         </ul>
                                     </li>
                                     @endrole
 
-                               <li><a href="{{url('reportes')}}"><i class="fa fa-file-pdf-o"></i> Otros Reportes</a></li>
+                               <li><a href="{{url('reportes')}}"><i class="fa fa-file-pdf-o"></i> Reportes</a></li>
 
                                 </ul>
                             </div>

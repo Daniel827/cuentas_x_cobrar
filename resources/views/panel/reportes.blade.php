@@ -8,11 +8,11 @@
         </div>
     </div>
     <div class="clearfix"></div>
+    @include('panel.mensajes.error')
+    @include('panel.mensajes.exito')
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-                @include('panel.mensajes.error')
-                @include('panel.mensajes.exito')
                 <div class="x_title">
                     <h2>Consulta de clientes con todos sus movimientos</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -30,7 +30,7 @@
                     <br />
                     <form id="form-movimientos" action="{{url('getMovimientosClientes')}}" target="_blank" data-parsley-validate class="form-horizontal form-label-left">
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <font color="red">*</font></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idCliente">Cliente <font color="red">*</font></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control selectpicker col-md-7 col-xs-12" data-live-search="true" name="idcliente" id="idCliente" required>
                                     <option value="">--- Seleccionar ---</option>
@@ -55,7 +55,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Pagos de clientes realizados, por fecha inicial y final</h2>
+                    <h2>Pagos de clientes realizados por fecha inicial y final</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -75,14 +75,14 @@
                             $hoy=date('Y-m-d');
                             @endphp
                             <label for="fechaini" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha inicial <font color="red">*</font></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
                                 <input name="fechaini" id="fechaini" class="form-control" type="date" value="{{old('fechaini')}}" required min="1980-01-01" max="{{$hoy}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="fechafin" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha final <font color="red">*</font></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
                                 <input name="fechafin" id="fechafin" class="form-control" type="date" value="{{old('fechafin')}}"  required min="1980-01-01" max="{{$hoy}}">
                             </div>
                         </div>
@@ -159,6 +159,23 @@ $(document).ready(function() {
                     different: {
                         field: 'fechaini',
                         message: 'La fecha inicial y final no pueden ser iguales'
+                    }
+                }
+            }
+        }
+    });
+    $('#form-movimientos').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            idcliente: {
+                validators: {
+                    notEmpty: {
+                        message: 'Seleccione el cliente'
                     }
                 }
             }

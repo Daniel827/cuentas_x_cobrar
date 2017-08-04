@@ -39,4 +39,34 @@ $('#idCliente').on('change',function(e){
       $('#nfact').selectpicker('refresh');
     }
 });
+
+function mostrarSaldoTemporal(valor){
+  var idFactura=valor;
+  if (idFactura != "" && idFactura != null) {
+    var pagos=getArrayPagos();
+    var facturas=getArrayFacturas();
+    $.ajax({
+      type:"GET",
+      url:"{!! URL::to('getSaldoTemporal') !!}",
+      data:{
+        'factura':idFactura,
+        'pagos':pagos,
+        'idFactura':facturas,
+      },
+      success:function(data){
+        console.log('exito');
+        $('#saldoTemporal').val(data);
+      },
+      error:function(){
+          console.log('error');
+      }
+    });
+  }else{
+    $('#saldoTemporal').val("Saldo Temporal");
+  }
+}
+
+$('#nfact').on('change',function(e){
+  mostrarSaldoTemporal(e.target.value);
+});
 </script>

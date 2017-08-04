@@ -11,6 +11,10 @@
         <span class="count_top"><i class="fa fa-user"></i> Total Conecciones</span>
         <div id="totalConnections" class="count">{{\Activity::users()->count()}}</div>
     </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Clientes</span>
+        <div class="count">{{\App\Cliente::count()}}</div>
+    </div>
 </div>
 <!-- /top tiles -->
 @endsection
